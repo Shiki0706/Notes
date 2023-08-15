@@ -4,7 +4,7 @@
 
 **笔记基于模板[ElegantBook](https://github.com/ElegantLaTeX/ElegantBook)，我非常喜欢它，在此对作者表示感谢！**
 
-## 2023.8.11
+## 2023.8
 
 已经初步完成了数学分析、高等概率论、高级计量经济学的笔记。
 
@@ -31,5 +31,5 @@
 | Advanced Econometrics                             | Amemiya    | 1985     | 1    | [Harvard University Press](https://www.hup.harvard.edu/catalog.php?isbn=9780674005600) |
 | 高级计量经济学                                    | 洪永淼     | 2011     | 1    | [高等教育出版社](https://xuanshu.hep.com.cn/front/book/findBookDetails?bookId=59cd8b23ba9eb884cf81b09a) |
 
-**下一步计划：** 可能会写点高等代数、随机过程、泛函分析基础、可能会在高级计量经济学中加入微观计量和补充更多细节，至于多元函数的微积分、高级微观、高级宏观、高等数理统计、时间序列分析等内容，由于研究生期间学业繁忙，可能会鸽几年？
+**下一步计划：** 可能会写点随机过程、泛函分析基础、也可能会在高级计量经济学中加入微观计量和补充更多细节，至于多元函数的微积分、高级微观、高级宏观、高等数理统计、时间序列分析等内容，由于研究生期间学业繁忙，可能会鸽几年？
 
