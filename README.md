@@ -10,26 +10,25 @@
 
 数学分析：内容主要包括基础点集拓扑、数列、一元函数微积分、常数项级数与函数项级数，没有包含多元函数的微积分及Fourier变换。例题较少，未来或许会进行大量补充。
 
-| 主要参考教材                        | 作者  | 出版年份 | 版次 | 链接                                                         |
-| ----------------------------------- | ----- | -------- | ---- | ------------------------------------------------------------ |
-| Principles of Mathematical Analysis | Rudin | 1976     | 3    | [McGraw Hill](https://www.mheducation.com/highered/product/principles-mathematical-analysis-rudin/M9780070542358.html) |
+| 主要参考教材                                                 | 作者  | 出版年份 | 版次 |
+| ------------------------------------------------------------ | ----- | -------- | ---- |
+| [Principles of Mathematical Analysis](https://www.mheducation.com/highered/product/principles-mathematical-analysis-rudin/M9780070542358.html) | Rudin | 1976     | 3    |
 
 高等概率论：内容主要包括测度论、大数定律、中心极限定理、条件期望。
 
-| 主要参考教材                                                 | 作者            | 出版年份 | 版次 | 链接                                                         |
-| ------------------------------------------------------------ | --------------- | -------- | ---- | ------------------------------------------------------------ |
-| Probability: Theory and Examples                             | Durrett         | 2019     | 5    | [Cambridge University Press](https://www.cambridge.org/9780521765398) |
-| Measure Theory and Probability Theory                        | Athreya, Lahiri | 2006     | 1    | [Springer](https://link.springer.com/book/10.1007/978-0-387-35434-7) |
-| Stochastic Limit Theory: An Introduction for Econometricians | Davidson        | 2020     | 2    | [Oxford University Press](https://global.oup.com/academic/product/stochastic-limit-theory-9780192844507) |
+| 主要参考教材                                                 | 作者            | 出版年份 | 版次 |
+| ------------------------------------------------------------ | --------------- | -------- | ---- |
+| [Probability: Theory and Examples](https://www.cambridge.org/9780521765398) | Durrett         | 2019     | 5    |
+| [Measure Theory and Probability Theory](https://link.springer.com/book/10.1007/978-0-387-35434-7) | Athreya, Lahiri | 2006     | 1    |
+| [Stochastic Limit Theory: An Introduction for Econometricians](https://global.oup.com/academic/product/stochastic-limit-theory-9780192844507) | Davidson        | 2020     | 2    |
 
-高级计量经济学：条件期望、OLS的有限样本性质和渐近性质、系统估计、工具变量与2SLS、广义矩估计、面板数据模型、条件极大似然估计、限值因变量模型。
+高级计量经济学：内容主要包括条件期望和一般均值分析、OLS的有限样本性质和渐近性质、系统估计、工具变量与2SLS、广义矩估计、面板数据模型、条件极大似然估计、限值因变量模型。
 
-| 主要参考教材                                      | 作者       | 出版年份 | 版次 | 链接                                                         |
-| ------------------------------------------------- | ---------- | -------- | ---- | ------------------------------------------------------------ |
-| Econometrics                                      | Hansen     | 2022     | 1    | [Princeton University Press](https://press.princeton.edu/books/hardcover/9780691235899/econometrics) |
-| Econometric Analysis of Cross Data and Panel Data | Wooldridge | 2010     | 2    | [MIT Press](https://mitpress.mit.edu/9780262232586/econometric-analysis-of-cross-section-and-panel-data/) |
-| Advanced Econometrics                             | Amemiya    | 1985     | 1    | [Harvard University Press](https://www.hup.harvard.edu/catalog.php?isbn=9780674005600) |
-| 高级计量经济学                                    | 洪永淼     | 2011     | 1    | [高等教育出版社](https://xuanshu.hep.com.cn/front/book/findBookDetails?bookId=59cd8b23ba9eb884cf81b09a) |
+| 主要参考教材                                                 | 作者       | 出版年份 | 版次 |
+| ------------------------------------------------------------ | ---------- | -------- | ---- |
+| [Econometrics](https://press.princeton.edu/books/hardcover/9780691235899/econometrics) | Hansen     | 2022     | 1    |
+| [Econometric Analysis of Cross Data and Panel Data](https://mitpress.mit.edu/9780262232586/econometric-analysis-of-cross-section-and-panel-data/) | Wooldridge | 2010     | 2    |
+| [Advanced Econometrics](https://www.hup.harvard.edu/catalog.php?isbn=9780674005600) | Amemiya    | 1985     | 1    |
+| [高级计量经济学](https://xuanshu.hep.com.cn/front/book/findBookDetails?bookId=59cd8b23ba9eb884cf81b09a) | 洪永淼     | 2011     | 1    |
 
 **下一步计划：** 可能会写点随机过程、泛函分析基础、也可能会在高级计量经济学中加入微观计量和补充更多细节，至于多元函数的微积分、高级微观、高级宏观、高等数理统计、时间序列分析等内容，由于研究生期间学业繁忙，可能会鸽几年？
-
