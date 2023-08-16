@@ -3975,8 +3975,9 @@ Poisson & 0.3678 & 0.3678 & 0.1839 & 0.0613 \\
 \end{table}
 \end{example}
 
-\chapter{条件期望}
-\section{CE的存在性与唯一性}
+\chapter{条件期望与条件概率}
+\section{条件期望}
+\subsection{存在性与唯一性}
 \begin{definition}\label{def:def4.1}
 设$(\Omega,\F_o,P)$为一个概率空间, $\sigma$-代数$\F\subset \F_o$, 随机变量$X\in\F_o$且$E|X|<\infty$, 那么给定$\F$时$X$的条件期望 (Conditional Expectation, CE)记作$E(X|\F)$, 它是任意满足以下条件的随机变量$Y$
 \begin{enumerate}[label=(\arabic*)]
@@ -4027,7 +4028,7 @@ $$\int_AX\,\text{d}P=\nu(A)=\int_A\frac{\text{d}\nu}{\text{d}\mu}\,\text{d}P$$
 &=\int_AY_1\,\text{d}P-\int_AY_2\,\text{d}P=\int_AY_1-Y_2\,\text{d}P
 \end{align*}
 从而$Y_1-Y_2$是$E(X|\F)$的一种形式, 也即条件期望$E(X|\F)$存在.
-\section{CE的示例}
+\subsection{示例}
 直观上看, $\F$描述了我们所掌握的信息, 对于任意$A\in\F$, 我们能知道它发生与否, 于是$E(X|\F)$是在给定信息后, 我们能对$X$的值所作的最优猜测 (best guess).
 \begin{example}\label{exp:exp4.1}
 如果$X\in\F$, 那么$E(X|\F)=X$. 换言之, 如果我们已经知道$X$, 那么对$X$的最优猜测即为$X$自身. 它的证明是容易的, 因为$X$总是满足条件(2), 唯一能阻止$X$为$E(X|\F)$的是条件(1), 但这个条件也已被$X\in\F$所满足.
@@ -4059,6 +4060,12 @@ P(A|B)&=P(A\cap B)/P(B) \label{eq4.6}
 $$E(X|Y)=E[X|\sigma(Y)]$$
 其中$\sigma(Y)$是由$Y$生成的$\sigma$-代数.
 
+假设$A_1, A_2\in\G$是两个不相交的集合, 容易证明
+$$P(A_1\cup A_2|\G)=P(A_1|\G)+P(A_2|\G)\quad \text{a.s.}$$
+这似乎意味着, 存在集合$A_0\in\G$使得$P(A_0)=0$, 并且对于所有$\omega\notin A_0$都有
+$$P\left(\left.\bigcup_{n=1}^\infty A_n\right|\G\right)=\sum_{n=1}^{\infty}P(A_n|\G)(\omega)$$
+然而这一论断并不成立, 这是因为$A_0$依赖于$\{A_n\}_{n\ge1}$, 当这个集族变化时, 异常集可以是不可数的, 并且它们的并集不包含于零概率集之中.
+
 \begin{example}[$\,$Bayes公式]
 设$G\in\G$, 那么
 $$P(G|A)=\left.\int_GP(A|\G)\,\text{d}P\right/\int_\Omega P(A|\G)\,\text{d}P$$
@@ -4077,6 +4084,8 @@ $$P(G|A)=\left.\int_GP(A|\G)\,\text{d}P\right/\int_\Omega P(A|\G)\,\text{d}P$$
 $$P((X,Y)\in B)=\int_B f(x,y)\,\text{d}x\text{d}y,\quad \forall B\in\mathcal{R}^2$$
 假设对于一切$y$都有$\int f(x,y)\,\text{d}x>0$, 如果$E|g(X)|<\infty$, 那么$E[g(X)|Y]=h(Y)$, 其中
 $$h(y)=\left.\int g(x)f(x,y)\,\text{d}x\right/\int f(x,y)\,\text{d}x$$
+\end{example}
+\begin{proof}
 首先注意到$h(Y)\in\sigma(Y)$, 故而条件(1)满足. 另一方面, 如果$A\in\sigma(Y)$, 那么对某些$B\in\mathcal{R}$有$A=\{\omega: Y(\omega)\in B\}$, 于是
 \begin{align*}
 E[h(Y);A]&=\int_Ah(Y)\,\text{d}P=\int_Bh(y)f_Y(y)\,\text{d}y \\
@@ -4084,7 +4093,7 @@ E[h(Y);A]&=\int_Ah(Y)\,\text{d}P=\int_Bh(y)f_Y(y)\,\text{d}y \\
 &=E[g(X)1_B(Y)]=E[g(X);A]
 \end{align*}
 故而条件(2)也满足. 最后, 去掉$\int f(x)\,\text{d}x>0$的步骤与之前类似.
-\end{example}
+\end{proof}
 
 \begin{example}
 如果$X$和$Y$是独立的, $\varphi:\R^2\to\R$满足$E|\varphi(x,y)|<\infty$, 令$g(x)=E[\varphi(x,Y)]$, 那么
@@ -4101,7 +4110,7 @@ $$E[\varphi(X,Y)|X]=g(X)$$
 \end{proof}
 
 
-\section{CE的性质}
+\subsection{性质}
 \begin{theorem}\label{thm:thm4.1}
   以下论断中的前两个假设了$E|X|, E|Y|<\infty$
   \begin{enumerate}[label=(\arabic*)]
@@ -4244,6 +4253,39 @@ $$E[\varphi(X,Y)|X]=g(X)$$
   \end{align*}
   从而$E(Y-X)^2=0$, 也即$Y=X\,\text{a.s.}$
 \end{proof}
+\section{正则条件概率}
+\begin{definition}
+设$(\Omega,\F,P)$为概率空间, $X:(\Omega,\F)\to (S,\SE)$为可测映射, 子$\sigma$-代数$\G\subset\F$, 称$\mu:\Omega\times \SE\to [0,1]$为给定$\G$时$X$的正则条件分布 (regular conditional distribution, r.c.d.), 如果以下条件成立
+\begin{itemize}
+  \item 对于任意$A\in \SE$, 映射$\omega\to \mu(\omega,A)$以概率1等于$P(X\in A|\G)$;
+  \item 对于几乎处处$\omega\in\Omega$, 映射$A\to\mu(\omega,A)$是$(S,\SE)$上的概率测度.
+\end{itemize}
+如果$S=\Omega$, $X$为恒等映射, 那么$\mu$称为正则条件概率 (regular conditional probability).
+\end{definition}
+\begin{example}
+假设$X$和$Y$具有联合概率密度$f(x,y)>0$, 如果
+$$\mu(y,A)=\left.\int_Af(x,y)\,\text{d}x\right/\int f(x,y)\,\text{d}x$$
+那么$\mu(Y(\omega),A)$是给定$\sigma(Y)$时$X$的r.c.d.
+\end{example}
+\begin{theorem}
+  设$\mu(\omega,A)$是给定$\F$时$X$的r.c.d., 如果$f:(S,\SE)\to (\R,\mathcal{R})$满足$E|f(X)|<\infty$, 那么
+  $$E[f(X)|\F]=\int\mu(\omega,\text{d}x)f(x)\quad \text{a.s.}$$
+\end{theorem}
+\begin{proof}
+  如果$f=1_A$, 则由定义证得结论, 然后根据线性性质和MCT拓展到非负可测函数$f$, 最后由$f=f^+-f^-$即可证得一般结论.
+\end{proof}
 
-
+\begin{definition}
+可测空间$(S,\SE)$是好的 (nice), 如果存在$1-1$映射$\varphi: S\to \R$, 使得$\varphi$和$\varphi^{-1}$都是可测的.
+\end{definition}
+\begin{theorem}
+  设$(\Omega,\F,P)$为概率空间, $X$和$Y$在好的可测空间$(S,\SE)$中取值并且$\G=\sigma(Y)$, 那么存在$\mu:S\times \SE\to[0,1]$使得
+  \begin{enumerate}[label=(\arabic*)]
+  \item 对于每一个$A\in\SE$, $\mu(Y(\omega),A)$以概率1等于$P(X\in A|\G)$;
+  \item 对于几乎处处$\omega\in \Omega$, $A\to\mu(Y(\omega),A)$是$(S,\SE)$上的概率测度.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  见Durrett所著《Probability: Theory and Examples》第5版第$186-187$页.
+\end{proof}
 \end{document} 
