@@ -34,6 +34,9 @@
 \newcommand{\itx}{\text{e}^{\text{i}tX}}
 \newcommand{\G}{\mathcal{G}}
 
+\renewcommand{\sup}{\text{sup}}
+\renewcommand{\inf}{\text{inf}}
+
 \newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
 \let\emptyset\varnothing
 
@@ -1319,12 +1322,15 @@ Radon-Nikodym定理在概率论中具有重要作用, 连续型随机变量的�
 
 
 \section{期望}
-\subsection{期望的计算}
+\subsection{定义与计算}
 \begin{definition}
 设$X$是概率空间$(\Omega,\F,P)$上的随机变量, 定义$X$的期望 (expectation)为
 $$E(X)=\int_{\Omega}X\,\text{d}P$$
-如果$\int_\Omega X^+\,\text{d}P$和$\int_\Omega X^-\,\text{d}P$至少有一个是有限的.
+如果$E(X^+)$和$E(X^-)$至少有一个是有限的, 如果二者均是有限的, 则称$E(X)$存在.
 \end{definition}
+\begin{remark}
+由于$|X|=X^++X^-$, 因此$E(X)$存在当且仅当$E|X|$是有限的.
+\end{remark}
 \begin{theorem}
   设$X$是概率空间$(\Omega,\F,P)$上的$n$维随机向量, $h:(\R^n,\mathcal{R}^n)\to(\R,\mathcal{R})$是可测函数, 如果$h\geq 0$或$E|h(X)|<\infty$, 那么
 \begin{equation}\label{eq1.14}
@@ -2153,11 +2159,14 @@ $$\{\omega: \omega_i\in B_i, 1\leq i\leq n\},\quad B_i\in\mathcal{R}$$
 
 \begin{definition}
 \begin{itemize}
-\item 随机变量序列$\{X_n\}_{n\ge1}$依概率收敛 (converge in probability)于$X$, 如果对于任意的$\epsilon>0$, 当$n\to\infty$时有$P(|X_n-X|>\epsilon)\to0$, 记作$X_n\xrightarrow{p}X$.
+\item 随机变量序列$\{X_n\}_{n\ge1}$依概率收敛 (converge in probability)于$X$, 如果对于任意的$\epsilon>0$都有$\lim P(|X_n-X|<\epsilon)=1$, 记作$X_n\xrightarrow{p}X$.
 \item 随机变量序列$\{X_n\}_{n\ge1}$依$L^p$收敛 (converge in $L^p$)于$X$, 如果对于当$n\to\infty$时有$E|X_n-X|^p\to0$, 记作$X_n\xrightarrow{L^p}X$.
 \item 随机变量序列$\{X_n\}_{n\ge1}$几乎必然收敛 (almost surely converge)于$X$, 如果对于任意的$\epsilon>0$都有$P(\lim |X_n-X|<\epsilon)=1$, 记作$X_n\xrightarrow{a.s.}X$.
 \end{itemize}
 \end{definition}
+\begin{remark}
+依概率收敛表明, 当$n\to\infty$时, 事件$|X_n-X|<\epsilon$发生的概率为1, 而几乎必然收敛表明事件$\lim |X_n-X|<\epsilon$发生的概率为1.
+\end{remark}
 \begin{theorem}
 $Z_n\xrightarrow{a.s.}Z\Rightarrow Z_n\xrightarrow{p}Z$.
 \end{theorem}
@@ -2275,7 +2284,7 @@ $$\overbar{X}=X1_{(|X|\leq M)}=\begin{cases}
                                \end{cases}$$
 然后再使用Chebyshev不等式和一些必需的定理.
 \begin{theorem}[三角阵列的弱定律]\label{thm:thm2.7}
-  假设对于每一个$n$, 随机变量$X_{n,k}$都是独立的. 再令$b_n>0$, 以及$\overbar{X}_{n,k}=X_{n,k}1_{(|X_{n,k}|\leq b_n)}$, 假设当$n\to\infty$时有
+  假设对于每一个$n$, 随机变量$X_{n,k}$都是独立的. 令$b_n>0$, $\overbar{X}_{n,k}=X_{n,k}1_{(|X_{n,k}|\leq b_n)}$, 假设当$n\to\infty$时有
   \begin{itemize}
     \item $b_n\to\infty$.
     \item $\sum_{k=1}^{n}P(|X_{n,k}|>b_n)\to0$.
@@ -2397,7 +2406,7 @@ $$P(X_i=2^j)=2^{-j}, \quad j\ge1$$
 \begin{remark}
 这仍然是一个依概率收敛但不几乎必然收敛的例子, 可以通过下一节的Borel-Cantelli引理证明.
 \end{remark}
-\newpage
+
 \section{Borel-Cantelli引理}
 \begin{definition}
 设$(\Omega,\F)$为可测空间, $\{A_n\}_{n\ge1}\subset\F$, 则它的上极限和下极限分别为
@@ -2459,7 +2468,7 @@ X_n\xrightarrow{a.s.}X&\Leftrightarrow P(\lim X_n=X)=1 \\
 \begin{example}[圣彼得堡悖论: 续]
 前面已经提到, $S_n/n\log_2n$依概率收敛于1, 但却不是几乎必然收敛于1的. 为了看到这一点, 只需证明对于任意$K>0$都有
 \begin{equation}\label{eq2.17}
-  P(X_n/n\log_2n>K\,\text{i.o.})=1
+  P\left(\frac{X_n}{n\log_2n}>K\,\text{i.o.}\right)=1
 \end{equation}
 因为这一结论可以适用于$S_n$.
 
@@ -2654,7 +2663,8 @@ $$\limsup_{n\to\infty} X_n/\log n=1\quad \text{a.s.}$$
   \sum_{i=1}^{\infty}i^{-2}E(Y_i^2)&=\sum_{i=1}^{\infty}i^{-2}E(X_1^2)1_{(0\leq X_1\leq i)} \\
   &=\sum_{i=1}^{\infty}\sum_{j=1}^{i}i^{-2}E(X_1^2)1_{(j-1<X_1\leq j)} \\
   &=\sum_{j=1}^{\infty}E(X_1^2)1_{(j-1<X_1\leq j)}\sum_{i=j}^{\infty}i^{-2} \\
-  &\leq \sum_{j=1}^{\infty}[jE(X_1)1_{(j-1\leq X_1<j)}]\cdot C_2j^{-1}=C_2E(X_1)<\infty
+  &\leq \sum_{j=1}^{\infty}[jE(X_1)1_{(j-1\leq X_1<j)}]\cdot C_2j^{-1}\\
+  &=C_2E(X_1)<\infty
   \end{align*}
   从而对于任意$\epsilon>0$都有
   $$\sum_{k=1}^{\infty}P(|T_{n_k}-E(T_{n_k})|>\epsilon n_k)<\infty$$
@@ -2662,18 +2672,18 @@ $$\limsup_{n\to\infty} X_n/\log n=1\quad \text{a.s.}$$
 
 \end{proof}
 \begin{theorem}\label{thm:thm2.9}
-  设$X_1,X_2,\cdots$为i.i.d.随机变量, $E(X_i^+)=\infty$且$E(X_i^-)<\infty$, 如果$S_n=X_1+\cdots+X_n$, 那么$S_n/n\xrightarrow{a.s.}\infty$.
+  设$X_1,X_2,\cdots$为i.i.d.随机变量, $E(X_i^+)=\infty$且$E(X_i^-)<\infty$, 如果$S_n=X_1+\cdots+X_n$, 那么当$n\to\infty$时有$S_n/n\xrightarrow{a.s.}\infty$.
 \end{theorem}
 \begin{proof}
   令$M>0$, 以及$X_i^M=X_i\wedge M$, 可知$X_i^M$是i.i.d.的并且$E|X_i^M|<\infty$, 再令$S_n^M=X_1^M+\cdots+X_n^M$, 强大数定律表明$S_n^M/n\xrightarrow{a.s.}E(X_i^M)$. 因为$X_i\geq X_i^M$, 于是
   $$\liminf_{n\to\infty}S_n/n\geq \limn S_n^M/n=E(X_i^M)$$
-  再由MCT可知当$M\uparrow\infty$时有$E(X_i^{M})^+\uparrow E(X_i^+)=\infty$, 进一步有$E(X_i^M)=E(X_i^M)^+-E(X_i^M)^-\uparrow \infty$, 以及$\liminf S_n/n\geq\infty$, 这就得到了希望的结果.
+  再由MCT可知当$M\uparrow\infty$时有$E(X_i^{M})^+\uparrow E(X_i^+)=\infty$, 进一步有$$E(X_i^M)=E(X_i^M)^+-E(X_i^M)^-\uparrow \infty$$以及$$\liminf_{n\to\infty} S_n/n\geq\infty$$这就得到了希望的结果.
 \end{proof}
 
 \begin{example}[经验分布函数]
-设$X_1,X_2,\cdots$为i.i.d.随机变量, $F$是每个随机变量的c.d.f., 现在定义
-$$F_n(x)\equiv n^{-1}\sum_{j=1}^{n}1_{(X_j\leq x)},\quad x\in\R$$
-称为$\{X_1,X_2,\cdots\}$的经验分布函数 .
+设$X_1,X_2,\cdots$为i.i.d.随机变量, $F$是每个随机变量的c.d.f., 现在对于任意$x\in\R$, 定义
+$$F_n(x)\equiv n^{-1}\sum_{j=1}^{n}1_{(X_j\leq x)}$$
+称为$\{X_1,X_2,\cdots\}$的经验分布函数 (empirical distribution function).
 \end{example}
 \begin{theorem}[Glivenko-Cantelli定理]
   设以下给定的符号与上例中的一致, 则当$n\to\infty$时有
@@ -2690,13 +2700,14 @@ $$
   $$|F_n(x_{j,k})-F(x_{j,k})|<k^{-1}, \quad|F_n(x_{j,k}-)-F(x_{j,k}-)|<k^{-1}$$
   这里规定$x_{0,k}=-\infty$且$x_{k,k}=\infty$, 显然以上两个不等式成立. 如果$x\in(x_{j-1,k},x_{j,k})$, $1\leq j\leq k$且$n>n_k$, 注意到$F(x_{j,k}-)-F(x_{j-1,k})\leq k^{-1}$, 于是
   \begin{align*}
-  &F_n(x)\leq F_n(x_{j,k}-)\leq F(x_{j,k}-)+k^{-1}\leq F(x_{j-1,k})+2k^{-1}\leq F(x)+2k^{-1} \\
-  &F_n(x)\geq F_n(x_{j-1,k})\geq F(x_{j-1,k})-k^{-1}\geq F(x_{j,k}-)-2k^{-1}\geq F(x)-2k^{-1}
+  F_n(x)\leq F_n(x_{j,k}-)\leq F(x_{j,k}-)+k^{-1}\leq F(x_{j-1,k})+2k^{-1}\leq F(x)+2k^{-1}
   \end{align*}
+  以及
+  $$F_n(x)\geq F_n(x_{j-1,k})\geq F(x_{j-1,k})-k^{-1}\geq F(x_{j,k}-)-2k^{-1}\geq F(x)-2k^{-1}$$
   也即$\sup_x|F_n(x)-F(x)|\leq 2k^{-1}$, 结论成立.
 \end{proof}
 \begin{example}[$\,$Shannon定理]
-设$X_1,X_2,\cdots \{1,\cdots,r\}$是独立的, 并且对$1\leq k\leq r$都有$P(X_i=k)=p(k)>0$. 这里可以将$1,\cdots,r$视作一个字母表, $X_1,X_2,\cdots$为信息源生成的有序字母. 令
+设$X_1,X_2,\cdots \{1,\cdots,r\}$是独立的, 并且对$1\leq k\leq r$都有$P(X_i=k)=p(k)>0$. 这里可以将$1,\cdots,r$视作一个字母表, $X_1,X_2,\cdots$为信息源生成的有序字母. 现在令
 $$\pi_n(\omega)=P(X_1(\omega))\cdots P(X_n(\omega))$$
 为前$n$次试验中观测到实现值的概率, 根据SLLN可知
 $$-n^{-1}\log\pi_n(\omega)\to H=-\sum_{k=1}^{r}p(k)\log p(k)\quad \text{a.s.}$$
@@ -2707,7 +2718,7 @@ $$-n^{-1}\log\pi_n(\omega)\to H=-\sum_{k=1}^{r}p(k)\log p(k)\quad \text{a.s.}$$
 \begin{definition}
 设$X_1,X_2,\cdots$是定义在概率空间$(\Omega,\F,P)$上的随机变量, $\F_n'=\sigma(X_{n},X_{n+1},\cdots)$是由$n$时刻后的全体$X_m$生成的最小$\sigma$-代数, 称
 $$\mathcal{T}=\bigcap_{n=1}^\infty F_n'$$
-为尾$\sigma$-代数 (tail $\sigma$-algebra), 任意$A\in\mathcal{T}$为尾事件.
+为尾$\sigma$-代数 (tail $\sigma$-algebra), 任意$A\in\mathcal{T}$为尾事件 (tail event).
 \end{definition}
 直觉上看, $\F_n'$相当于是$n$时刻后的事件, $A\in\mathcal{T}$当且仅当改变有限个随机变量的取值不影响事件$A$的发生.
 \begin{example}
@@ -3889,7 +3900,7 @@ $$K_1(x)-K_2(x)=\frac{1}{2\uppi}\int -\text{e}^{-\text{i}tx}\frac{\kappa_1(t)-\k
   &\leq \frac{|t|^3\gamma}{6}+\frac{t^4\sigma^4}{4}
   \end{align*}
   根据$|t\sigma|\leq 1$, 以及
-  $$\sigma^3=[E(Y^2)]^{3/2}\leq E|Y|^3=\gamma$$可知式(\ref{eq3.28})成立.
+  $\sigma^3=[E(Y^2)]^{3/2}\leq E|Y|^3=\gamma$可知式(\ref{eq3.28})成立.
 \end{proof}
 
 \begin{theorem}[Berry-Esseen定理]
@@ -3908,7 +3919,8 @@ r_n(t)&=\left|n\log\varphi\left(\frac{t}{\sqrt{n}}\right)+\frac{t^2}{2}\right| \
 &=n\left|\log\varphi\left(\frac{t}{\sqrt{n}}\right)+\frac{\sigma^2}{2}\left(\frac{t}{\sqrt{n}}\right)^2 \right| \nonumber \\
 &\leq \frac{5|t|^3\gamma}{12\sqrt{n}} \label{eq3.31}
 \end{align}
-因为$\gamma=E|X_1|^3\geq [E(X_1)^2]^{3/2}=1$, $|L|\leq \sqrt{n}$, 根据复数不等式$|\text{e}^z-1|\leq |z|\text{e}^{|z|}$和式(\ref{eq3.31})可知
+因为$\gamma=E|X_1|^3\geq [E(X_1)^2]^{3/2}=1$, $|L|\leq \sqrt{n}$, 根据不等式
+$|\text{e}^z-1|\leq |z|\text{e}^{|z|}$和式(\ref{eq3.31})可知
 \begin{align}
 \left|\varphi^n\left(\frac{t}{\sqrt{n}}\right)-\text{e}^{-t^2/2} \right|&=\left|\text{exp}\left[n\log\varphi\left(\frac{t}{\sqrt{n}}\right)+\frac{t^2}{2}\right]-1\right|\text{exp}\left(-\frac{t^2}{2}\right) \nonumber \\
 &\leq |r_n(t)|\text{exp}\left(|r_n(t)|-\frac{t^2}{2}\right) \nonumber \\
@@ -3916,7 +3928,7 @@ r_n(t)&=\left|n\log\varphi\left(\frac{t}{\sqrt{n}}\right)+\frac{t^2}{2}\right| \
 &\leq \frac{5\gamma}{12\sqrt{n}}|t|^3\text{exp}\left(-\frac{t^2}{12}\right) \label{eq3.32}
 \end{align}
 对一切$|t|\gamma\leq \sqrt{n}$成立. 注意到
-$\int_{-\infty}^{\infty}t^2\text{e}^{-t^2/12}\,\text{d}t=6\sqrt{2\uppi}$, 于是根据式(\ref{eq3.33})和(\ref{eq3.32})可知, 定理在
+$$\int_{-\infty}^{\infty}t^2\text{e}^{-t^2/12}\,\text{d}t=6\sqrt{2\uppi}$$于是根据式(\ref{eq3.33})和(\ref{eq3.32})可知, 定理在
 $$C=\sqrt{\frac{2}{\uppi}}\left[\frac{5}{2}+\frac{12}{\uppi}\right]<5.05$$
 的情况下成立.
 \end{proof}
@@ -3975,7 +3987,7 @@ Poisson & 0.3678 & 0.3678 & 0.1839 & 0.0613 \\
 \end{table}
 \end{example}
 
-\chapter{条件期望与条件概率}
+\chapter{鞅论}
 \section{条件期望}
 \subsection{存在性与唯一性}
 \begin{definition}\label{def:def4.1}
@@ -4005,9 +4017,9 @@ Poisson & 0.3678 & 0.3678 & 0.1839 & 0.0613 \\
 $$\int_AY\,\text{d}P=\int_AY'\,\text{d}P$$
 任取$A=\{Y-Y'\geq\epsilon>0\}$, 于是
 $$0=\int_A X-X\,\text{d}P=\int_AY-Y'\,\text{d}P\geq\epsilon P(A)$$
-也即$P(A)=0$. 因为这对任意$\epsilon>0$成立, 故而$Y\leq Y'\,a.s.$, 在上式中交换$Y$与$Y'$的位置就得到$Y=Y’\,a.s.$ 技术上来说, 所有形如$Y=E(X|\F)$的等式都该写作$Y=E(X|\F)\,\text{a.s.}$, 但是为了简单起见而将a.s.省去.
+也即$P(A)=0$. 因为这对任意$\epsilon>0$成立, 故而$Y\leq Y'\,a.s.$, 在上式中交换$Y$与$Y'$的位置就得到$Y=Y'\, \text{a.s.}$ 技术上来说, 所有形如$Y=E(X|\F)$的等式都该写作$Y=E(X|\F)\,\text{a.s.}$, 但是为了简单起见而将a.s.省去.
 
-\begin{theorem}
+\begin{theorem}\label{thm:thm4.5}
   如果在$B\in\F$上有$X_1=X_2$, 那么在$B$上$E(X_1|\F)=E(X_2|\F)\,\text{a.s.}$
 \end{theorem}
 \begin{proof}
@@ -4253,7 +4265,7 @@ $$E[\varphi(X,Y)|X]=g(X)$$
   \end{align*}
   从而$E(Y-X)^2=0$, 也即$Y=X\,\text{a.s.}$
 \end{proof}
-\section{正则条件概率}
+\subsection{正则条件概率}
 \begin{definition}
 设$(\Omega,\F,P)$为概率空间, $X:(\Omega,\F)\to (S,\SE)$为可测映射, 子$\sigma$-代数$\G\subset\F$, 称$\mu:\Omega\times \SE\to [0,1]$为给定$\G$时$X$的正则条件分布 (regular conditional distribution, r.c.d.), 如果以下条件成立
 \begin{itemize}
@@ -4287,5 +4299,190 @@ $$\mu(y,A)=\left.\int_Af(x,y)\,\text{d}x\right/\int f(x,y)\,\text{d}x$$
 \end{theorem}
 \begin{proof}
   见Durrett所著《Probability: Theory and Examples》第5版第$186-187$页.
+\end{proof}
+
+\section{离散时间鞅}
+\begin{definition}
+设$(\Omega,\F,P)$为概率空间, 由$\F$的子$\sigma$-代数构成的一列$\{\F_n\}$称为滤链 (filtration), 如果对于一切$n\in\mathbb{N}$都有$\F_n\subset\F_{n+1}$.
+\end{definition}
+
+\begin{definition}
+随机变量序列$\{X_n\}$称为关于$\{F_n\}$的鞅 (martingale), 如果对于一切$n\ge1$, 以下条件成立
+\begin{enumerate}[label=(\arabic*)]
+  \item $E|X_n|<\infty$;
+  \item 随机变量序列$\{X_n\}$适配于$\{F_n\}$, 也即$X_n\in\F_n$;
+  \item $E(X_{n+1}|\F_n)=X_n$.
+\end{enumerate}
+如果将条件(3)的等号变为$\leq$或$\geq$, 那么分别称$\{X_n\}$为关于$\{F_n\}$的上鞅 (supermartingale)和下鞅 (submartingale).
+\end{definition}
+
+首先来举几个例子, 设$\xi_1,\xi_2,\cdots$是i.i.d.随机变量, $S=S_0+\xi_1+\xi_2+\cdots+\xi_n$, 其中$S_0$为一个常数. 再对一切$n\ge1$, 定义$\sigma$-代数$\F_n=\sigma(\xi_1,\cdots,\xi_n)$, 以及$\F_0=\{\emptyset,\Omega\}$.
+
+\begin{example}[线性鞅]
+如果$\mu=E(\xi_i)=0$, 那么对一切$n\ge0$, $\{S_n\}$是关于$\{F_n\}$的鞅.
+\end{example}
+\begin{proof}
+  根据$E(\xi_i)=0$可知$E|S_n|<\infty$, 又因为$\F_n$是由$\xi_1,\cdots,\xi_n$生成的$\sigma$-代数, 故而$S_n\in\F_n$, $E(S_n|\F_n)=S_n$. 注意到$\F_n$不包含关于$\xi_{n+1}$的任意信息, 于是$E(\xi_{n+1}|\F_n)=E(\xi_{n+1})$, 最后由条件期望的线性性质可知
+  $$E(S_{n+1}|\F_n)=E(S_n|\F_n)+E(\xi_{n+1}|\F_n)=S_n+E(\xi_{n+1})=S_n$$
+  也即$\{S_n\}$是关于$\{F_n\}$的鞅.
+\end{proof}
+在上例中, 如果$\mu\leq0$, 那么$\{X_n\}$是一个上鞅, 此种情况下, $X_{n+1}$是对应于不利游戏的下注, 因此上鞅一词中的“super”并没有体现出它的字典意义. 反之, 如果$\mu\ge0$, 那么$\{X_n\}$是一个下鞅. 对于一般情况, 容易证明$\{S_n-n\mu\}$是一个鞅.
+\begin{example}[二次鞅]
+如果$\mu=E(\xi_i)=0$, $\sigma^2=\var(\xi_i)<\infty$, 那么$\{S_n^2-n\sigma^2\}$是一个鞅.
+\end{example}
+\begin{proof}
+  条件(1)和(2)的验证与上例类似, 注意到
+  $$S_{n+1}^2=S_n^2+2S_n\xi_{n+1}+\xi_{n+1}^2$$
+  并且$\xi_{n+1}$独立于$\F_n$, 于是
+  \begin{align*}
+  E[S_{n+1}^2-(n+1)\sigma^2|\F_n]&=S_n^2+2S_nE(\xi_{n+1}|\F_n)+E(\xi_{n+1}^2|\F_n)-(n+1)\sigma^2 \\
+  &=S_n^2+0+\sigma^2-(n+1)\sigma^2=S_n^2-n\sigma^2
+  \end{align*}
+  由此证得这一论断.
+\end{proof}
+\begin{example}[指数鞅]
+设$Y_1,Y_2,\cdots$为非负i.i.d.随机变量, $E(Y_m)=1$. 如果$\F_n=\sigma(Y_1,\cdots,Y_n)$, 那么$M_n=\prod_{m\leq n}Y_m$定义了一个鞅. 条件(1)和(2)容易验证, 现在只需注意到
+$$E(M_{n+1}|\F_n)=M_nE(Y_{n+1}|\F_n)=M_n$$
+故而设$X_i=\text{e}^{\theta\xi_i}$, $\phi(\theta)=E(\text{e}^{\theta\xi_i})<\infty$, 因此
+$$M_n=\prod_{i=1}^{n}Y_i=\text{exp}(\theta S_n)/\phi(\theta)^n$$
+定义了一个鞅.
+\end{example}
+
+\begin{theorem}
+  如果$\{X_n\}$是一个上鞅, 那么对任意$n>m$都有$E(X_n|\F_m)\leq X_m$.
+\end{theorem}
+\begin{proof}
+  首先令$n=m+1$, 根据上鞅的定义可知结论成立, 再对$k\ge2$假设$n=m+k$, 根据定理\ref{thm:thm4.2}可知
+  $$E(X_{m+k}|\F_m)=E[E(X_{m+k}|\F_{m+k-1})|\F_m]\leq E(X_{m+k-1}|\F_m)$$
+  迭代可得定理成立.
+\end{proof}
+\begin{theorem}
+  \begin{enumerate}[label=(\arabic*)]
+    \item 如果$\{X_n\}$是一个下鞅, 那么对任意$n>m$都有$E(X_n|\F_m)\geq X_m$.
+    \item 如果$\{X_n\}$是一个鞅, 那么对任意$n>m$都有$E(X_n|\F_m)= X_m$.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  注意到$\{-X_n\}$是一个上鞅, 以及$\{X_n\}$既是上鞅又是下鞅, 结论成立.
+\end{proof}
+\begin{remark}
+特别地, 如果$\{X_n:n\ge0\}$是一个鞅, 那么根据$E(E(X|\F))=E(X)$可知, 对任意$n\ge1$都有$E(X_n)=E(X_0)$.
+\end{remark}
+\begin{theorem}
+  设$\{X_n\}$是关于滤链$\{\F_n\}$的鞅, $\varphi$是凸函数并且$E[\varphi(X_n)]<\infty$对一切$n\ge1$成立, 那么$\{\varphi(X_n)\}$是关于$\{\F_n\}$的下鞅.
+\end{theorem}
+\begin{proof}
+  根据Jensen不等式和鞅的定义可知
+  $$E[\varphi(X_{n+1})|\F_n]\geq\varphi[E(X_{n+1}|\F_n)]=\varphi(X_n)$$
+  证明完毕.
+\end{proof}
+\begin{corollary}
+如果$p>1$且$E|X_n|^p$对一切$n\ge1$成立, 那么$\{|X_n|^p\}$是关于$\{\F_n\}$的下鞅.
+\end{corollary}
+\begin{theorem}
+  设$\{X_n\}$是关于滤链$\{\F_n\}$的下鞅, $\varphi$是递增的凸函数并且$E[\varphi(X_n)]<\infty$对一切$n\ge1$成立, 那么$\{\varphi(X_n)\}$是关于$\{\F_n\}$的下鞅.
+\end{theorem}
+\begin{proof}
+  根据Jensen不等式和鞅的定义可知
+  $$E[\varphi(X_{n+1})|\F_n]\geq\varphi[E(X_{n+1}|\F_n)]\ge\varphi(X_n)$$
+  证明完毕.
+\end{proof}
+\begin{corollary}\label{cor:cor4.1}
+如果$\{X_n\}$是下鞅, 那么$\{(X_n-a)^+\}$是下鞅; 如果$\{X_n\}$是上鞅, 那么$\{X_n\wedge a\}$是上鞅.
+\end{corollary}
+
+\begin{definition}
+设$\{\F_n:n\ge0\}$是一个滤链, 称$\{H_n:n\ge1\}$是可预测序列 (predictable sequence), 如果对一切$n\ge1$都有$H_n\in\F_{n-1}$. 
+\end{definition}
+
+\begin{example}\label{exp:exp4.2}
+设$X_n$是赌徒每次下注$1$元, 在$n$时刻所赚的净额. 如果赌博是公平的, 也即
+$$P(X_n=1)=P(X_n=-1)=1/2$$
+那么易证$\{X_n\}$为一个鞅, 这表明了如果赌博的输赢概率一样, 且赌徒均依赖于历史信息进行下一步操作, 那么没有任何操作策略使得赌博有利于某位赌徒.
+
+如果根据赌博系统$H$来下注, 那么赌徒在$n$时刻赢得的金额为
+$$(H\cdot X)_n=\sum_{m=1}^{n}H_m(X_m-X_{m-1})$$
+也就是说, 如果某个赌徒在$m$时刻下注$H_m$元, 那么他的财富变化量将是下注$1$元的其他赌徒的$H_m$倍. 继续考虑随机变量$\xi_m=X_m-X_{m-1}$, 分布律为
+$$P(\xi_m=1)=p,\quad P(\xi_m=-1)=1-p$$
+一个著名的赌博系统就称为“martingale”: $H_1=1$, 且当$n\ge2$时有
+$$H_n=\begin{cases}
+        2H_{n-1}, & \xi_{n-1}=-1 \\
+        1, & \xi_{n-1}=1
+      \end{cases}$$
+换言之, 在赌徒输了的时候, 他将自己的赌注翻倍; 如果他输了$k$次然后赢了, 则此刻的净收益为$1$元. 为了看到这一点, 考虑以下情况
+\begin{table}[htbp!]
+\centering
+\begin{tabular}{cccccc}
+$H_n$      & 1      & $2$      & 4      & 8 & 16      \\
+$\xi_n$ & $-1$ & $-1$ & $-1$ & $-1$ & 1 \\
+$(H\cdot X)_n$   & $-1$ & $-3$ & $-7$ & $-15$ & 1
+\end{tabular}
+\end{table}
+
+\noindent 直觉上看, 似乎只要$P(\xi_n=1)>0$, 那么这一系统就给赌徒提供了某些“确定的东西”. 
+
+然而, 现实中的赌博通常是不公平的, 也即$\{X_n\}$是一个上鞅. 下面的结果表明, 如果赌徒完全依赖于$\{H_n\}$所提供的信息, 那么没有任何法则可以击败一个不利的游戏.
+\end{example}
+
+\begin{theorem}\label{thm:thm4.6}
+  设$\{X_n:n\ge0\}$是一个上鞅, 如果$\{H_n\ge0\}$是可预测的且每个$H_n$有界, 那么$\{(H\cdot X)_n\}$是一个上鞅.
+\end{theorem}
+\begin{proof}
+  根据条件期望的线性性质, $(H\cdot X)_n\in\F_n$, $H_{n}\in\F_{n-1}$, 以及定理\ref{thm:thm4.3}可知
+  \begin{align*}
+  E[(H\cdot X)_{n+1}|\F_n]&=(H\cdot X)_n+E[H_{n+1}(X_{n+1}-X_n)|\F_n] \\
+  &=(H\cdot X)_n+H_{n+1}E[(X_{n+1}-X_n)|\F_n]\leq (H\cdot X)_n
+  \end{align*}
+  这里用到了$H_n\ge0$和$E[(X_{n+1}-X_n)|\F_n]\le0$.
+\end{proof}
+\begin{remark}
+这一结果同样适用于下鞅和鞅的情况, 并且后者不需要$H_n\ge0$这一限制.
+\end{remark}
+\begin{definition}
+随机变量$N$称为停时 (stopping time), 如果对于一切$n<\infty$都有$\{N=n\}\in\F_n$. 换言之, 事件$\{N=n\}$发生与否完全由$\F_n$决定.
+\end{definition}
+
+根据$\{N=n\}=\{N\leq n\}\backslash \{N\leq n-1\}$可知, 停时的等价定义为对于一切$n<\infty$都有$\{N\leq n\}\in\F_n$; 如果$N$为停时, $k$为正整数, 那么$N+k$仍为停时, 而$N-k$不一定为停时, 这是因为事件$\{N=n+k\}$的发生不一定取决于$\F_n$.
+
+假设$H_n=1_{\{N\ge n\}}$, $N$为停时, 那么$\{N\ge n\}=\{N\leq n-1\}^c\in\F_{n-1}$, 因此$\{H_n\}$是可预测的, 根据定理\ref{thm:thm4.6}可知, 如果$\{X_n\}$是一个上鞅, 那么$(H\cdot X)_n=X_{N\wedge n}-X_0$定义了一个上鞅, 容易得到以下定理.
+\begin{theorem}
+  如果$N$是一个停时, $\{X_n\}$是一个(上或下)鞅, 那么$\{X_{N\wedge n}\}$也是. 
+\end{theorem}
+
+\begin{example}
+设随机变量$H_n$为$n$时刻的买入量, 其完全取决于$n$时刻前的股价表现 ($H_{n}\in \F_{n-1}$), 故而$\{H_n\}$是可预测序列. 再设$X_n$为$n$时刻的股价, 且$\{X_n\}$是关于$\{\F_n\}$的鞅, 此时的累计收益可以表示为
+$$(H\cdot X)_n=\sum_{m=1}^{n}H_m(X_{m}-X_{m-1})$$
+根据定理\ref{thm:thm4.6}可知股价$\{(H\cdot X)_n\}$也是一个鞅. 设$N$为一个停时, 表示停止交易的时刻, 事件$\{N=n\}$发生与否完全由$n$时刻的股价决定.
+\end{example}
+
+假设$\{X_n:n\ge0\}$是一个下鞅, 令$a<b$, $\sigma_0=0$, 且对$k\ge1$有
+\begin{align*}
+\tau_k&=\inf\{m>\sigma_{k-1}:X_m\le a\} \\
+\sigma_k&=\inf\{m>\tau_k: X_m\ge b\}
+\end{align*}
+对于任意的$k\in\mathbb{N}$, $\tau_k$和$\sigma_k$为停时, 并且
+$$\{\tau_k<m\leq \sigma_k\}=\{\tau_k\leq m-1\}\cap\{\sigma_k\leq m-1\}^c\in \F_{m-1}$$
+因此
+$$H_m=\begin{cases}
+        1, & \tau_k<m\leq \sigma_k \\
+        0, & \mbox{otherwise}
+      \end{cases}$$
+定义了一个可预测序列. 由于$X_{\tau_k}\leq a$且$X_{\sigma_k}\ge b$, 故而在时刻$\tau_k$和$\sigma_k$之间, $X_m$从$a$上穿$b$, 于是$H_m$是一个试图从上穿中获利的赌博系统. 在上面的例子中, 投资者通常是在$X_m\leq a$时买入股票, 然后在$X_m\ge b$时卖出.
+
+
+\begin{theorem}[上穿不等式]
+  如果$\{X_m:m\ge0\}$是一个下鞅, 那么
+  $$(b-a)E(U_n)\leq E(X_n-a)^+-E(X_0-a)^+$$
+  其中$U_n=\sup\{k: \sigma_k\leq n\}$为$n$时刻完成的上穿次数.
+\end{theorem}
+\begin{proof}
+  令$Y_m=a+(X_m-a)^+$, 根据推论\ref{cor:cor4.1}可知$\{Y_m\}$是一个下鞅, 显然它和$X_m$上穿$[a,b]$的次数相同. 易证
+  $Y_{\sigma_i}-Y_{\tau_i}=Y_{\sigma_i}-a\ge b-a$对一切$i\le k$成立, 不难得到
+  $$(H\cdot Y)_{\sigma_k}=\sum_{i=1}^{k}\sum_{j=\tau_i+1}^{\sigma_i}(Y_j-Y_{j-1})=\sum_{i=1}^{k}(Y_{\sigma_i}-Y_{\tau_i})\ge k(b-a)$$
+  此外, 对于$\sigma_k\leq j\leq \tau_{k+1}$可得$(H\cdot Y)_j=(H\cdot Y)_{\sigma_k}$; 而对于$\tau_k<j\leq \tau_{k+1}$有$(H\cdot Y)_j\ge (H\cdot Y)_{\tau_k}=(H\cdot Y)_{\sigma_{k-1}}$, 由此得到
+  $$(b-a)E(U_n)\leq (H\cdot Y)_n$$
+  对一切$n\ge0$成立.
+  
+  最后令$K_m=1-H_m$, 易知$Y_n-Y_0=(H\cdot Y)_n+(K\cdot Y)_n$, 根据定理\ref{thm:thm4.6}可知$E[(K\cdot Y)_n]\geq E[(K\cdot Y)_0]=0$, 从而$E[(H\cdot Y)_n]\leq E(Y_n-Y_0)$, 这就得到了希望的结论.
 \end{proof}
 \end{document} 
