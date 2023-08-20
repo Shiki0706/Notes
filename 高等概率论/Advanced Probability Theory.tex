@@ -34,8 +34,8 @@
 \newcommand{\itx}{\text{e}^{\text{i}tX}}
 \newcommand{\G}{\mathcal{G}}
 
-\renewcommand{\sup}{\text{sup}}
-\renewcommand{\inf}{\text{inf}}
+%\renewcommand{\sup}{\text{sup}}
+%\renewcommand{\inf}{\text{inf}}
 
 \newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
 \let\emptyset\varnothing
@@ -3987,7 +3987,7 @@ Poisson & 0.3678 & 0.3678 & 0.1839 & 0.0613 \\
 \end{table}
 \end{example}
 
-\chapter{鞅论}
+\chapter{离散鞅论}
 \section{条件期望}
 \subsection{存在性与唯一性}
 \begin{definition}\label{def:def4.1}
@@ -4301,7 +4301,7 @@ $$\mu(y,A)=\left.\int_Af(x,y)\,\text{d}x\right/\int f(x,y)\,\text{d}x$$
   见Durrett所著《Probability: Theory and Examples》第5版第$186-187$页.
 \end{proof}
 
-\section{离散时间鞅}
+\section{鞅的基本概念}
 \begin{definition}
 设$(\Omega,\F,P)$为概率空间, 由$\F$的子$\sigma$-代数构成的一列$\{\F_n\}$称为滤链 (filtration), 如果对于一切$n\in\mathbb{N}$都有$\F_n\subset\F_{n+1}$.
 \end{definition}
@@ -4379,7 +4379,7 @@ $$M_n=\prod_{i=1}^{n}Y_i=\text{exp}(\theta S_n)/\phi(\theta)^n$$
 \begin{corollary}
 如果$p>1$且$E|X_n|^p$对一切$n\ge1$成立, 那么$\{|X_n|^p\}$是关于$\{\F_n\}$的下鞅.
 \end{corollary}
-\begin{theorem}
+\begin{theorem}\label{thm:thm4.8}
   设$\{X_n\}$是关于滤链$\{\F_n\}$的下鞅, $\varphi$是递增的凸函数并且$E[\varphi(X_n)]<\infty$对一切$n\ge1$成立, 那么$\{\varphi(X_n)\}$是关于$\{\F_n\}$的下鞅.
 \end{theorem}
 \begin{proof}
@@ -4391,8 +4391,9 @@ $$M_n=\prod_{i=1}^{n}Y_i=\text{exp}(\theta S_n)/\phi(\theta)^n$$
 如果$\{X_n\}$是下鞅, 那么$\{(X_n-a)^+\}$是下鞅; 如果$\{X_n\}$是上鞅, 那么$\{X_n\wedge a\}$是上鞅.
 \end{corollary}
 
+\section{鞅收敛定理}
 \begin{definition}
-设$\{\F_n:n\ge0\}$是一个滤链, 称$\{H_n:n\ge1\}$是可预测序列 (predictable sequence), 如果对一切$n\ge1$都有$H_n\in\F_{n-1}$. 
+设$\{\F_n:n\ge0\}$是一个滤链, 称$\{H_n:n\ge1\}$是可料序列 (predictable sequence), 如果对一切$n\ge1$都有$H_n\in\F_{n-1}$.
 \end{definition}
 
 \begin{example}\label{exp:exp4.2}
@@ -4419,13 +4420,13 @@ $(H\cdot X)_n$   & $-1$ & $-3$ & $-7$ & $-15$ & 1
 \end{tabular}
 \end{table}
 
-\noindent 直觉上看, 似乎只要$P(\xi_n=1)>0$, 那么这一系统就给赌徒提供了某些“确定的东西”. 
+\noindent 直觉上看, 似乎只要$P(\xi_n=1)>0$, 那么这一系统就给赌徒提供了某些“确定的东西”.
 
 然而, 现实中的赌博通常是不公平的, 也即$\{X_n\}$是一个上鞅. 下面的结果表明, 如果赌徒完全依赖于$\{H_n\}$所提供的信息, 那么没有任何法则可以击败一个不利的游戏.
 \end{example}
 
 \begin{theorem}\label{thm:thm4.6}
-  设$\{X_n:n\ge0\}$是一个上鞅, 如果$\{H_n\ge0\}$是可预测的且每个$H_n$有界, 那么$\{(H\cdot X)_n\}$是一个上鞅.
+  设$\{X_n:n\ge0\}$是一个上鞅, 如果$\{H_n\ge0\}$是可料的且每个$H_n$有界, 那么$\{(H\cdot X)_n\}$是一个上鞅.
 \end{theorem}
 \begin{proof}
   根据条件期望的线性性质, $(H\cdot X)_n\in\F_n$, $H_{n}\in\F_{n-1}$, 以及定理\ref{thm:thm4.3}可知
@@ -4439,18 +4440,43 @@ $(H\cdot X)_n$   & $-1$ & $-3$ & $-7$ & $-15$ & 1
 这一结果同样适用于下鞅和鞅的情况, 并且后者不需要$H_n\ge0$这一限制.
 \end{remark}
 \begin{definition}
-随机变量$N$称为停时 (stopping time), 如果对于一切$n<\infty$都有$\{N=n\}\in\F_n$. 换言之, 事件$\{N=n\}$发生与否完全由$\F_n$决定.
+随机变量$N$称为关于滤链$\{\F_n\}$的停时 (stopping time), 如果对于一切$n<\infty$都有$\{N=n\}\in\F_n$. 换言之, 事件$\{N=n\}$发生与否完全由$\F_n$决定.
 \end{definition}
 
-根据$\{N=n\}=\{N\leq n\}\backslash \{N\leq n-1\}$可知, 停时的等价定义为对于一切$n<\infty$都有$\{N\leq n\}\in\F_n$; 如果$N$为停时, $k$为正整数, 那么$N+k$仍为停时, 而$N-k$不一定为停时, 这是因为事件$\{N=n+k\}$的发生不一定取决于$\F_n$.
+根据$\{N=n\}=\{N\leq n\}\backslash \{N\leq n-1\}$可知, 停时的等价定义为对于一切$n<\infty$都有$\{N\leq n\}\in\F_n$ (或者$\{N>n\}\in\F_n$), 然而$\{N\ge n\}\in\F_n$却并不意味着$N$为停时.
 
-假设$H_n=1_{\{N\ge n\}}$, $N$为停时, 那么$\{N\ge n\}=\{N\leq n-1\}^c\in\F_{n-1}$, 因此$\{H_n\}$是可预测的, 根据定理\ref{thm:thm4.6}可知, 如果$\{X_n\}$是一个上鞅, 那么$(H\cdot X)_n=X_{N\wedge n}-X_0$定义了一个上鞅, 容易得到以下定理.
+此外, 如果$N$为停时, $k$为正整数, 那么$N+k$仍为停时, 而$N-k$不一定为停时, 这是因为事件$\{N=n+k\}$的发生不一定取决于$\F_n$.
+
 \begin{theorem}
-  如果$N$是一个停时, $\{X_n\}$是一个(上或下)鞅, 那么$\{X_{N\wedge n}\}$也是. 
+  设$\{X_n\}$为一个适配于滤链$\{\F_n\}$随机变量序列, $\{B_n\}$为$\R$中的一列Borel集, 定义随机变量
+  $N=\inf\{n\ge1: X_n\in B_n\}$, 以下结论成立
+  \begin{enumerate}[label=(\arabic*)]
+  \item $N$为停时;
+  \item 如果存在$n\in\mathbb{N}$使得$X_n\in B_n$, 那么$N<\infty$, 否则$N=\infty$.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  首先注意到对任意$n\ge1$有
+  $$\{N=n\}=\{X_1\notin B_1,\cdots, X_{n-1}\notin B_{n-1}, X_n\in B_n\}\in\F_n$$
+  故而$N$是关于$\{\F_n\}$的停时. 定义随机变量
+  $$X_N=\begin{cases}
+          X_m, & N=m \\
+          \limsup X_n, & N=\infty
+        \end{cases}$$
+  于是对任意$n\ge1$, $r\in\R$, $X_N\in\overbar{\R}$都有
+  $$\{X_N\le r\}\cap \{N=n\}=\{X_n\leq r\}\cap\{N=n\}\in\F_n$$
+  以及
+  $$\{X_N=\pm\infty\}\cap\{N=n\}=\{X_n=\pm\infty\}\cap\{N=n\}=\emptyset $$
+  因此结论成立.
+\end{proof}
+
+假设$H_n=1_{\{N\ge n\}}$, $N$为停时, 那么$\{N\ge n\}=\{N\leq n-1\}^c\in\F_{n-1}$, 因此$\{H_n\}$是可料的, 根据定理\ref{thm:thm4.6}可知, 如果$\{X_n\}$是一个上鞅, 那么$(H\cdot X)_n=X_{N\wedge n}-X_0$定义了一个上鞅, 容易得到以下定理.
+\begin{theorem}
+  如果$N$是一个停时, $\{X_n\}$是一个(上或下)鞅, 那么$\{X_{N\wedge n}\}$也是.
 \end{theorem}
 
 \begin{example}
-设随机变量$H_n$为$n$时刻的买入量, 其完全取决于$n$时刻前的股价表现 ($H_{n}\in \F_{n-1}$), 故而$\{H_n\}$是可预测序列. 再设$X_n$为$n$时刻的股价, 且$\{X_n\}$是关于$\{\F_n\}$的鞅, 此时的累计收益可以表示为
+设随机变量$H_n$为$n$时刻的买入量, 其完全取决于$n$时刻前的股价表现 ($H_{n}\in \F_{n-1}$), 故而$\{H_n\}$是可料序列. 再设$X_n$为$n$时刻的股价, 且$\{X_n\}$是关于$\{\F_n\}$的鞅, 此时的累计收益可以表示为
 $$(H\cdot X)_n=\sum_{m=1}^{n}H_m(X_{m}-X_{m-1})$$
 根据定理\ref{thm:thm4.6}可知股价$\{(H\cdot X)_n\}$也是一个鞅. 设$N$为一个停时, 表示停止交易的时刻, 事件$\{N=n\}$发生与否完全由$n$时刻的股价决定.
 \end{example}
@@ -4467,13 +4493,41 @@ $$H_m=\begin{cases}
         1, & \tau_k<m\leq \sigma_k \\
         0, & \mbox{otherwise}
       \end{cases}$$
-定义了一个可预测序列. 由于$X_{\tau_k}\leq a$且$X_{\sigma_k}\ge b$, 故而在时刻$\tau_k$和$\sigma_k$之间, $X_m$从$a$上穿$b$, 于是$H_m$是一个试图从上穿中获利的赌博系统. 在上面的例子中, 投资者通常是在$X_m\leq a$时买入股票, 然后在$X_m\ge b$时卖出.
+定义了一个可料序列. 由于$X_{\tau_k}\leq a$且$X_{\sigma_k}\ge b$, 故而在时刻$\tau_k$和$\sigma_k$之间, $X_m$从$a$上穿$b$, 于是$H_m$是一个试图从上穿中获利的赌博系统.
+
+在上面的例子中, 投资者通常是在$X_m\leq a$时买入股票, 然后在$X_m\ge b$时卖出, 现在设$U_n=\sup\{k: \sigma_k\leq n\}$为$n$时刻完成的上穿数, 下图是对上穿概念的直观描述
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+scale = 1.6,
+xmin = 0, xmax = 12,
+ymin = 0, ymax = 7,
+axis lines = none,
+xtick = {0}, ytick = \empty,
+clip = false,
+]
+\addplot[color=black, thick] coordinates{(2,1) (11,1)};
+\addplot[color=black, thick] coordinates{(2,4) (11,4)};
+\node [left] at (2,1) {$a$};
+\node [left] at (2,4) {$b$};
+\addplot[color=black, only marks, mark size=1.8pt] coordinates {(2,1.5) (2.5,0.5) (3,2) (3.5,3) (4,4.5) (4.5,3) (5,3.5) (5.5,2) (6,0.7) (6.5,1.5) (7,2.5) (7.5,4.3) (8,2.4) (8.5,3.2) (9,1.5) (9.5,0.5) (10,1.3) (10.5,0.3)};
+\addplot[color=black, thick] coordinates{(2.5,0.5) (3,2) (3.5,3) (4,4.5)};
+\node [right] at (2.5,0.5) {$\tau_1$};
+\node [right] at (4,4.5) {$\sigma_1$};
+\addplot[color=black, thick] coordinates{(6,0.7) (6.5,1.5) (7,2.5) (7.5,4.3)};
+\node [right] at (6,0.7) {$\tau_2$};
+\node [right] at (7.5,4.3) {$\sigma_2$};
+\addplot[color=black, thick] coordinates{(9.5,0.5) (10,1.3) (10.5,0.3)};
+\node [left] at (9.5,0.5) {$\tau_3$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+而下面的定理表明上穿数的期望存在一个上界.
 
 
 \begin{theorem}[上穿不等式]
   如果$\{X_m:m\ge0\}$是一个下鞅, 那么
   $$(b-a)E(U_n)\leq E(X_n-a)^+-E(X_0-a)^+$$
-  其中$U_n=\sup\{k: \sigma_k\leq n\}$为$n$时刻完成的上穿次数.
 \end{theorem}
 \begin{proof}
   令$Y_m=a+(X_m-a)^+$, 根据推论\ref{cor:cor4.1}可知$\{Y_m\}$是一个下鞅, 显然它和$X_m$上穿$[a,b]$的次数相同. 易证
@@ -4482,7 +4536,89 @@ $$H_m=\begin{cases}
   此外, 对于$\sigma_k\leq j\leq \tau_{k+1}$可得$(H\cdot Y)_j=(H\cdot Y)_{\sigma_k}$; 而对于$\tau_k<j\leq \tau_{k+1}$有$(H\cdot Y)_j\ge (H\cdot Y)_{\tau_k}=(H\cdot Y)_{\sigma_{k-1}}$, 由此得到
   $$(b-a)E(U_n)\leq (H\cdot Y)_n$$
   对一切$n\ge0$成立.
-  
+
   最后令$K_m=1-H_m$, 易知$Y_n-Y_0=(H\cdot Y)_n+(K\cdot Y)_n$, 根据定理\ref{thm:thm4.6}可知$E[(K\cdot Y)_n]\geq E[(K\cdot Y)_0]=0$, 从而$E[(H\cdot Y)_n]\leq E(Y_n-Y_0)$, 这就得到了希望的结论.
 \end{proof}
+
+\begin{theorem}[鞅收敛定理]
+  设$\{X_n\}$是一个下鞅, $\sup_n E(X_n^+)<\infty$, 那么当$n\to\infty$时, $X_n$几乎必然收敛于一个极限$X$, 并且$E|X|<\infty$.
+\end{theorem}
+\begin{proof}
+定义
+$$A=\left\{\omega: \liminf_{n\to\infty}X_n<\limsup_{n\to\infty}X_n\right\}$$
+并且对于$a<b$定义
+$$A(a,b)=\left\{\omega:\liminf_{n\to\infty}X_n<a<b<\limsup_{n\to\infty}X_n\right\}$$
+于是取遍一切$a,b\in\mathbb{Q}$有$A=\cup A(a,b)$. 为了得出$\{X_n\}$的收敛, 只需证明对每个$a<b$有$P(A(a,b))=0$, 因为这意味着$P(A)=0$.
+
+固定$a<b$, 设$U_n$为上穿数, 对于$\omega\in A(a,b)$, 当$n\to\infty$时有$U_n\to\infty$. 另一方面, 注意到$(X-a)^+\leq X^++|a|$, 由上穿不等式可知
+$$E(U_n)\leq\frac{E(X_n^+)+|a|}{b-a}$$
+再由$\sup_{n\ge1}E(X_n^+)<\infty$知$\sup_n E(U_n)<\infty$, 根据MCT可知
+$$E\left(\limn U_n\right)=\limn E(U_n)$$
+故而$$\limn U_n<\infty\quad\text{a.s.}$$这说明对一切$a<b$都有$P(A(a,b))=0$, 也即$\limn X_n=X$以概率1存在. 此外, Fatou引理保证了$E(X^+)\leq\liminf E(X_n^+)<\infty$, 于是
+$$X<\infty\quad\text{a.s.}$$
+为了看到$X>-\infty$, 注意到$\{X_n\}$是一个下鞅, 于是
+$$E(X_n^-)=E(X_n^+)-E(X_n)\leq E(X_n^+)-E(X_0)$$
+再由Fatou引理可知
+$$E(X^-)\leq\liminf_{n\to\infty}E(X_n^-)\leq\sup_nE(X_n^+)-E(X_0)<\infty$$
+这就完成了证明.
+
+\end{proof}
+\section{Doob不等式}
+\begin{theorem}\label{thm:thm4.7}
+  设$\{X_n\}$为一个下鞅, $N$为停时且$P(N\leq k)=1$, 那么$E(X_0)\leq E(X_N)\leq E(X_k)$.
+\end{theorem}
+\begin{proof}
+  由于$\{X_{N\wedge n}\}$是一个下鞅, 故而
+  $$E(X_0)=E(X_{N\wedge n})\leq E(X_{N\wedge k})=E(X_N)$$
+  再令$K_n=1_{\{N<n\}}=1_{\{N\le n-1\}}$, 易知$\{K_n\}$是可料的, 由定理\ref{thm:thm4.6}可得$(K\cdot X)_n=X_n-X_{N\wedge n}$是一个下鞅, 并且
+  $$E(X_k)-E(X_N)=E[(K\cdot X)_k]\geq E[(K\cdot X)_0]=0$$
+  于是结论成立.
+\end{proof}
+\begin{theorem}[Doob极大不等式]
+  设$\{X_n\}$为一个下鞅, $\overbar{X}_n=\max\{X_m^+: 0\leq m\leq n\}$, $\lambda>0$并且$A=\{\overbar{X}_n\geq \lambda\}$, 那么$\lambda P(A)\leq E(X_n1_A)\leq E(X_n^+)$.
+\end{theorem}
+\begin{proof}
+  令$N=\inf\{m:X_m\ge\lambda\,\text{或}\,m=n\}$, 它是一个停时, 不难发现
+  \begin{align*}
+  A=\{\overbar{X}_n\ge\lambda\}&=\bigcup_{k=1}^n\{\overbar{X}_n\ge\lambda, N=k\} \\
+  &=\bigcup_{k=1}^n\{X_N\ge\lambda, N=k\}=\{X_N\ge\lambda\}
+  \end{align*}
+  根据Markov不等式可知
+  $$\lambda P(A)=\lambda P(X_N\ge\lambda)\leq E(X_N1_A)\leq E(X_n1_A)$$
+  上式最后一个不等号是由定理\ref{thm:thm4.7}保证的, 而$E(X_n1_A)\leq E(X_n^+)$的证明是平凡的.
+\end{proof}
+\begin{example}[$\,$Kolmogorov极大不等式]
+设$\xi_1,\xi_2,\cdots$为独立随机变量, $E(\xi_m)=0$且$\sigma_m^2=E(\xi_m^2)<\infty$, 于是$\{S_n^2\}$是一个下鞅, 再令$\lambda=x^2>0$, 根据Doob极大不等式可知
+$$P\left(\max_{1\leq m\leq n}|S_m|\geq x\right)\leq x^{-2}\var(S_n)$$
+\end{example}
+\begin{theorem}[$L^p$极大不等式]
+  如果$\{X_n\}$为一个下鞅, 那么对任意$1<p<\infty$都有
+  $$E[(\overbar{X}_n^+)^p]\leq \left(\frac{p}{p-1}\right)^pE[(X_n^+)^p]\leq\infty$$
+\end{theorem}
+\begin{proof}
+  如果$E(X_n^+)=\infty$, 那么结论是显然的, 故而假设$E(X_n^+)<\infty$. 显然, 对于任意$1<p<\infty$, $\varphi(x)=(x^+)^p$是$\R$上的一个不减的凸函数, 所以由定理\ref{thm:thm4.8}可知$\{(X_n^+)^p\}$也是下鞅, 从而对于一切$j\leq n$都有$E[(X_j^+)^p]\leq E[(X_n^+)^p]<\infty$. 又因为$(\overbar{X}_n^+)^p\leq \sum_{j=1}^{n}(X_j^+)^p$, 这意味着$E[(\overbar{X}_n^+)^p]<\infty$. 根据引理\ref{lem:lem2.2}可知
+  $$E[(\overbar{X}_n^+)^p]=\int_{0}^{\infty}px^{p-1}P(\overbar{X}_n^+>x)\,\text{d}x=\int_{0}^{\infty}px^{p-1}P(\overbar{X}_n>x)\,\text{d}x$$
+  根据Doob极大不等式可知, 对于一切$x>0$都有
+  $$\lambda P(\overbar{X}_n\ge x)\leq E[X_n^+1_{(\overbar{X}_n\ge x)}]$$
+  因此由Hölder不等式可得
+  \begin{align*}
+  E[(\overbar{X}_n^+)^p]&\leq\int_{0}^{\infty}px^{p-2}E[X_n^+1_{(\overbar{X}_n\ge x)}]\,\text{d}x \\
+  &=\int_{0}^{\infty}px^{p-2}\int X_n^+1_{(\overbar{X}_n>x)}\,\text{d}P\text{d}x \\
+  &=\frac{p}{p-1}E(X_n^+\overbar{X}_n^{p-1}) \\
+  &\leq \left(\frac{p}{p-1}\right)E[(X_n^+)^p]^{1/p}E[(\overbar{X}_n^+)^{p}]^{1/q}
+  \end{align*}
+  其中$q=p/(p-1)$, 两端同时除以$E[(\overbar{X}_n^+)^{p}]^{1/q}$可知
+  $$E[(\overbar{X}_n^+)^p]^{1/p}\leq\left(\frac{p}{p-1}\right)E[(X_n^+)^p]^{1/p}$$
+  这就证明了结论.
+\end{proof}
+
+\begin{theorem}[$L^p$收敛定理]
+  如果$\{X_n\}$是一个鞅, $\sup E|X_n|^p<\infty$, $p>1$, 那么$X_n\xrightarrow{a.s.} X$且$X_n\xrightarrow{L^p}X$.
+\end{theorem}
+\begin{proof}
+  首先有$[E(X_n^+)]^p\leq (E|X_n|)^p\leq E|X_n|^p$, 根据鞅收敛定理可知$X_n\to X\,\text{a.s.}$, 再由$L^p$极大不等式得到
+  $$E\left[\left(\sup_{0\leq m\leq n}|X_m|\right)^p\right]\leq\left(\frac{p}{p-1}\right)^pE|X_n|^p$$
+  令$n\to\infty$, 再使用MCT可得$\sup |X_n|\in L^p$, 又因为$|X_n-X|^p\leq (2\sup|X_n|)^p$, 根据DCT可知$E|X_n-X|^p\to0$.
+\end{proof}
+
 \end{document} 
