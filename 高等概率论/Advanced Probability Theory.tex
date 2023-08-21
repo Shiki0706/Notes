@@ -4391,14 +4391,14 @@ $$M_n=\prod_{i=1}^{n}Y_i=\text{exp}(\theta S_n)/\phi(\theta)^n$$
 如果$\{X_n\}$是下鞅, 那么$\{(X_n-a)^+\}$是下鞅; 如果$\{X_n\}$是上鞅, 那么$\{X_n\wedge a\}$是上鞅.
 \end{corollary}
 
-\section{鞅收敛定理}
+\section{可选停时定理}
 \begin{definition}
 设$\{\F_n:n\ge0\}$是一个滤链, 称$\{H_n:n\ge1\}$是可料序列 (predictable sequence), 如果对一切$n\ge1$都有$H_n\in\F_{n-1}$.
 \end{definition}
 
 \begin{example}\label{exp:exp4.2}
 设$X_n$是赌徒每次下注$1$元, 在$n$时刻所赚的净额. 如果赌博是公平的, 也即
-$$P(X_n=1)=P(X_n=-1)=1/2$$
+$$P(X_n=1)=P(X_n=-1)=\frac{1}{2}$$
 那么易证$\{X_n\}$为一个鞅, 这表明了如果赌博的输赢概率一样, 且赌徒均依赖于历史信息进行下一步操作, 那么没有任何操作策略使得赌博有利于某位赌徒.
 
 如果根据赌博系统$H$来下注, 那么赌徒在$n$时刻赢得的金额为
@@ -4410,8 +4410,9 @@ $$H_n=\begin{cases}
         2H_{n-1}, & \xi_{n-1}=-1 \\
         1, & \xi_{n-1}=1
       \end{cases}$$
-换言之, 在赌徒输了的时候, 他将自己的赌注翻倍; 如果他输了$k$次然后赢了, 则此刻的净收益为$1$元. 为了看到这一点, 考虑以下情况
-\begin{table}[htbp!]
+换言之, 在赌徒输了的时候, 他将自己的赌注翻倍; 如果他输了$k$次然后赢了, 则此刻的净收益为$1$元. 为了看到这一点, 考虑以下表格.
+
+\begin{table}
 \centering
 \begin{tabular}{cccccc}
 $H_n$      & 1      & $2$      & 4      & 8 & 16      \\
@@ -4420,9 +4421,8 @@ $(H\cdot X)_n$   & $-1$ & $-3$ & $-7$ & $-15$ & 1
 \end{tabular}
 \end{table}
 
-\noindent 直觉上看, 似乎只要$P(\xi_n=1)>0$, 那么这一系统就给赌徒提供了某些“确定的东西”.
 
-然而, 现实中的赌博通常是不公平的, 也即$\{X_n\}$是一个上鞅. 下面的结果表明, 如果赌徒完全依赖于$\{H_n\}$所提供的信息, 那么没有任何法则可以击败一个不利的游戏.
+直觉上看, 似乎只要$P(\xi_n=1)>0$, 那么这一系统就给赌徒提供了某些“确定的东西”. 然而, 现实中的赌博通常是不公平的, 也即$\{X_n\}$是一个上鞅. 下面的结果表明, 如果赌徒完全依赖于$\{H_n\}$所提供的信息, 那么没有任何法则可以击败一个不利的游戏.
 \end{example}
 
 \begin{theorem}\label{thm:thm4.6}
@@ -4443,9 +4443,25 @@ $(H\cdot X)_n$   & $-1$ & $-3$ & $-7$ & $-15$ & 1
 随机变量$N$称为关于滤链$\{\F_n\}$的停时 (stopping time), 如果对于一切$n<\infty$都有$\{N=n\}\in\F_n$. 换言之, 事件$\{N=n\}$发生与否完全由$\F_n$决定.
 \end{definition}
 
-根据$\{N=n\}=\{N\leq n\}\backslash \{N\leq n-1\}$可知, 停时的等价定义为对于一切$n<\infty$都有$\{N\leq n\}\in\F_n$ (或者$\{N>n\}\in\F_n$), 然而$\{N\ge n\}\in\F_n$却并不意味着$N$为停时.
+\begin{theorem}
+  $N$为停时, 当且仅当对于一切$n<\infty$都有$\{N=n\}\in\F_n$或$\{N>n\}\in\F_n$.
+\end{theorem}
+\begin{proof}
+  只需注意到如下三个等式
+  \begin{align*}
+  \{N\leq n\}&=\textstyle\bigcup_{k=1}^n\{N=k\} \\
+  \{N>n\}&=\Omega-\{N\leq n\} \\
+  \{N=n\}&=\{N\leq n\}-\{N\leq n-1\}
+  \end{align*}
+  根据定义得到结论成立.
+\end{proof}
+\begin{corollary}
+如果$N_1$和$N_2$为停时, 那么$N_1+N_2$, $\min\{N_1,N_2\}$, $\max\{N_1,N_2\}$也是.
+\end{corollary}
 
-此外, 如果$N$为停时, $k$为正整数, 那么$N+k$仍为停时, 而$N-k$不一定为停时, 这是因为事件$\{N=n+k\}$的发生不一定取决于$\F_n$.
+\begin{remark}
+如果$N$为停时, $k$为正整数, 那么$N+k$仍为停时, 而$N-k$不一定为停时, 这是因为事件$\{N=n+k\}$的发生不一定取决于$\F_n$.
+\end{remark}
 
 \begin{theorem}
   设$\{X_n\}$为一个适配于滤链$\{\F_n\}$随机变量序列, $\{B_n\}$为$\R$中的一列Borel集, 定义随机变量
@@ -4470,11 +4486,118 @@ $(H\cdot X)_n$   & $-1$ & $-3$ & $-7$ & $-15$ & 1
   因此结论成立.
 \end{proof}
 
-假设$H_n=1_{\{N\ge n\}}$, $N$为停时, 那么$\{N\ge n\}=\{N\leq n-1\}^c\in\F_{n-1}$, 因此$\{H_n\}$是可料的, 根据定理\ref{thm:thm4.6}可知, 如果$\{X_n\}$是一个上鞅, 那么$(H\cdot X)_n=X_{N\wedge n}-X_0$定义了一个上鞅, 容易得到以下定理.
-\begin{theorem}
-  如果$N$是一个停时, $\{X_n\}$是一个(上或下)鞅, 那么$\{X_{N\wedge n}\}$也是.
+现在回到之前的定理\ref{thm:thm4.6}和停时的概念, 从中可以推导出鞅论中特别重要的可选停时定理 (Optional Stopping Theorem, OST).
+\begin{theorem}[OST1]
+  如果$\{X_n:n\ge0\}$是一个下鞅, $N$为停时, 那么$\{X_{N\wedge n}\}$也是下鞅且$E(X_0)\leq E(X_{N\wedge n})$.
 \end{theorem}
+\begin{proof}
+  首先令$\tilde{X}_n=X_{N\wedge n}$, 对于任意$A\in\mathcal{R}$和$n\ge0$有
+  \begin{align*}
+  \tilde{X}_n^{-1}(A)&=\left(\bigcup_{j=1}^n \{X_j\in A, N=j\}\right)\cup \{X_n\in A, N>n\}
+  \end{align*}
+  由于$N$为停时, 故而上式右端的元素都属于$\F_n$, 从而$|\tilde{X}_n|\leq\sum_{j=1}^{n}E|X_j|$, 这意味着$E|\tilde{X}_n|<\infty$. 定义$H_n=1_{\{N\ge j\}}$, $N$为停时, 那么$\{N\ge j\}=\{N\leq j-1\}^c\in\F_{n-1}$, 因此$\{H_n\}$是可料的, 根据定理\ref{thm:thm4.6}可知$\tilde{X}_n=X_0+\sum_{j=1}^{n}H_j(X_j-X_{j-1})$定义了一个下鞅, 结论成立.
+\end{proof}
+\begin{corollary}\label{cor:cor4.2}
+如果$\{X_n:n\ge0\}$是一个鞅, 那么对任意$n\ge1$都有$E(X_0)=E(X_{N\wedge n})=E(X_n)$.
+\end{corollary}
+\begin{proof}
+  只需注意到$\{X_n\}$和$\{-X_n\}$均是下鞅即可.
+\end{proof}
+\begin{theorem}[OST2]
+  设$\{X_n:n\ge0\}$为一个鞅, $N$为停时, $E(X_0)=E(X_N)$, 如果对于一切$n\ge0$, 存在正数$K<\infty$, 使得以下条件中的任何一个成立
+  \begin{enumerate}[label=(\arabic*)]
+    \item $N\leq K$;
+    \item $P(N<\infty)=1$, 并且$|X_{N\wedge n}|\leq K$;
+    \item $E(N)<\infty$, 并且$|X_n-X_{n-1}|\leq K$.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  (1) 对于任意$n\ge K$都有$N\wedge n=N$, 此时$X_{N\wedge n}=X_N$, 因此由推论\ref{cor:cor4.2}可知$E(X_{N\wedge n})=E(X_N)=E(X_0)$.
 
+  (2) 由于$P(N<\infty)=1$, 故而$X_{N\wedge n}\xrightarrow{a.s.}X_N$并且$|X_N|\leq K<\infty$, 于是$E|X_N|<\infty$, 最终$E|X_N-X_{N\wedge n}|\leq 2KP(N>n)\to0$.
+
+  (3) 注意到
+  $$|X_{N\wedge n}-X_0|=\left|\sum_{k=1}^{N\wedge n}(X_k-X_{k-1})\right|\leq KN$$
+  于是$E|X_{N\wedge n}-X_0|\leq KE(N)<\infty$, 由DCT即可推得结论.
+\end{proof}
+\section{Doob不等式}
+\begin{theorem}\label{thm:thm4.7}
+  设$\{X_n\}$为一个下鞅, $N$为停时且$P(N\leq k)=1$, 那么$E(X_0)\leq E(X_N)\leq E(X_k)$.
+\end{theorem}
+\begin{proof}
+  由于$\{X_{N\wedge n}\}$是一个下鞅, 故而
+  $$E(X_0)=E(X_{N\wedge n})\leq E(X_{N\wedge k})=E(X_N)$$
+  再令$K_n=1_{\{N<n\}}=1_{\{N\le n-1\}}$, 易知$\{K_n\}$是可料的, 由定理\ref{thm:thm4.6}可得$(K\cdot X)_n=X_n-X_{N\wedge n}$是一个下鞅, 并且
+  $$E(X_k)-E(X_N)=E[(K\cdot X)_k]\geq E[(K\cdot X)_0]=0$$
+  于是结论成立.
+\end{proof}
+\begin{theorem}[Doob极大不等式]
+  设$\{X_n\}$为一个下鞅, $\overbar{X}_n=\max\{X_m^+: 0\leq m\leq n\}$, $\lambda>0$并且$A=\{\overbar{X}_n\geq \lambda\}$, 那么$\lambda P(A)\leq E(X_n1_A)\leq E(X_n^+)$.
+\end{theorem}
+\begin{proof}
+  令$N=\inf\{m:X_m\ge\lambda\,\text{或}\,m=n\}$, 它是一个停时, 不难发现
+  \begin{align*}
+  A=\{\overbar{X}_n\ge\lambda\}&=\bigcup_{k=1}^n\{\overbar{X}_n\ge\lambda, N=k\} \\
+  &=\bigcup_{k=1}^n\{X_N\ge\lambda, N=k\}=\{X_N\ge\lambda\}
+  \end{align*}
+  根据Markov不等式可知
+  $$\lambda P(A)=\lambda P(X_N\ge\lambda)\leq E(X_N1_A)\leq E(X_n1_A)$$
+  上式最后一个不等号是由定理\ref{thm:thm4.7}保证的, 而$E(X_n1_A)\leq E(X_n^+)$的证明是平凡的.
+\end{proof}
+\begin{example}[$\,$Kolmogorov极大不等式]
+设$\xi_1,\xi_2,\cdots$为独立随机变量, $E(\xi_m)=0$且$\sigma_m^2=E(\xi_m^2)<\infty$, 于是$\{S_n^2\}$是一个下鞅, 再令$\lambda=x^2>0$, 根据Doob极大不等式可知
+$$P\left(\max_{1\leq m\leq n}|S_m|\geq x\right)\leq x^{-2}\var(S_n)$$
+\end{example}
+\begin{theorem}[$L^p$极大不等式]
+  如果$\{X_n\}$为一个下鞅, 那么对任意$1<p<\infty$都有
+  $$E[(\overbar{X}_n^+)^p]\leq \left(\frac{p}{p-1}\right)^pE[(X_n^+)^p]\leq\infty$$
+\end{theorem}
+\begin{proof}
+  如果$E(X_n^+)=\infty$, 那么结论是显然的, 故而假设$E(X_n^+)<\infty$. 显然, 对于任意$1<p<\infty$, $\varphi(x)=(x^+)^p$是$\R$上的一个不减的凸函数, 所以由定理\ref{thm:thm4.8}可知$\{(X_n^+)^p\}$也是下鞅, 从而对于一切$j\leq n$都有$E[(X_j^+)^p]\leq E[(X_n^+)^p]<\infty$. 又因为$(\overbar{X}_n^+)^p\leq \sum_{j=1}^{n}(X_j^+)^p$, 这意味着$E[(\overbar{X}_n^+)^p]<\infty$. 根据引理\ref{lem:lem2.2}可知
+  $$E[(\overbar{X}_n^+)^p]=\int_{0}^{\infty}px^{p-1}P(\overbar{X}_n^+>x)\,\text{d}x=\int_{0}^{\infty}px^{p-1}P(\overbar{X}_n>x)\,\text{d}x$$
+  根据Doob极大不等式可知, 对于一切$x>0$都有
+  $$\lambda P(\overbar{X}_n\ge x)\leq E[X_n^+1_{(\overbar{X}_n\ge x)}]$$
+  因此由Hölder不等式可得
+  \begin{align*}
+  E[(\overbar{X}_n^+)^p]&\leq\int_{0}^{\infty}px^{p-2}E[X_n^+1_{(\overbar{X}_n\ge x)}]\,\text{d}x \\
+  &=\int_{0}^{\infty}px^{p-2}\int X_n^+1_{(\overbar{X}_n>x)}\,\text{d}P\text{d}x \\
+  &=\frac{p}{p-1}E(X_n^+\overbar{X}_n^{p-1}) \\
+  &\leq \left(\frac{p}{p-1}\right)E[(X_n^+)^p]^{1/p}E[(\overbar{X}_n^+)^{p}]^{1/q}
+  \end{align*}
+  其中$q=p/(p-1)$, 两端同时除以$E[(\overbar{X}_n^+)^{p}]^{1/q}$可知
+  $$E[(\overbar{X}_n^+)^p]^{1/p}\leq\left(\frac{p}{p-1}\right)E[(X_n^+)^p]^{1/p}$$
+  这就证明了结论.
+\end{proof}
+\begin{corollary}
+如果$\{X_n\}$为一个鞅, 那么对任意$1<p<\infty$都有
+$$E(\overbar{X}_n^p)\leq\left(\frac{p}{p-1}\right)^pE|X_n|^p$$
+\end{corollary}
+\begin{theorem}[$L\log L$极大不等式]
+  如果$\{X_n\}$为一个下鞅, 那么对任意$1<p<\infty$都有
+  \begin{equation}\label{eq4.7}
+    E(\overbar{X}_n^+)\leq\left(\frac{\text{e}}{\text{e}-1}\right)[1+E(X_n^+\log X_n^+)]
+  \end{equation}
+  其中规定$0\log0=0$.
+\end{theorem}
+\begin{proof}
+  根据引理\ref{lem:lem2.2}可知
+  \begin{align}
+  E(\overbar{X}_n^+)&=\int_{0}^{\infty}P(\overbar{X}_n^+>x)\,\text{d}x \nonumber \\
+  &\leq 1+\int_{0}^{\infty}x^{-1}E[X_n^+1_{(\overbar{X}_n^+>x)}]\,\text{d}x \nonumber \\
+  &=1+E(X_n^+\log\overbar{X}_n^+) \label{eq4.8}
+  \end{align}
+  设$x,y>0$, 显然有恒等式
+  $$x\log y=x\log x+x\log\frac{y}{x}$$
+  令$\varphi(t)=-t\log t$, 于是
+  $$x\log\frac{y}{x}=y\varphi\left(\frac{y}{x}\right)$$
+  注意到$\varphi(t)$最大值为$\text{e}^{-1}$, 因此$x\log y\leq x\log x+\text{e}^{-1}y$, 进而
+  \begin{equation}\label{eq4.9}
+    E(X_n^+\log \overbar{X}_n^+)\leq E(X_n^+\log X_n^+)+\text{e}^{-1}E(\overbar{X}_n^+)
+  \end{equation}
+  如果$E(X_n^+\log X_n^+)=\infty$, 那么式(\ref{eq4.7})是平凡的; 如果$E(X_n^+\log X_n^+)<\infty$, 那么按之前的步骤可证$E(\overbar{X}_n^+)<\infty$, 最后由式(\ref{eq4.8})和(\ref{eq4.9})可推得结论.
+\end{proof}
+
+\section{鞅收敛定理}
 \begin{example}
 设随机变量$H_n$为$n$时刻的买入量, 其完全取决于$n$时刻前的股价表现 ($H_{n}\in \F_{n-1}$), 故而$\{H_n\}$是可料序列. 再设$X_n$为$n$时刻的股价, 且$\{X_n\}$是关于$\{\F_n\}$的鞅, 此时的累计收益可以表示为
 $$(H\cdot X)_n=\sum_{m=1}^{n}H_m(X_{m}-X_{m-1})$$
@@ -4499,7 +4622,7 @@ $$H_m=\begin{cases}
 \begin{center}
 \begin{tikzpicture}
 \begin{axis}[
-scale = 1.6,
+scale = 1.2,
 xmin = 0, xmax = 12,
 ymin = 0, ymax = 7,
 axis lines = none,
@@ -4561,59 +4684,16 @@ $$E(X_n^-)=E(X_n^+)-E(X_n)\leq E(X_n^+)-E(X_0)$$
 再由Fatou引理可知
 $$E(X^-)\leq\liminf_{n\to\infty}E(X_n^-)\leq\sup_nE(X_n^+)-E(X_0)<\infty$$
 这就完成了证明.
-
 \end{proof}
-\section{Doob不等式}
-\begin{theorem}\label{thm:thm4.7}
-  设$\{X_n\}$为一个下鞅, $N$为停时且$P(N\leq k)=1$, 那么$E(X_0)\leq E(X_N)\leq E(X_k)$.
-\end{theorem}
+\begin{corollary}
+设$\{X_n\}$是一个非负上鞅, 那么$\{X_n\}$几乎必然收敛于一个有限极限.
+\end{corollary}
 \begin{proof}
-  由于$\{X_{N\wedge n}\}$是一个下鞅, 故而
-  $$E(X_0)=E(X_{N\wedge n})\leq E(X_{N\wedge k})=E(X_N)$$
-  再令$K_n=1_{\{N<n\}}=1_{\{N\le n-1\}}$, 易知$\{K_n\}$是可料的, 由定理\ref{thm:thm4.6}可得$(K\cdot X)_n=X_n-X_{N\wedge n}$是一个下鞅, 并且
-  $$E(X_k)-E(X_N)=E[(K\cdot X)_k]\geq E[(K\cdot X)_0]=0$$
-  于是结论成立.
-\end{proof}
-\begin{theorem}[Doob极大不等式]
-  设$\{X_n\}$为一个下鞅, $\overbar{X}_n=\max\{X_m^+: 0\leq m\leq n\}$, $\lambda>0$并且$A=\{\overbar{X}_n\geq \lambda\}$, 那么$\lambda P(A)\leq E(X_n1_A)\leq E(X_n^+)$.
-\end{theorem}
-\begin{proof}
-  令$N=\inf\{m:X_m\ge\lambda\,\text{或}\,m=n\}$, 它是一个停时, 不难发现
-  \begin{align*}
-  A=\{\overbar{X}_n\ge\lambda\}&=\bigcup_{k=1}^n\{\overbar{X}_n\ge\lambda, N=k\} \\
-  &=\bigcup_{k=1}^n\{X_N\ge\lambda, N=k\}=\{X_N\ge\lambda\}
-  \end{align*}
-  根据Markov不等式可知
-  $$\lambda P(A)=\lambda P(X_N\ge\lambda)\leq E(X_N1_A)\leq E(X_n1_A)$$
-  上式最后一个不等号是由定理\ref{thm:thm4.7}保证的, 而$E(X_n1_A)\leq E(X_n^+)$的证明是平凡的.
-\end{proof}
-\begin{example}[$\,$Kolmogorov极大不等式]
-设$\xi_1,\xi_2,\cdots$为独立随机变量, $E(\xi_m)=0$且$\sigma_m^2=E(\xi_m^2)<\infty$, 于是$\{S_n^2\}$是一个下鞅, 再令$\lambda=x^2>0$, 根据Doob极大不等式可知
-$$P\left(\max_{1\leq m\leq n}|S_m|\geq x\right)\leq x^{-2}\var(S_n)$$
-\end{example}
-\begin{theorem}[$L^p$极大不等式]
-  如果$\{X_n\}$为一个下鞅, 那么对任意$1<p<\infty$都有
-  $$E[(\overbar{X}_n^+)^p]\leq \left(\frac{p}{p-1}\right)^pE[(X_n^+)^p]\leq\infty$$
-\end{theorem}
-\begin{proof}
-  如果$E(X_n^+)=\infty$, 那么结论是显然的, 故而假设$E(X_n^+)<\infty$. 显然, 对于任意$1<p<\infty$, $\varphi(x)=(x^+)^p$是$\R$上的一个不减的凸函数, 所以由定理\ref{thm:thm4.8}可知$\{(X_n^+)^p\}$也是下鞅, 从而对于一切$j\leq n$都有$E[(X_j^+)^p]\leq E[(X_n^+)^p]<\infty$. 又因为$(\overbar{X}_n^+)^p\leq \sum_{j=1}^{n}(X_j^+)^p$, 这意味着$E[(\overbar{X}_n^+)^p]<\infty$. 根据引理\ref{lem:lem2.2}可知
-  $$E[(\overbar{X}_n^+)^p]=\int_{0}^{\infty}px^{p-1}P(\overbar{X}_n^+>x)\,\text{d}x=\int_{0}^{\infty}px^{p-1}P(\overbar{X}_n>x)\,\text{d}x$$
-  根据Doob极大不等式可知, 对于一切$x>0$都有
-  $$\lambda P(\overbar{X}_n\ge x)\leq E[X_n^+1_{(\overbar{X}_n\ge x)}]$$
-  因此由Hölder不等式可得
-  \begin{align*}
-  E[(\overbar{X}_n^+)^p]&\leq\int_{0}^{\infty}px^{p-2}E[X_n^+1_{(\overbar{X}_n\ge x)}]\,\text{d}x \\
-  &=\int_{0}^{\infty}px^{p-2}\int X_n^+1_{(\overbar{X}_n>x)}\,\text{d}P\text{d}x \\
-  &=\frac{p}{p-1}E(X_n^+\overbar{X}_n^{p-1}) \\
-  &\leq \left(\frac{p}{p-1}\right)E[(X_n^+)^p]^{1/p}E[(\overbar{X}_n^+)^{p}]^{1/q}
-  \end{align*}
-  其中$q=p/(p-1)$, 两端同时除以$E[(\overbar{X}_n^+)^{p}]^{1/q}$可知
-  $$E[(\overbar{X}_n^+)^p]^{1/p}\leq\left(\frac{p}{p-1}\right)E[(X_n^+)^p]^{1/p}$$
-  这就证明了结论.
+  由于$\{-X_n\}$是非正下鞅, 并且$\sup_nE[(-X_n)^+]=0<\infty$, 于是$\{-X_n\}$几乎必然收敛于一个有限极限.
 \end{proof}
 
 \begin{theorem}[$L^p$收敛定理]
-  如果$\{X_n\}$是一个鞅, $\sup E|X_n|^p<\infty$, $p>1$, 那么$X_n\xrightarrow{a.s.} X$且$X_n\xrightarrow{L^p}X$.
+  设$\{X_n\}$是一个鞅, $\sup E|X_n|^p<\infty$, $p>1$, 那么$X_n\xrightarrow{a.s.} X$且$X_n\xrightarrow{L^p}X$.
 \end{theorem}
 \begin{proof}
   首先有$[E(X_n^+)]^p\leq (E|X_n|)^p\leq E|X_n|^p$, 根据鞅收敛定理可知$X_n\to X\,\text{a.s.}$, 再由$L^p$极大不等式得到
