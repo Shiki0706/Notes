@@ -1109,7 +1109,7 @@ $$\overbar{R}^2=1-\frac{n-1}{n-K}(1-R^2)$$
 \end{proof}
 现在介绍Gauss-Markov定理, 它表明在$\beta$的所有线性无偏估计量中, OLS估计量是最优无偏估计量 (Best Linear Unbiased Estimator, BLUE).
 \begin{theorem}[Gauss-Markov定理]\label{thm:thm2.7}
-  在假设\ref{pro:pro2.1}$-$\ref{pro:pro2.4}下, 如果$\tilde{\beta}$是$\tilde{\beta}$的线性无偏估计量, 那么$\var(\hb|\X)\geq\sigma^2(\X'\X)^{-1}$.
+  在假设\ref{pro:pro2.1}$-$\ref{pro:pro2.4}下, 如果$\tilde{\beta}$是$\beta$的线性无偏估计量, 那么$\var(\hb|\X)\geq\sigma^2(\X'\X)^{-1}$.
 \end{theorem}
 \begin{proof}
   设$\tilde{\beta}=\mathbold{A}Y$为$\beta$的任意线性估计量, 由无偏性可知
@@ -4413,8 +4413,8 @@ $$\hb_{\text{RE}}=\left(\sum_{i=1}^{N}X_i'\hat{\BO}^{-1}X_i\right)^{-1}\left(\su
 \begin{equation}\label{eq8.12}
   \hat{\sigma}_u^2=\frac{1}{NT(T-1)/2-K}\sum_{i=1}^{N}\sum_{t=1}^{T-1}\sum_{s=t+1}^{T}\check{e}_{it}\check{e}_{is}
 \end{equation}
-根据(\ref{eq8.11})和(\ref{eq8.12})即可得到我们需要的估计量$\hat{\sigma}_\varepsilon^2=\hat{\sigma}_e^2-\hat{\sigma}_u^2$. 如果面板数据是平衡的, 那么(\ref{eq8.12})为
-$$\hat{\sigma}_u^2=\frac{1}{NT(T-1)/2-K}\sum_{i=1}^{N}\sum_{t=1}^{T-1}\sum_{s=t+1}^{T}\check{e}_{it}\check{e}_{is}$$
+根据(\ref{eq8.11})和(\ref{eq8.12})即可得到我们需要的估计量$\hat{\sigma}_\varepsilon^2=\hat{\sigma}_e^2-\hat{\sigma}_u^2$.
+
 在假设(\ref{pro:pro8.1})下, (\ref{eq8.11})和(\ref{eq8.12})是一致估计量. 除了上述方法外, 还可以通过固定效应来估计特质误差方差$\sigma_\varepsilon^2$, 以及通过组间估计来获取$\sigma_u^2$的估计量.
 
 最后来看$\hb_{\text{RE}}$的协方差矩阵估计量. 如果假设\ref{pro:pro8.1}确实完全成立, 可以直接由(\ref{eq8.13})构造出
@@ -4442,7 +4442,7 @@ $$\hat{\BO}=N^{-1}\sum_{i=1}^{N}\check{e}_{i}\check{e}_i'$$
 既然一般FGLS分析的待估参数太多, 而传统的RE分析需要的假设条件过强, 故而可以考虑二者的中间形式. 例如, 特质误差$\varepsilon_{it}$服从自相关系数为$\rho$且方差为$\sigma_\varepsilon^2$的平稳AR(1)过程, 那么
 $$\BO=\sigma^2_u\mathbf{1}_i\mathbf{1}_i'+\E[\varepsilon_i\varepsilon_i']$$
 只依赖于参数$\sigma_\varepsilon^2$, $\sigma_u^2$以及$\rho$, 这些参数通过混合回归就可以得到估计, 于是就可以很容易地使用FGLS方法.
-
+\newpage
 \section{固定效应模型}
 继续考虑具有单向误差结构的回归模型
 \begin{equation}\label{eq8.15}
@@ -4473,7 +4473,9 @@ $$\dot{Y}_{it}=Y_{it}-\overbar{Y}_i$$
 &=Y_i-\mathbf{1}_i(\mathbf{1}_i\mathbf{1}_i')^{-1}\mathbf{1}_i'Y_i \\
 &=\mathbold{M}_iY_i
 \end{align*}
-其中$\mathbold{M}_i=\mathbold{I}_i-\mathbf{1}_i(\mathbf{1}_i\mathbf{1}_i')^{-1}\mathbf{1}_i'$, 它是一个$T\times T$维对称幂等矩阵. 类似可以定义
+其中$\mathbold{M}_i=\mathbold{I}_i-\mathbf{1}_i(\mathbf{1}_i\mathbf{1}_i')^{-1}\mathbf{1}_i'$, 它是一个$T\times T$维对称幂等矩阵.
+
+类似可以定义
 \begin{align*}
 \overbar{X}_i&=T^{-1}\sum_{t=1}^{T}X_{it} \\
 \dot{X}_{it}&=X_{it}-\overbar{X}_i \\
