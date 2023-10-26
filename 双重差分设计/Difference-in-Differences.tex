@@ -140,7 +140,9 @@ $$D_{i,t}^l\cdot1[G_i=g]=\alpha_i+\phi_t+\sum_{e\in\mathcal{E}}w_{g,l}^e1[t-G_i\
 \sum_{l\in e'}\sum_gw_{g,l}^e&=0,\quad \forall l\in e',\, e'\neq e,\, e'\in\mathcal{E} \tag{$\ast$} \\
 \sum_{l\in e^\text{excl}}\sum_gw_{g,l}^e&=-1,\quad\forall l\in e^\text{excl} \nonumber
 \end{align}
-可以看出, 事件研究法的回归系数是一系列基本的$2\times 2\,$DiD估计量的加权平均. 再定义
+可以看出, 事件研究法的回归系数是一系列基本的$2\times 2\,$DiD估计量的加权平均. 
+
+另一方面, 定义
 $$\text{ATT}_{g,l}=\E[Y_{i,g+l}-Y_{i,g+l}(\infty)|G_i=g]$$
 表示在$G_i=g$时首次接受处置的那批个体经过$l$期后的平均处置效应. Sun and Abraham (2021)还证明了, 在合适的平行趋势假设下有
 $$\mu_g=\sum_{l\in e}\sum_gw_{g,l}^e\text{ATT}_{g,l}+\sum_{e\neq e',e'\in\mathcal{E}}\sum_{l'\in e'}\sum_g w_{g,l'}^e\text{ATT}_{g,l'}+\sum_{l'\in e^\text{excl}}\sum_gw_{g,l'}^e\text{ATT}_{g,l'}$$
