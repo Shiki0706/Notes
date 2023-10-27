@@ -162,17 +162,17 @@ Callaway and Sant'Anna (2021)\footnote{其它的替代估计量包括Sun and Abr
 $$\theta(g,t)=\E[Y_{t}(g)-Y_{t}(\infty)|G_g=1]$$
 这里为了简单起见省略了下标$i$, $G_g$是个体$i$在时点$g$是否接受处置时的指示符, 上式表示在时点$g$首次接受处置的那批个体在时点$t$的ATT.
 
-由于反事实结果的存在, $\theta(g,t)$是无法直接估计的, 但是可以由\textbf{结果回归}(OR), \textbf{逆概率加权}(IPW)和\textbf{双重稳健}(DR)方法来估计. 为了通过上述方法得到识别ATT, 需要先定义控制组, 而它的选择有两种: 其一是从未处置$C^\text{NEV}=G_\infty$, 其二是尚未处置$C^\text{NY}=(1-G_g)(1-D_t)$, 以下统一记作$C_{g,t}^\ast$.
+由于反事实结果的存在, $\theta(g,t)$是无法直接估计的, 但是可以由\textbf{回归调整}(RA), \textbf{逆概率加权}(IPW)和\textbf{双重稳健}(DR)方法来估计. 为了通过上述方法得到识别ATT, 需要先定义控制组, 而它的选择有两种: 其一是从未处置$C^\text{NEV}=G_\infty$, 其二是尚未处置$C^\text{NY}=(1-G_g)(1-D_t)$, 以下统一记作$C_{g,t}^\ast$.
 
-考虑加入用以控制可观测特征的协变量$\X$, 下面给出OR, IPW和OR的待估计量
+考虑加入用以控制可观测特征的协变量$\X$, 下面给出RA, IPW和DR的待估计量
 \begin{align*}
-\theta_\text{OR}(g,t)&=\E\left[\frac{G_g}{\E[G_g]}\{Y_t-Y_{g-1}-m_{g,t}({X})\}\right] \\
+\theta_\text{RA}(g,t)&=\E\left[\frac{G_g}{\E[G_g]}\{Y_t-Y_{g-1}-m_{g,t}({X})\}\right] \\
 \theta_\text{IPW}(g,t)&=\E\left[\left(\frac{G_g}{\E[G_g]}-\frac{\frac{p_{g,t}(\X)C_{g,t}^\ast}{1-p_{g,t}(\X)}}{\E\left[\frac{p_{g,t}(\X)C_{g,t}^\ast}{1-p_{g,t}(\X)}\right]}\right)(Y_t-Y_{g-1})\right] \\
 \theta_{\text{DR}}(g,t)&=\E\left[\left(\frac{G_g}{\E[G_g]}-\frac{\frac{p_{g,t}(\X)C_{g,t}^\ast}{1-p_{g,t}(\X)}}{\E\left[\frac{p_{g,t}(\X)C_{g,t}^\ast}{1-p_{g,t}(\X)}\right]}\right)\{Y_t-Y_{g-1}-m_{g,t}(\X)\}\right]
 \end{align*}
 其中$m_{g,t}(X)=\E[Y_t-Y_{g-1}|X,C_{g,t}^\ast=1]$, $p_{g,t}(X)=\mathbb{P}[G_g=1|X,G_g+C_{g,t}^\ast=1]$. 在温和的正则条件下, Callaway and Sant'Anna (2021)证明了
-$$\theta(g,t)=\theta_\text{OR}(g,t)=\theta_\text{IPW}(g,t)=\theta_\text{DR}(g,t)$$
-由于OR, IPW和DR只依赖于$(Y,X,G_g,C_{g,t}^\ast)$, 因此可以通过它们得到$\theta(g,t)$的估计量.
+$$\theta(g,t)=\theta_\text{RA}(g,t)=\theta_\text{IPW}(g,t)=\theta_\text{DR}(g,t)$$
+由于RA, IPW和DR只依赖于$(Y,X,G_g,C_{g,t}^\ast)$, 因此可以通过它们得到$\theta(g,t)$的估计量.
 
 然而, 在长时间跨度和多处理时点的情况下, 报告每一个$\theta(g,t)$是很麻烦的事情, 并且可能不准确, Callaway and Sant'Anna (2021)提供了将不同$\theta(g,t)$进行加总的机制
 $$\theta=\sum_g\sum_{t=2}^Tw(g,t)\cdot\theta(g,t)$$
@@ -188,7 +188,7 @@ $$\theta_{\text{es}}(e)=\sum_g1[g+l\leq T]\cdot\mathbb{P}[G=g|G+l\leq T]\cdot\th
     \item 当$C_{g,t}^\ast=1$时用$Y_{t}-Y_{t_0}$对$X$进行线性回归, 得到预测值$\hat{m}_{g,t}(X)$,
     \item 用$G_g$对$X$进行Logit回归, 得到预测值$\hat{p}_{g,t}(X)$;
   \end{enumerate}
-  \item 将估计得到的$\hat{m}_{g,t}(X)$, $\hat{p}_{g,t}(X)$插入OR, IPW或DR的表达式中, 并用样本均值替代期望算子.
+  \item 将估计得到的$\hat{m}_{g,t}(X)$, $\hat{p}_{g,t}(X)$插入RA, IPW或DR的表达式中, 并用样本均值替代期望算子.
 \end{enumerate}
 最后, 对于$\hat{\theta}(g,t)$的协方差矩阵的估计可以通过影响函数法 (influence function approach)计算, 它在数值上等价于GMM得到的结果, 但运算速度更快.
 
