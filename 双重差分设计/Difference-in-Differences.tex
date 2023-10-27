@@ -247,10 +247,11 @@ $$\Delta^\text{SD}(M)=\{\delta:|(\delta_{t+1}-\delta_t)-(\delta_{t}-\delta_{t-1}
 为了进行统计推断, Rambachan and Roth (2023)介绍了两种方法, 其一是Andrews \emph{et al.} (2023)提出的条件混合方法 (简称ARP), 其二是固定长度置信区间 (Fixed Length Confidence Intervals, FLCI).
 
 根据Monte Carlo模拟的结果, 对于一般和多面形式的$\Delta$, 推荐使用ARP条件混合方法, 而对于$\Delta^\text{SD}(M)$和其它满足一致性和有限样本近最优性条件的特殊情况, 则推荐使用FLCI. 最后, 该方法不仅适用于经典DiD, 还适用于异质性处理效应下的事件研究, 这可以与CS估计量一起使用来实现, 具体见作者提供的\href{https://github.com/asheshrambachan/HonestDiD}{HonestDiD}命令包.
+
 \subsection{实例: 医疗补助扩张对保险覆盖率的影响}
 考虑无交错时间处置的经典DiD模型
 $$Y_{i,t}=\alpha_i+\phi_t+\sum_{s\neq2013}1[s=t]\times D_i\times \beta_s+\epsilon_{i,t}$$
-其中$Y_{i,t}$代表美国第$i$个州在第$t$年的低收入无孩成人的保险覆盖率, 如果$i$在2014年受到医疗补助扩张的影响, 那么$D_i=1$, 否则$D_i=0$. 
+其中$Y_{i,t}$代表美国第$i$个州在第$t$年的低收入无孩成人的保险覆盖率, 如果$i$在2014年受到医疗补助扩张的影响, 那么$D_i=1$, 否则$D_i=0$\footnote{为了简单起见, 这里将样本限制在2015年及以前, 并且剔除掉在2015年前首次受到政策冲击的少数州.}.
 
 根据图\ref{figure2}可知, 在$t<2014$的时期, 95\%的置信区间都包含了0, 事前趋势检验通过, 似乎可以认定平行趋势假设成立. 但正如Roth (2022)提到的, 事前趋势检验的检验势较低, 难以真正检验平行趋势是否成立. 为了稳健考虑, 我们转而进行敏感性分析.
 \begin{figure}
@@ -259,23 +260,30 @@ $$Y_{i,t}=\alpha_i+\phi_t+\sum_{s\neq2013}1[s=t]\times D_i\times \beta_s+\epsilo
   \caption{事前趋势检验}\label{figure2}
 \end{figure}
 
-考虑$\Delta=\Delta^\text{RM}(\overbar{M})$, 图\ref{figure3}左半部分展示了不同的$\overbar{M}$的设置下的稳健置信区间, 当$\overbar{M}$=0.5时, 违反平行趋势下的稳健置信区间和OLS的结果相似, 只是稍宽一些, 但仍然排除了医疗补助扩张的零效应 (null effect); 当$\overbar{M}$约等于2时, 出现了关于零效应的“击穿值” (breakdown value), 表明如果违反并行趋势的程度达到处置前最大违反程度的两倍, 这一显著结果也是稳健的. 
+考虑$\Delta=\Delta^\text{RM}(\overbar{M})$, 图\ref{figure3}展示了不同的$\overbar{M}$的设置下的稳健置信区间, 当$\overbar{M}$=0.5时, 违反平行趋势下的稳健置信区间和OLS的结果相似, 只是稍宽一些, 但仍然排除了医疗补助扩张的零效应 (null effect); 当$\overbar{M}$约等于2时, 出现了关于零效应的“击穿值” (breakdown value), 表明如果违反并行趋势的程度达到处置前最大违反程度的两倍, 这一显著结果也是稳健的.
 
-考虑$\Delta=\Delta^\text{SD}(M)$, 图\ref{figure3}右半部分展示了敏感性分析的另一结果, 可知显著影响的击穿值大约为$M\approx 0.03$, 意味着除非允许跨连续时期的线性外推偏差超过0.03, 否则就可以拒绝零效应.
+考虑$\Delta=\Delta^\text{SD}(M)$, 图\ref{figure4}展示了敏感性分析的另一结果, 可知显著影响的击穿值大约为$M\approx 0.03$, 意味着除非允许跨连续时期的线性外推偏差超过0.03, 否则就可以拒绝零效应.
+
+最后, 假设处置是交错时间发生的, 也即医疗补助扩张不仅只发生在2014年, 还发生在接下来的年份, 根据前文可知在异质性处置效应下直接使用事件研究是有偏的, 此时可以将\href{https://github.com/mcaceresb/stata-honestdid}{HonestDiD}与\href{https://github.com/friosavila/csdid2}{csdid2}搭配以使用CS估计量, 具体结果如图\ref{figure5}所示.
 
 \begin{figure}
   \centering
-  \begin{minipage}{0.48\textwidth}
-  \centering
-    \includegraphics[width=9cm]{Figure3.pdf}
-  \end{minipage}
-  \begin{minipage}{0.48\textwidth}
-    \centering
-      \includegraphics[width=9cm]{Figure4.pdf}
-  \end{minipage}
-  \caption{敏感性分析}\label{figure3}
+  \includegraphics[width=15cm]{Figure3.pdf}
+  \caption{$\Delta=\Delta^\text{RM}(\overbar{M})$下的敏感性分析}\label{figure3}
 \end{figure}
 
+
+\begin{figure}
+  \centering
+  \includegraphics[width=15cm]{Figure4.pdf}
+  \caption{$\Delta=\Delta^\text{SD}(M)$下的敏感性分析}\label{figure4}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=15cm]{Figure5.pdf}
+  \caption{交错时间处置下的敏感性分析}\label{figure5}
+\end{figure}
 \newpage
 
 \nocite{Andrews2023inference}
