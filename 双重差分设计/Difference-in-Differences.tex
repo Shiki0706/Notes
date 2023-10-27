@@ -249,7 +249,7 @@ $$\Delta^\text{SD}(M)=\{\delta:|(\delta_{t+1}-\delta_t)-(\delta_{t}-\delta_{t-1}
 
 为了进行统计推断, Rambachan and Roth (2023)介绍了两种方法, 其一是Andrews \emph{et al.} (2023)提出的条件混合方法 (简称ARP), 其二是固定长度置信区间 (Fixed Length Confidence Intervals, FLCI).
 
-根据Monte Carlo模拟的结果, 对于一般和多面形式的$\Delta$, 推荐使用ARP条件混合方法, 而对于$\Delta^\text{SD}(M)$和其它满足一致性和有限样本近最优性条件的特殊情况, 则推荐使用FLCI. 最后, 该方法不仅适用于经典DiD, 还适用于异质性处理效应下的事件研究, 这可以与CS估计量一起使用来实现, 具体见作者提供的\href{https://github.com/asheshrambachan/HonestDiD}{HonestDiD}命令包.
+根据Monte Carlo模拟的结果, 对于一般和多面形式的$\Delta$, 推荐使用ARP条件混合方法, 而对于$\Delta^\text{SD}(M)$和其它满足一致性和有限样本近最优性条件的特殊情况, 则推荐使用FLCI. 这些方法的使用具体见作者提供的\href{https://github.com/asheshrambachan/HonestDiD}{HonestDiD}命令包.
 
 \subsection{实例: 医疗补助扩张对保险覆盖率的影响}
 考虑无交错时间处置的经典DiD模型
