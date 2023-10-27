@@ -69,7 +69,7 @@ $$Y_{i,t}=\alpha_i+\phi_t+(1[t=2]\cdot D_i)\beta+{X}_{i,t}'\gamma+\epsilon_{i,t}
 
 \begin{figure}
   \centering
-  \includegraphics[width=15cm]{Figure3.pdf}
+  \includegraphics[width=15cm]{Figure1.pdf}
   \caption{双重差分示意图}
 \end{figure}
 \newpage
@@ -140,7 +140,7 @@ $$D_{i,t}^l\cdot1[G_i=g]=\alpha_i+\phi_t+\sum_{e\in\mathcal{E}}w_{g,l}^e1[t-G_i\
 \sum_{l\in e'}\sum_gw_{g,l}^e&=0,\quad \forall l\in e',\, e'\neq e,\, e'\in\mathcal{E} \tag{$\ast$} \\
 \sum_{l\in e^\text{excl}}\sum_gw_{g,l}^e&=-1,\quad\forall l\in e^\text{excl} \nonumber
 \end{align}
-可以看出, 事件研究法的回归系数是一系列基本的$2\times 2\,$DiD估计量的加权平均. 
+可以看出, 事件研究法的回归系数是一系列基本的$2\times 2\,$DiD估计量的加权平均.
 
 另一方面, 定义
 $$\text{ATT}_{g,l}=\E[Y_{i,g+l}-Y_{i,g+l}(\infty)|G_i=g]$$
@@ -158,7 +158,7 @@ $$\mu_g=\text{ATT}_l+w_{-1}^l\text{ATT}_{-1}$$
 \subsection{Callaway-Sant'Anna估计量}
 上述提到的事件研究设计可以解决同质性处置效应路径的问题, 然而对于$\text{ATT}_{g,l}\neq\text{ATT}_l\ne\text{ATT}$这种一般的异质性处置效应问题, 事件研究仍然会得到有偏估计, 此时需要用到异质性处置效应稳健的估计量.
 
-Callaway and Sant'Anna (2021)考虑了
+Callaway and Sant'Anna (2021)\footnote{其它的替代估计量包括Sun and Abraham (2021)提出的SA估计量以及堆叠回归估计量 (stacked regression estimator), 它们的比较可见 Baker \emph{et al.} (2022).}考虑了
 $$\theta(g,t)=\E[Y_{t}(g)-Y_{t}(\infty)|G_g=1]$$
 这里为了简单起见省略了下标$i$, $G_g$是个体$i$在时点$g$是否接受处置时的指示符, 上式表示在时点$g$首次接受处置的那批个体在时点$t$的ATT.
 
@@ -246,38 +246,40 @@ $$\Delta^\text{SD}(M)=\{\delta:|(\delta_{t+1}-\delta_t)-(\delta_{t}-\delta_{t-1}
 
 为了进行统计推断, Rambachan and Roth (2023)介绍了两种方法, 其一是Andrews \emph{et al.} (2023)提出的条件混合方法 (简称ARP), 其二是固定长度置信区间 (Fixed Length Confidence Intervals, FLCI).
 
-根据Monte Carlo模拟的结果, 对于一般和多面形式的$\Delta$, 推荐使用ARP条件混合方法, 而对于$\Delta^\text{SD}(M)$和其它满足一致性和有限样本近最优性条件的特殊情况, 则推荐使用FLCI. 最后, 该方法不仅适用于经典DiD, 还适用于异质性处理效应下的事件研究, 这可以与CS估计量一起使用来实现.
+根据Monte Carlo模拟的结果, 对于一般和多面形式的$\Delta$, 推荐使用ARP条件混合方法, 而对于$\Delta^\text{SD}(M)$和其它满足一致性和有限样本近最优性条件的特殊情况, 则推荐使用FLCI. 最后, 该方法不仅适用于经典DiD, 还适用于异质性处理效应下的事件研究, 这可以与CS估计量一起使用来实现, 具体见作者提供的\href{https://github.com/asheshrambachan/HonestDiD}{HonestDiD}命令包.
+\subsection{实例: 医疗补助扩张对保险覆盖率的影响}
+考虑无交错时间处置的经典DiD模型
+$$Y_{i,t}=\alpha_i+\phi_t+\sum_{s\neq2013}1[s=t]\times D_i\times \beta_s+\epsilon_{i,t}$$
+其中$Y_{i,t}$代表美国第$i$个州在第$t$年的低收入无孩成人的保险覆盖率, 如果$i$在2014年受到医疗补助扩张的影响, 那么$D_i=1$, 否则$D_i=0$. 
 
-\subsection{实例: Benzarti and Carloni (2019)}
-Benzarti and Carloni (2019)研究了法国在2009年降低餐厅增值税对餐厅利润的影响. 考虑如下TWFE模型
-$$Y_{i,t}=\alpha_i+\phi_t+\sum_{s\ne2008}1[s=t]\times D_i\times \beta_s+\epsilon_{i,t}$$
-其中$Y_{i,t}$是公司$i$在$t$时刻的对数利润, $D_i$是用以标识公司$i$是否为餐厅的指示符, $\alpha_i$和$\phi_t$分别是公司层面的固定效应和时间固定效应, $\epsilon_{i,t}$为随机扰动项. 在平行趋势和无预期效应的情况下, 使用OLS得到的DiD估计量是$\beta_s$的一致估计.
-
-根据有关数据, 我们可以在$p<0.01$的水平下拒绝原假设$\mathbb{H}_0:\beta_\text{pre}=0$, 也即平行趋势不成立. 这可以由2007年的$\beta_s$的95\%置信区间 (红色虚线范围)没有包括0直观看到, 另外还可以看出税改后的餐厅利润呈现先增后减的趋势.
-
-现在有一个关键问题, 即使没有降低增值税的政策冲击, 也可能存在其它不可观测的宏观冲击, 并且这些冲击对餐饮业的影响不同于对其它企业的影响. 而一个较为合理的考虑是, 在处置后时点的对餐饮业的特定冲击不会比处理前的时期大太多, 而强制要求行业特定冲击遵循平滑趋势似乎不太靠谱, 因此我们的分析基于$\Delta^\text{RM}(\overbar{M})$, 整个分析可以由作者提供的HonestDiD包完成\footnote{包括\href{https://github.com/asheshrambachan/HonestDiD}{R}和\href{https://github.com/mcaceresb/stata-honestdid}{Stata}两个软件的包.}.
-
-如果选取$\overbar{M}=1$, 意味着我们限制了处置后违反平行趋势的程度不超过处置前时期的违反程度, 此时得到了税改对餐厅利润的因果效应的稳健置信区间为$[0.07,0.31]$, 这个区间比原本的OLS区间更宽, 然而OLS的结果只有在平行趋势完全成立的情况下才可信. 尽管如此, $\overbar{M}=1$时的稳健置信区间仍然排除了对餐饮利润的零效应 (null effect). 接着往右边, 可以看到关于零效应的“故障值” (breakdown value)大约在$\overbar{M}=2$附近.
-
-因此, 我们关于税改对餐饮业利润有显著影响的结论, 取决于我们是否愿意限制处理后违反平行趋势的程度不能超过处理前违反程度最大值的两倍.
-
-
-\begin{figure}[htbp!]
-  \centering
-  \includegraphics[width=15cm]{Figure1.pdf}
-  \caption{关于对数利润的事件研究系数$\{\beta_s\}$}
-\end{figure}
-
-\begin{figure}[htbp!]
+根据图\ref{figure2}可知, 在$t<2014$的时期, 95\%的置信区间都包含了0, 事前趋势检验通过, 似乎可以认定平行趋势假设成立. 但正如Roth (2022)提到的, 事前趋势检验的检验势较低, 难以真正检验平行趋势是否成立. 为了稳健考虑, 我们转而进行敏感性分析.
+\begin{figure}
   \centering
   \includegraphics[width=15cm]{Figure2.pdf}
-  \caption{敏感性分析}
+  \caption{事前趋势检验}\label{figure2}
+\end{figure}
+
+考虑$\Delta=\Delta^\text{RM}(\overbar{M})$, 图\ref{figure3}左半部分展示了不同的$\overbar{M}$的设置下的稳健置信区间, 当$\overbar{M}$=0.5时, 违反平行趋势下的稳健置信区间和OLS的结果相似, 只是稍宽一些, 但仍然排除了医疗补助扩张的零效应 (null effect); 当$\overbar{M}$约等于2时, 出现了关于零效应的“击穿值” (breakdown value), 表明如果违反并行趋势的程度达到处置前最大违反程度的两倍, 这一显著结果也是稳健的. 
+
+考虑$\Delta=\Delta^\text{SD}(M)$, 图\ref{figure3}右半部分展示了敏感性分析的另一结果, 可知显著影响的击穿值大约为$M\approx 0.03$, 意味着除非允许跨连续时期的线性外推偏差超过0.03, 否则就可以拒绝零效应.
+
+\begin{figure}
+  \centering
+  \begin{minipage}{0.48\textwidth}
+  \centering
+    \includegraphics[width=9cm]{Figure3.pdf}
+  \end{minipage}
+  \begin{minipage}{0.48\textwidth}
+    \centering
+      \includegraphics[width=9cm]{Figure4.pdf}
+  \end{minipage}
+  \caption{敏感性分析}\label{figure3}
 \end{figure}
 
 \newpage
 
 \nocite{Andrews2023inference}
-\nocite{benzarti2019really}
+\nocite{baker2022much}
 \nocite{callaway2021difference}
 \nocite{goodman2021difference}
 \nocite{rambachan2023more}
