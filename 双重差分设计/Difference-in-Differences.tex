@@ -1,5 +1,5 @@
 %!TEX program = xelatex
-\documentclass[cn,sakura,14pt,screen,bibstyle=gb7714-2015]{elegantnote}
+\documentclass[cn,cyan,14pt,screen,bibstyle=gb7714-2015]{elegantnote}
 \title{双重差分设计}
 \date{\today}
 
@@ -64,7 +64,7 @@ $$\tau_2=\E[Y_{i,2}(1)-Y_{i,1}(1)|D_i=1]-\E[Y_{i,2}(0)-Y_{i,1}(0)|D_i=0]$$
 $$\hat{\tau}_2=(\overbar{Y}_{t=2,d=1}-\overbar{Y}_{t=1,d=1})-(\overbar{Y}_{t=2,d=0}-\overbar{Y}_{t=1,d=0})$$
 其中$\overbar{Y}_{t=t',D=d}$是组别$d$中的$Y$在$t'$时刻的样本均值. 另一方面, 还可以使用双向固定效应 (Two-Way Fixed Effects, TWFE)回归
 $$Y_{i,t}=\alpha_i+\lambda_t+(1[t=2]\cdot D_i)\beta+\epsilon_{i,t}$$
-可以证明$\beta$的OLS估计量$\hat{\beta}$等于$\hat{\tau}_2$. 最后, 我们可以在TWFE中加入不受处置影响的协变量$X$得到
+这里的$\alpha_i$为个体固定效应, $\lambda_t$为时间固定效应, $\epsilon_{i,t}$为随机扰动项. 可以证明$\beta$的OLS估计量$\hat{\beta}$等于$\hat{\tau}_2$. 最后, 我们可以在TWFE中加入不受处置影响的协变量$X$得到
 $$Y_{i,t}=\alpha_i+\lambda_t+(1[t=2]\cdot D_i)\beta+{X}_{i,t}'\gamma+\epsilon_{i,t}$$
 这样可以控制处置组与控制组中随时间变化的可观测特征差异可能导致的估计误差.
 
@@ -75,10 +75,75 @@ $$Y_{i,t}=\alpha_i+\lambda_t+(1[t=2]\cdot D_i)\beta+{X}_{i,t}'\gamma+\epsilon_{i
 \end{figure}
 \newpage
 \section{交错时间处置}
-\subsection{TWFE-DiD估计量的缺陷}
-在经典DiD的框架下, 政策在同一时刻发生, 且只包含了处置组和控制组, 然而政策可能具有滞后性, 因此经典DiD不再适用. 有鉴于此, 我们可以将$2\times2$的经典DiD推广至多维, 也即存在多个组群在不同时点受到政策冲击.
+\subsection{引子: 异质性处置效应下的TWFE估计量}
+假设观测数据可以被分割为$G$个组群和$T$个时期, 对于任意$(g,t)\in \{1,\cdots,G\}\times\{1,\cdots,T\}$, 令$N_{g,t}$表示当时点为$t$时的组群$g$的观测数量, $N=\sum_{g,t}N_{g,t}$为总的观测数量. 特别地, 如果对于一切$(g,t)$都有$N_{g,t}=1$, 那么一个组群仅代表一个个体. 
 
-假设时间跨度为$T+1$, 每个时点由$t=0,\cdots,T$标记, 个体$i$可以在任意$t\ge0$的时点受到二元处置, 并且处置是\textbf{吸收态} (absorbing state), 也即一旦个体接受处置, 那么它在剩余的时间上保持被处置的状态. 我们使用$D_{i,t}$作为个体$i$在时点$t$是否接受处置的二元指示符, $G_i=\min\{t:D_{i,t}=1\}$为个体$i$首次接受处置的时点, $G_i=\infty$表示个体$i$从未接受处置. 由于处置是吸收的, 因此对于一切$t\ge G_i$都有$D_{i,t}=1$.
+另一方面, 对于任意的$(i,g,t)\in\{1,\cdots,N_{g,t}\}\times\{1,\cdots,G\}\times\{1,\cdots,T\}$, 设$D_{i,g,t}$和$(Y_{i,g,t}(0),Y_{i,g,t}(1))$分别表示组群$g$中的个体$i$在时点$t$的处置阶段和潜在结果, 此时结果变量为$Y_{i,g,t}=Y_{i,g,t}(D_{i,g,t})$. 此外, 对于一切$(g,t)$, 令
+\begin{align*}
+D_{g,t}&=\frac{1}{N_{g,t}}\sum_{i=1}^{N_{g,t}}D_{i,g,t},\quad Y_{g,t}(0)=\frac{1}{N_{g,t}}\sum_{i=1}^{N_{g,t}}Y_{i,g,t}(0) \\
+Y_{g,t}(1)&=\frac{1}{N_{g,t}}\sum_{i=1}^{N_{g,t}}Y_{i,g,t}(1),\quad Y_{g,t}=\frac{1}{N_{g,t}}\sum_{i=1}^{N_{g,t}}Y_{i,g,t}
+\end{align*}
+这里的$D_{g,t}$组群$g$在时点$t$的平均处置, $Y_{g,t}(0)$和$Y_{g,t}(1)$含义类似.
+
+在本小节的剩余部分, 总是给定以下假设.
+
+\begin{definition}[平衡组群]\label{def:def2.1}
+$\forall (g,t)\times \{1,\cdots,G\}\times \{1,\cdots,T\}$, $N_{g,t}>0$.
+\end{definition}
+假设\ref{def:def2.1}表明随着时间流逝, 没有组群会突然出现或消失, 这一条件通常是满足的.
+
+\begin{definition}[清晰设计]\label{def:def2.2}
+$\forall (g,t)\times \{1,\cdots,G\}\times \{1,\cdots,T\}$, 以及$i\in\{1,\cdots,N_{g,t}\}$, $D_{i,g,t}=D_{g,t}$.
+\end{definition}
+假设\ref{def:def2.2}表明个体的处置状态在每个胞元$(g,t)$内部是不会改变的.
+
+\begin{definition}[独立组群]\label{def:def2.3}
+向量$(Y_{g,t}(0),Y_{g,t}(1),D_{g,t})_{1\leq t\leq T}$两两独立.
+\end{definition}
+假设\ref{def:def2.3}允许同一组群的处置与潜在结果随着时间流逝产生相关性, 但要求不同组群的处置和潜在结果是独立的.
+
+\begin{definition}[强外生性]\label{def:def2.4}
+$\forall (g,t)\in\{1,\cdots,G\}\times\{2,\cdots,T\}$, $\E[Y_{g,t}(0)-Y_{g,t-1}(0)|D_{g,1},\cdots,$ $D_{g,T}]=\E[Y_{g,t}(0)-Y_{g,t-1}(0)]$.
+\end{definition}
+假设\ref{def:def2.4}要求一个组的$Y_{g,t}(0)$均值独立于该组的处置序列以排除发生Ashenfelter沉降的可能性.
+
+\begin{definition}[共同趋势]\label{def:def2.5}
+对于一切$t\ge2$, $\E[Y_{g,t}(0)-Y_{g,t-1}(0)]$跨组群$g$保持不变.
+\end{definition}
+假设\ref{def:def2.5}要求没有接受处置的预期结果随着时间流逝在每个组群中具有相同的演变趋势.
+
+现在设$\hat{\beta}_\text{FE}$表示$Y_{i,g,t}$对组群固定效应、时间固定效应和$D_{g,t}$进行线性回归的OLS估计量, 并设$\beta=\E[\hat{\beta}_\text{FE}]$. 再令$N_1=\sum_{i,g,t}D_{i,g,t}$为所有接受处置的个体数量, 令
+$$\Delta^\text{TR}=\frac{1}{N_1}\sum_{(i,g,t):D_{g,t}=1}[Y_{i,g,t}(1)-Y_{i,g,t}(0)]$$
+表示跨全体收处置个体的平均处置效应, 并且$\delta^\text{TR}=\E[\Delta^\text{TR}]$表示该参数的期望, 也即ATT. 对于一切$(g,t)\in \{1,\cdots,G\}\times\{1,\cdots,T\}$, 令
+$$\Delta_{g,t}=\frac{1}{N_{g,t}}\sum_{i=1}^{N_{g,t}}[Y_{i,g,t}(1)-Y_{i,g,t}(0)]$$
+为胞元$(g,t)$的平均处置效应 (Average Treatment Effect, ATE), 经过一些简单运算可知
+$$\delta^\text{TR}=\E\left[\sum_{(g,t):D_{g,t}=1}\frac{N_{g,t}}{N_1}\Delta_{g,t}\right]$$
+de Chaisemartin and D'Haultfœuille (2020)证明了, 在假设\ref{def:def2.1}-\ref{def:def2.5}成立的条件下有
+\begin{equation}\label{eq2.1}
+  \beta_\text{FE}=\E\left[\sum_{(g,t):D_{g,t}=1}\frac{N_{g,t}}{N_1}w_{g,t}\Delta_{g,t}\right] \tag{$\star$}
+\end{equation}
+其中
+$$w_{g,t}=\frac{\eta_{g,t}}{\sum_{(g,t):D_{g,t}=1}\frac{N_{g,t}}{N_1}\eta_{n,t}}$$
+并且
+$$D_{g,t}=\alpha_i+\lambda_t+\eta_{i,t}$$
+是出自$D_{i,t}$对组群固定效应和时间固定效应回归的残差\footnote{这里要求回归元不是角点的 (collinear).}. 根据式($\star$)可知, 一般情况下$\beta_\text{FE}\neq \delta^\text{TR}$, 也即$\hat{\beta}_\text{FE}$是ATT的有偏估计.
+
+为了看到这一点, 假设组群1在时点1和2未接受处置而在时点3接受处置, 组群2在时点1未接受处置而在时点2和时点3接受处置, 并且$N_{g,t}/N_1$跨$g$保持不变, 当数据是平衡面板时, 这一要求是满足的. 此时
+$$\eta_{g,t}=D_{i,t}-D_{g,\cdot}-D_{\cdot,t}+D_{,\cdot,}$$
+于是
+\begin{align*}
+\eta_{1,3}&=1-1/3-1+1/2=1/6 \\
+\eta_{2,3}&=1-2/3-1/2+1/2=1/3 \\
+\eta_{3,3}&=1-2/3-1+1/2=-1/6
+\end{align*}
+根据式($\star$)可知
+$$\beta_\text{FE}=1/2\E[\Delta_{1,3}]+\E[\Delta_{2,2}]-1/2\E[\Delta_{2,3}]$$
+组群2在时点3出现了负权重, 如果设$\E[\Delta_{1,3}]=\E[\Delta_{2,2}]=1$, $\E[\Delta_{2,3}]=4$, 那么$\beta_\text{FE}=-1/2<0$. 换言之, 即使每个$\E[\Delta_{g,t}]>0$, 但只要它们跨$g$或$t$是异质性的 (heterogeneous), 那么$\beta_\text{FE}$也可能严格为负, 这将导致对处置效应估计的严重错误!
+
+\subsection{Goodman-Bacon分解}
+现在回到正题, 在经典DiD的框架下, 政策在同一时刻发生, 且只包含了处置组和控制组, 然而政策可能具有滞后性, 因此经典DiD不再适用. 有鉴于此, 我们可以将$2\times2$的经典DiD推广至多维, 也即存在多个组群在不同时点受到政策冲击.
+
+假设时间跨度为$T+1$, 每个时点由$t=0,\cdots,T$标记, 个体$i$可以在任意$t\ge0$的时点受到二元处置, 并且处置是\textbf{吸收态} (absorbing state), 也即一旦个体接受处置, 那么它在剩余的时间上保持被处置的状态. 我们使用$D_{i,t}$作为个体$i$在时点$t$是否接受处置的二元指示符, $G_i=\min\{t:D_{i,t}=1\}$为个体$i$首次接受处置的时点, 同在$G_i$接受处置的个体$i$构成一个组群, $G_i=\infty$表示个体$i$从未接受处置. 由于处置是吸收的, 因此对于一切$t\ge G_i$都有$D_{i,t}=1$.
 
 我们需要推广潜在结果的表示方法. 设$\mathbf{0}_s$和$\mathbf{1}_s$分别为$s$维的0向量和1向量, 如果个体$i$在时点$g$首次接受处置, 那么它在$t$时刻的潜在结果为$Y_{i,t}(\mathbf{0}_{g-1},\mathbf{1}_{T-g+1})$, 而用$Y_{i,t}(\mathbf{0}_T)$表示从未接受处置的潜在结果, 分别简写为$Y_{i,t}(g)$以及$Y_{i,t}(\infty)$, 并且
 $$Y_{i,t}(g)=Y_{i,t}(\infty)+\sum_{0\leq g\leq T}\,[Y_{i,t}(g)-Y_{i,t}(\infty)]\cdot 1[G_i=g]$$
@@ -94,19 +159,17 @@ $$\E[Y_{i,t}(\infty)-Y_{i,t'}(\infty)|G_i=g]=\E[Y_{i,t}(\infty)-Y_{i,t'}(\infty)
 对于一切$i$和$t<g$都有$Y_{i,t}(g)=Y_{i,t}(\infty)$.
 \end{definition}
 
-在以上假设成立的情况下, 仍然考虑使用TWFE模型
+在以上假设成立的情况下, 仍然考虑使用静态TWFE模型
 $$Y_{i,t}=\alpha_i+\lambda_t+D_{i,t}\beta_\text{post}+\epsilon_{i,t}$$
-如果处置效应跨个体和时间维度没有异质性, 那么使用$\beta$来识别因果是合理的. 正式地说, 定义
-$$\tau_{i,t}(g)=Y_{i,t}(g)-Y_{i,t}(\infty)$$
-假设对于一切$i$, 如果当$t\ge g$时有$\tau_{i,t}(g)=\tau$, 那么回归系数$\beta_{\text{post}}$等于$\tau$. 上述同质性处置效应假设表明: (a) 所有的个体受到了相同的处置效应, (b)无论处置开始于何时, 处置具有相同的效应.
+Goodman-Bacon (2021)证明了以下概率极限
+$$\underset{N\to\infty}{\text{plim}}\hat{\beta}_\text{post}=\text{VWATT}+\text{VWCT}+\Delta \text{ATT}$$
+其中VWATT是TWFE-DiD估计量所能估计的我们感兴趣的因果效应, VWCT在平行趋势假设成立的情况下为0, $\Delta \text{ATT}$等于各组群在处置前后的处置结果变化的加权和. 
 
-值得注意的是, 如果在不同时点受到的处置效应存在异质性, 那么TWFE估计是有偏的 (de Chaisemartin and D'Haultfœuille, 2020; Goodman-Bacon, 2021), 甚至会出现完全相反的因果效应.
+特别地, 如果处置效应是同质的 (也即ATT跨组群和时点保持不变), 那么$\Delta\text{ATT}=0$, 此时$\beta_\text{post}$正确识别了因果关系, 使用OLS估计静态TWFE模型是合理的.
 
-为了看到这一点, 假设$\tau_{i,t}(g)=\sum_{s\ge0}\tau_s1[t-g=s]$, 于是当所有个体接受处置后, 在时点$s$处具有处置效应$\tau_s$, 此时$\beta_\text{post}=\sum_s\omega_s\tau_s$, 权重$\omega_s$之和为1但有可能为负. 此时问题将会出现, 例如所有的$\tau_s$均为正值, 但$\beta_\text{post}$却为负.
-
-事实上, 根据FWL定理可知$\hat{\beta}_{\text{post}}$的OLS估计量为
+根据上一节的论述, 如果在不同时点受到的处置效应存在异质性, 那么TWFE估计是有偏的 (de Chaisemartin and D'Haultfœuille, 2020), 甚至会出现完全相反的因果效应. 事实上, 根据FWL定理可知$\hat{\beta}_{\text{post}}$的OLS估计量为
 $$\hat{\beta}_\text{post}=\frac{\sum_{i,t}(D_{i,t}-\hat{D}_{i,t})Y_{i,t}}{\sum_{i,t}(D_{i,t}-\hat{D}_{i,t})^2}$$
-其中$\hat{D}_{i,t}$是出自回归$D_{i,t}=\tilde{\alpha}_i+\tilde{\lambda}_t+u_{i,t}$的$D_{i,t}$的拟合值. 由于上式分母始终为正, 以及$Y_{i,t}=Y_{i,t}(\infty)+\tau_{i,t}(g)$, 因此如果$D_{i,t}=1$且$D_{i,t}-\hat{D}_{i,t}<0$, 那么$\tau_{i,t}(g)$在$\hat{\beta}_\text{post}$中取得负权重, 即使个体$i$在$t$时刻接受处置.
+其中$\hat{D}_{i,t}$是出自回归$D_{i,t}=\alpha_i+\lambda_t+u_{i,t}$的$D_{i,t}$的拟合值. 由于上式分母始终为正, 以及$Y_{i,t}=Y_{i,t}(\infty)+\tau_{i,t}(g)$, 因此如果$D_{i,t}=1$且$D_{i,t}-\hat{D}_{i,t}<0$, 那么$\tau_{i,t}(g)$在$\hat{\beta}_\text{post}$中取得负权重, 即使个体$i$在$t$时刻接受处置.
 
 进一步, 经过某些代数运算可得
 $$\hat{D}_{i,t}=\overbar{D}_i+\overbar{D}_t-\overbar{D}$$
@@ -114,7 +177,7 @@ $$\hat{D}_{i,t}=\overbar{D}_i+\overbar{D}_t-\overbar{D}$$
 
 如果个体在几乎所有时点都是处置状态, 那么$\overbar{D}_i\approx 1$, 如果某时点几乎所有个体都被处置, 那么$\overbar{D}_t\approx 1$, 在二者同时成立的情况下有$\hat{D}_{i,t}\approx 2-\overbar{D}$, 如果在某段时间内有部分未接受处置的个体存在, 那么$\hat{D}_{i,t}>1$. 由此可见, 早期接受处置的个体在后期更容易产生负权重.
 
-另一方面, Goodman-Bacon (2021)指出, TWFE-DiD估计量是所有可能的$2\times 2\,$DiD估计量的加权平均, 各个小的DiD估计量的处置组和控制组是混乱的, 有的将从未接受处置的组群作为控制组, 有的将尚未处置 (not-yet-treated)的组群作为控制组, 还有的将先接受处置的组群作为控制组而将后接受处置的组作为处置组. 当存在随时间变化的处置效应异质性时, 某些小的DiD估计量就会产生负权重. 特别地, 使用较早接受处置的组作为控制组被称为\textbf{禁止比较} (forbidden comparison).
+Goodman-Bacon (2021)进一步指出, TWFE-DiD估计量是所有可能的$2\times 2\,$DiD估计量的加权平均, 各个小的DiD估计量的处置组和控制组是混乱的, 有的将从未接受处置的组群作为控制组, 有的将尚未处置 (not-yet-treated)的组群作为控制组, 还有的将先接受处置的组群作为控制组而将后接受处置的组作为处置组. 当存在随时间变化的处置效应异质性时, 某些小的DiD估计量就会产生负权重. 特别地, 使用较早接受处置的组作为控制组被称为\textbf{禁止比较} (forbidden comparison). 
 
 为了解决异质性处置效应下的TWFE-DiD估计偏误, 一方面可以在无异质性处理路径的情况下使用\textbf{事件研究法} (event study method), 另一方面则是使用更具有普适性的稳健的DiD估计量, 下面将分别介绍.
 \subsection{事件研究法}
@@ -180,7 +243,7 @@ $$\theta(g,t)=\theta_\text{RA}(g,t)=\theta_\text{IPW}(g,t)=\theta_\text{DR}(g,t)
 然而, 在长时间跨度和多处理时点的情况下, 报告每一个$\theta(g,t)$是很麻烦的事情, 并且可能不准确, Callaway and Sant'Anna (2021)提供了将不同$\theta(g,t)$进行加总的机制
 $$\theta=\sum_g\sum_{t=2}^Tw(g,t)\cdot\theta(g,t)$$
 其中$w(g,t)$是某个精心挑选的权重函数, 用以解决特定的实证问题. 特别地, 设$l=t-g$为表示在接受处置后逝去的时间, 则关于$l$的一种加总方式为
-$$\theta_{\text{es}}(e)=\sum_g1[g+l\leq T]\cdot\mathbb{P}[G=g|G+l\leq T]\cdot\theta(g,t)$$
+$$\theta_{\text{es}}(l)=\sum_g1[g+l\leq T]\cdot\mathbb{P}[G=g|G+l\leq T]\cdot\theta(g,t)$$
 称为\textbf{事件研究参数} (event-study parameter), 它给出了在不同处置组群中, 在接受处置后$e$个时期的处置效应的加权平均值.
 
 现在来看对$\theta(g,t)$的估计, 根据Callaway and Sant'Anna (2021)的研究, 采取以下步骤是可行的
