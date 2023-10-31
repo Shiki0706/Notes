@@ -1,15 +1,12 @@
 %!TEX program = xelatex
-\documentclass[cn,cyan,14pt,screen,bibstyle=gb7714-2015]{elegantnote}
+\documentclass[cn,blue,14pt,screen,bibstyle=gb7714-2015]{elegantnote}
 \title{双重差分设计}
 \date{\today}
-
 
 \usepackage{array}
 \usepackage{geometry}
 \usepackage{amsmath, amsthm, amssymb, mtpro2}
-\usepackage{cprotect}
 \usepackage{array}
-\usepackage{bbm}
 \usepackage{hyperref}
 \newcommand{\Bkkk}{}
 \newcommand{\E}{\mathbb{E}}
@@ -71,12 +68,12 @@ $$Y_{i,t}=\alpha_i+\lambda_t+(1[t=2]\cdot D_i)\beta+{X}_{i,t}'\gamma+\epsilon_{i
 \begin{figure}
   \centering
   \includegraphics[width=15cm]{Figure1.pdf}
-  \caption{双重差分示意图}
+  \caption{经典双重差分示意图.}
 \end{figure}
 \newpage
 \section{交错时间处置}
-\subsection{引子: 异质性处置效应下的TWFE估计量}
-假设观测数据可以被分割为$G$个组群和$T$个时期, 对于任意$(g,t)\in \{1,\cdots,G\}\times\{1,\cdots,T\}$, 令$N_{g,t}$表示当时点为$t$时的组群$g$的观测数量, $N=\sum_{g,t}N_{g,t}$为总的观测数量. 特别地, 如果对于一切$(g,t)$都有$N_{g,t}=1$, 那么一个组群仅代表一个个体. 
+\subsection{异质性处置效应下的TWFE偏误}
+假设观测数据可以被分割为$G$个组群和$T$个时期, 对于任意$(g,t)\in \{1,\cdots,G\}\times\{1,\cdots,T\}$, 令$N_{g,t}$表示当时点为$t$时的组群$g$的观测数量, $N=\sum_{g,t}N_{g,t}$为总的观测数量. 特别地, 如果对于一切$(g,t)$都有$N_{g,t}=1$, 那么一个组群仅代表一个个体.
 
 另一方面, 对于任意的$(i,g,t)\in\{1,\cdots,N_{g,t}\}\times\{1,\cdots,G\}\times\{1,\cdots,T\}$, 设$D_{i,g,t}$和$(Y_{i,g,t}(0),Y_{i,g,t}(1))$分别表示组群$g$中的个体$i$在时点$t$的处置阶段和潜在结果, 此时结果变量为$Y_{i,g,t}=Y_{i,g,t}(D_{i,g,t})$. 此外, 对于一切$(g,t)$, 令
 \begin{align*}
@@ -126,7 +123,7 @@ de Chaisemartin and D'Haultfœuille (2020)证明了, 在假设\ref{def:def2.1}-\
 $$w_{g,t}=\frac{\eta_{g,t}}{\sum_{(g,t):D_{g,t}=1}\frac{N_{g,t}}{N_1}\eta_{n,t}}$$
 并且
 $$D_{g,t}=\alpha_i+\lambda_t+\eta_{i,t}$$
-是出自$D_{i,t}$对组群固定效应和时间固定效应回归的残差\footnote{这里要求回归元不是角点的 (collinear).}. 根据式($\star$)可知, 一般情况下$\beta_\text{FE}\neq \delta^\text{TR}$, 也即$\hat{\beta}_\text{FE}$是ATT的有偏估计.
+是出自$D_{i,t}$对组群固定效应和时间固定效应回归的残差.\footnote{这里要求回归元不是角点的 (collinear).} 根据式($\star$)可知, 一般情况下$\beta_\text{FE}\neq \delta^\text{TR}$, 也即$\hat{\beta}_\text{FE}$是ATT的有偏估计.
 
 为了看到这一点, 假设组群1在时点1和2未接受处置而在时点3接受处置, 组群2在时点1未接受处置而在时点2和时点3接受处置, 并且$N_{g,t}/N_1$跨$g$保持不变, 当数据是平衡面板时, 这一要求是满足的. 此时
 $$\eta_{g,t}=D_{i,t}-D_{g,\cdot}-D_{\cdot,t}+D_{,\cdot,}$$
@@ -140,7 +137,8 @@ $$\eta_{g,t}=D_{i,t}-D_{g,\cdot}-D_{\cdot,t}+D_{,\cdot,}$$
 $$\beta_\text{FE}=1/2\E[\Delta_{1,3}]+\E[\Delta_{2,2}]-1/2\E[\Delta_{2,3}]$$
 组群2在时点3出现了负权重, 如果设$\E[\Delta_{1,3}]=\E[\Delta_{2,2}]=1$, $\E[\Delta_{2,3}]=4$, 那么$\beta_\text{FE}=-1/2<0$. 换言之, 即使每个$\E[\Delta_{g,t}]>0$, 但只要它们跨$g$或$t$是异质性的 (heterogeneous), 那么$\beta_\text{FE}$也可能严格为负, 这将导致对处置效应估计的严重错误!
 
-\subsection{Goodman-Bacon分解}
+\subsection{交错时间处置}
+\subsubsection{模型设置}
 现在回到正题, 在经典DiD的框架下, 政策在同一时刻发生, 且只包含了处置组和控制组, 然而政策可能具有滞后性, 因此经典DiD不再适用. 有鉴于此, 我们可以将$2\times2$的经典DiD推广至多维, 也即存在多个组群在不同时点受到政策冲击.
 
 假设时间跨度为$T+1$, 每个时点由$t=0,\cdots,T$标记, 个体$i$可以在任意$t\ge0$的时点受到二元处置, 并且处置是\textbf{吸收态} (absorbing state), 也即一旦个体接受处置, 那么它在剩余的时间上保持被处置的状态. 我们使用$D_{i,t}$作为个体$i$在时点$t$是否接受处置的二元指示符, $G_i=\min\{t:D_{i,t}=1\}$为个体$i$首次接受处置的时点, 同在$G_i$接受处置的个体$i$构成一个组群, $G_i=\infty$表示个体$i$从未接受处置. 由于处置是吸收的, 因此对于一切$t\ge G_i$都有$D_{i,t}=1$.
@@ -159,15 +157,42 @@ $$\E[Y_{i,t}(\infty)-Y_{i,t'}(\infty)|G_i=g]=\E[Y_{i,t}(\infty)-Y_{i,t'}(\infty)
 对于一切$i$和$t<g$都有$Y_{i,t}(g)=Y_{i,t}(\infty)$.
 \end{definition}
 
-在以上假设成立的情况下, 仍然考虑使用静态TWFE模型
+\subsubsection{Goodman-Bacon分解}
+仍然考虑使用静态TWFE模型
 $$Y_{i,t}=\alpha_i+\lambda_t+D_{i,t}\beta_\text{post}+\epsilon_{i,t}$$
-Goodman-Bacon (2021)证明了以下概率极限
+设$k$和$l$为处置时间且$l>k$, $U$代表从未处置, Goodman-Bacon (2021)证明了在正则条件下有
+$$\hat{\beta}_\text{post}=\sum_{k\ne U}w_{kU}\hat{\beta}_{kU}^{2\times 2}+\sum_{k\ne U}\sum_{l>k}\left[w_{kl}^k\hat{\beta}_{kl}^{2\times 2, k}+w_{kl}^l\hat{\beta}_{kl}^{2\times2,l}\right]$$
+并且各个权重满足
+$$\sum_{k\ne U}w_{kU}+\sum_{k\ne U}\sum_{l>k}\left[w_{kl}^k+w_{kl}^l\right]=1$$
+其中
+\begin{align*}
+\hat{\beta}_{kU}^{2\times2}&=\left[\overbar{Y}_k^{\text{post}(k)}-\overbar{Y}_k^{\text{pre}(k)}\right]-\left[\overbar{Y}_U^{\text{post}(k)}-\overbar{Y}_U^{\text{pre}(k)}\right] \\
+\hat{\beta}_{kU}^{2\times2, k}&=\left[\overbar{Y}_k^{\text{mid}(k,l)}-\overbar{Y}_k^{\text{pre}(k)}\right]-\left[\overbar{Y}_l^{\text{mid}(k,l)}-\overbar{Y}_l^{\text{pre}(k)}\right] \\
+\hat{\beta}_{kU}^{2\times2, l}&=\left[\overbar{Y}_l^{\text{post}(l)}-\overbar{Y}_l^{\text{mid}(k,l)}\right]-\left[\overbar{Y}_k^{\text{post}(l)}-\overbar{Y}_k^{\text{mid}(k,l)}\right]
+\end{align*}
+这里的上标为$\text{pre}(k)=[1,k-1]$, $\text{mid}(k,l)=[k,l-1]$以及$\text{post}(l)=[l,T]$.
+
+根据上式可知$\hat{\beta}^{2\times2}_{kU}$表示使用$k$和$U$分别作为处置组和控制组的$2\times2\,$DiD估计量, $\hat{\beta}_{kl}^{2\times2,k}$表示分别用$k$和$l$作为处置组和控制组的DiD估计量, $\hat{\beta}_{kl}^{2\times2, l}$则表示分别用$l$和$k$作为处置组和控制组的DiD估计量, 图\ref{Figure2}直观表示了以上几个$2\times 2\,$DiD估计量. 
+
+图\ref{Figure3}展示了通过\href{https://asjadnaqvi.github.io/DiD/docs/code/06_bacon/}{bacondecomp}包得到的Goodman-Bacon分解结果, TWFE-DiD估计量$-2.52$中大约有37.8\%出自处置时点的时变带来的差异, 约0.5\%出自同组内的差异, 一直接受处置和从未接受处置的组的效应几乎忽略不计.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=15cm]{Figure2.pdf}
+  \caption{处置时间发生变化的双重差分.}\label{Figure2}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=15cm]{Figure3.pdf}
+  \caption{Goodman-Bacon分解结果, 数据来源于Stevenson and Wolfers (2006).}\label{Figure3}
+\end{figure}
+
+进一步, Goodman-Bacon (2021)还证明了以下概率极限
 $$\underset{N\to\infty}{\text{plim}}\hat{\beta}_\text{post}=\text{VWATT}+\text{VWCT}+\Delta \text{ATT}$$
-其中VWATT是TWFE-DiD估计量所能估计的我们感兴趣的因果效应, VWCT在平行趋势假设成立的情况下为0, $\Delta \text{ATT}$等于各组群在处置前后的处置结果变化的加权和. 
+其中VWATT是TWFE-DiD估计量所能估计的方差加权 (variance-weighted)平均处置效应, VWCT是方差加权的共同趋势, 并且它在平行趋势假设成立的情况下为0, $\Delta \text{ATT}$等于各组群在处置前后的处置结果变化的加权和, 也是de Chaisemartin and D'Haultfœuille (2020)中讨论的负权重来源.\footnote{特别地, 如果处置效应是同质的 (也即ATT跨组群和时点保持不变), 那么$\Delta\text{ATT}=0$, 此时$\beta_\text{post}$正确识别了因果关系, 使用OLS估计静态TWFE模型是合理的. 值得注意的是, 如果ATT仅跨时点不变而跨组群可变, 此时仍有$\Delta\text{ATT}=0$, 但是VWATT不等于样本ATT.}
 
-特别地, 如果处置效应是同质的 (也即ATT跨组群和时点保持不变), 那么$\Delta\text{ATT}=0$, 此时$\beta_\text{post}$正确识别了因果关系, 使用OLS估计静态TWFE模型是合理的.
-
-根据上一节的论述, 如果在不同时点受到的处置效应存在异质性, 那么TWFE估计是有偏的 (de Chaisemartin and D'Haultfœuille, 2020), 甚至会出现完全相反的因果效应. 事实上, 根据FWL定理可知$\hat{\beta}_{\text{post}}$的OLS估计量为
+Roth \emph{et al.} (2023)给出了一个负权重的直观理解, 根据FWL定理可知$\hat{\beta}_{\text{post}}$的OLS估计量为
 $$\hat{\beta}_\text{post}=\frac{\sum_{i,t}(D_{i,t}-\hat{D}_{i,t})Y_{i,t}}{\sum_{i,t}(D_{i,t}-\hat{D}_{i,t})^2}$$
 其中$\hat{D}_{i,t}$是出自回归$D_{i,t}=\alpha_i+\lambda_t+u_{i,t}$的$D_{i,t}$的拟合值. 由于上式分母始终为正, 以及$Y_{i,t}=Y_{i,t}(\infty)+\tau_{i,t}(g)$, 因此如果$D_{i,t}=1$且$D_{i,t}-\hat{D}_{i,t}<0$, 那么$\tau_{i,t}(g)$在$\hat{\beta}_\text{post}$中取得负权重, 即使个体$i$在$t$时刻接受处置.
 
@@ -175,12 +200,10 @@ $$\hat{\beta}_\text{post}=\frac{\sum_{i,t}(D_{i,t}-\hat{D}_{i,t})Y_{i,t}}{\sum_{
 $$\hat{D}_{i,t}=\overbar{D}_i+\overbar{D}_t-\overbar{D}$$
 其中$\overbar{D}_i=T^{-1}\sum_t D_{i,t}$表示个体$i$的处置$D$在时间上的平均, $\overbar{D}_t=N^{-1}\sum_i D_{i,t}$表示时点$t$的处置$D$在截面上的平均, $\overbar{D}=(NT)^{-1}\sum_{i,t}D_{i,t}$表示处置$D$在整个截面和时间上的平均.
 
-如果个体在几乎所有时点都是处置状态, 那么$\overbar{D}_i\approx 1$, 如果某时点几乎所有个体都被处置, 那么$\overbar{D}_t\approx 1$, 在二者同时成立的情况下有$\hat{D}_{i,t}\approx 2-\overbar{D}$, 如果在某段时间内有部分未接受处置的个体存在, 那么$\hat{D}_{i,t}>1$. 由此可见, 早期接受处置的个体在后期更容易产生负权重.
+如果个体在几乎所有时点都是处置状态, 那么$\overbar{D}_i\approx 1$, 如果某时点几乎所有个体都被处置, 那么$\overbar{D}_t\approx 1$, 在二者同时成立的情况下有$\hat{D}_{i,t}\approx 2-\overbar{D}$, 如果在某段时间内有部分未接受处置的个体存在, 那么$\hat{D}_{i,t}>1$. 由此可见, 早期接受处置的个体在后期更容易产生负权重, 使用较早接受处置的组群作为控制组也被称为\textbf{禁止比较} (forbidden comparison).
 
-Goodman-Bacon (2021)进一步指出, TWFE-DiD估计量是所有可能的$2\times 2\,$DiD估计量的加权平均, 各个小的DiD估计量的处置组和控制组是混乱的, 有的将从未接受处置的组群作为控制组, 有的将尚未处置 (not-yet-treated)的组群作为控制组, 还有的将先接受处置的组群作为控制组而将后接受处置的组作为处置组. 当存在随时间变化的处置效应异质性时, 某些小的DiD估计量就会产生负权重. 特别地, 使用较早接受处置的组作为控制组被称为\textbf{禁止比较} (forbidden comparison). 
-
-为了解决异质性处置效应下的TWFE-DiD估计偏误, 一方面可以在无异质性处理路径的情况下使用\textbf{事件研究法} (event study method), 另一方面则是使用更具有普适性的稳健的DiD估计量, 下面将分别介绍.
-\subsection{事件研究法}
+为了解决异质性处置效应造成的负权重所引起的TWFE-DiD估计偏误, 一方面可以在同质性处理路径的情况下使用\textbf{事件研究设计} (event study design), 另一方面则是使用更具有普适性的稳健DiD估计量, 下面将分别介绍这两种方法.
+\subsubsection{事件研究设计}
 既然情况已经由$2\times 2\,$DiD扩展到了更一般的多个处置时点, 为了利用更多信息, 一个自然考虑是使用动态模型.
 
 假设数据结构为平衡面板数据, 包含个体$i\in\{1,\cdots,N\}$, 每个个体可观测时期为$t\in\{0,\cdots,T\}$, 个体$i$接受处置的时期为$G_i$, 如果从未接受处置则$G_i=\infty$, 个体$i$关于$G_i$的相对处置时间变量为$D_{i,t}=1[t-G_i=l]$, 其中$l$表示相对处置时点, 此外还定义集合$e$, 使得
@@ -219,16 +242,16 @@ $$\mu_g=\text{ATT}_l+w_{-1}^l\text{ATT}_{-1}$$
 综上所述, 如果是完全动态下的事件研究设计, 在平行趋势假设、无预期效应假设、同质性处置效应路径的假设下, 回归系数$\mu_g$可以正确识别平均处置效应. 相反, 单纯使用DiD则无法在这些假设下得到正确的估计.
 
 
-\subsection{Callaway-Sant'Anna估计量}
-上述提到的事件研究设计可以解决同质性处置效应路径的问题, 然而对于$\text{ATT}_{g,l}\neq\text{ATT}_l\ne\text{ATT}$这种一般的异质性处置效应问题, 事件研究仍然会得到有偏估计, 此时需要用到异质性处置效应稳健的估计量.
+\subsubsection{Callaway-Sant'Anna估计量}
+上述提到的事件研究设计可以解决同质性处置效应路径的问题, 然而对于$\text{ATT}_{g,l}\neq\text{ATT}_l\ne\text{ATT}$这种一般的异质性处置效应问题, 事件研究仍然会得到有偏估计, 此时可以使用Callaway and Sant'Anna (2021)提出的稳健估计量.\footnote{其它的替代估计量包括Sun and Abraham (2021)提出的SA估计量以及Cengiz \emph{et al.} (2019)提出的堆叠回归估计量, 它们的比较可见 Baker \emph{et al.} (2022).}
 
-Callaway and Sant'Anna (2021)\footnote{其它的替代估计量包括Sun and Abraham (2021)提出的SA估计量以及堆叠回归估计量 (stacked regression estimator), 它们的比较可见 Baker \emph{et al.} (2022).}考虑了
+Callaway and Sant'Anna (2021)考虑了
 $$\theta(g,t)=\E[Y_{t}(g)-Y_{t}(\infty)|G_g=1]$$
 这里为了简单起见省略了下标$i$, $G_g$是个体$i$在时点$g$是否接受处置时的指示符, 上式表示在时点$g$首次接受处置的那批个体在时点$t$的ATT.
 
 由于反事实结果的存在, $\theta(g,t)$是无法直接估计的, 但是可以由\textbf{回归调整}(Regression Adjustment, RA), \textbf{逆概率加权}(Inverse Probability Weighting, IPW)和\textbf{双重稳健}(Double Robust, DR)方法来估计.
 
-为了通过上述方法得到识别ATT, 需要先定义控制组, 而它的选择有两种: 其一是从未处置$C^\text{NEV}=G_\infty$, 其二是尚未处置$C^\text{NY}=(1-G_g)(1-D_t)$, 以下统一记作$C_{g,t}^\ast$. 通常而言, 如果有相当部分的个体从未接受处置, 并且他们与最终接受处置的个体相似时, 研究者会倾向于选择$C^\text{NEV}$.
+为了通过上述方法得到识别ATT, 需要先定义控制组, 而它的选择有两种: 其一是从未处置$C^\text{NEV}=G_\infty$, 其二是尚未处置$C^\text{NY}=(1-G_g)(1-D_t)$, 以下统一记作$C_{g,t}^\ast$. 
 
 考虑加入用以控制可观测特征的协变量$\X$, 下面给出RA, IPW和DR的待估计量
 \begin{align*}
@@ -256,22 +279,22 @@ $$\theta_{\text{es}}(l)=\sum_g1[g+l\leq T]\cdot\mathbb{P}[G=g|G+l\leq T]\cdot\th
   \end{enumerate}
   \item 将估计得到的$\hat{m}_{g,t}(X)$, $\hat{p}_{g,t}(X)$插入RA, IPW或DR的表达式中, 并用样本均值替代期望算子.
 \end{enumerate}
-最后, 对于$\hat{\theta}(g,t)$的协方差矩阵的估计可以通过影响函数法 (influence function approach)计算, 它在数值上等价于GMM得到的结果, 但运算速度更快.
+最后, 对于$\hat{\theta}(g,t)$的协方差矩阵的估计可以通过影响函数法 (influence function approach)计算, 它在数值上等价于GMM得到的结果, 但运算速度更快. CS的估计和统计推断可以通过\href{https://github.com/friosavila/csdid2}{csdid2}包在Stata和R中实现.
 
 值得注意的是, 如果协变量$X_g$可以决定组群接受处置的时点, 那么这种处置时点的内生性可能导致平行趋势假设不成立, 此时使用CS估计量仍然是有偏的.
 
 \newpage
-\section{违反平行趋势}
-\subsection{理论简介}
-同样考虑将DiD扩展到更一般的事件研究框架, 该框架一方面可以解决同质性处置效应路径下的TWFE-DiD估计偏误, 另一方面可以用来检验平行趋势是否成立\footnote{平行趋势假设在根本上无法检验, 这里检验的实际上是处置前平行趋势是否成立.}.
+\section{平行趋势假设}
+\subsection{事前趋势检验的缺陷}
+同样考虑将DiD扩展到更一般的事件研究框架, 该框架一方面可以解决同质性处置效应路径下的TWFE-DiD估计偏误, 另一方面可以用来检验平行趋势是否成立.\footnote{平行趋势假设在根本上无法检验, 这里检验的实际上是处置前平行趋势是否成立.}
 
-首先将整个时间窗口设置为$[-K,L]$, 仍然考虑基本的TWFE模型
-$$Y_{i,t}=\alpha_i+\lambda_t+\sum_{s\ne-1}1[s=t]\times D_i\times\beta_s+\epsilon_{i,t}$$
-这里为了避免完全多重共线性剔除了$s=-1$基期. 如果个体$i$在$t=1$时接受处置就将$D_i$设置为1, 否则为0, 则经典DiD估计量
+首先将整个时间窗口设置为$[-K,L]$,\footnote{对于非完全动态的事件研究设计, $[-K,L]$外的可以采取截断 (trimming)或归并 (binning), 具体讨论见Miller (2023).} 仍然考虑基本的TWFE模型
+$$Y_{i,t}=\alpha_i+\lambda_t+\sum_{s\ne0}1[s=t]\times D_i\times\beta_s+\epsilon_{i,t}$$
+这里为了避免完全多重共线性剔除了$s=0$基期.\footnote{关于基期和事件窗口选择的更多讨论见Miller (2023).} 如果个体$i$在$t=1$时接受处置就将$D_i$设置为1, 否则为0, 则经典DiD估计量
 $$\hat{\beta}_s=(\overbar{Y}_{s1}-\overbar{Y}_{s0})-(\overbar{Y}_{01}-\overbar{Y}_{00})$$
 数值上等于TWFE估计量, 其中$\overbar{Y}_{sd}$是$D_i=1$的那些个体在时点$s$的结果变量的样本均值.
 
-现在使用全体$\hat{\beta}_s$构成列向量$\hat{\beta}=(\hat{\beta}_{\text{pre}}',\hat{\beta}_{\text{post}}')'\in\mathbb{R}^{K+L}$, 其中$\hat{\beta}_\text{pre}=(\hat{\beta}_{-L},\cdots,\hat{\beta}_{-1})$, 以及$\hat{\beta}_{\text{post}}=(\hat{\beta}_1,\cdots,\hat{\beta}_L)$, 它们分别收集了处置前和处置后的估计量. 在温和的条件下, 当样本容量$N\to\infty$时有$\sqrt{N}(\hat{\beta}-\beta)\xrightarrow{d}\mathcal{N}(0,\Sigma)$.
+现在使用全体$\hat{\beta}_s$构成列向量$\hat{\beta}=(\hat{\beta}_{\text{pre}}',\hat{\beta}_{\text{post}}')'\in\mathbb{R}^{K+L}$, 其中$\hat{\beta}_\text{pre}=(\hat{\beta}_{-K},\cdots,\hat{\beta}_{-1})$, 以及$\hat{\beta}_{\text{post}}=(\hat{\beta}_1,\cdots,\hat{\beta}_L)$, 它们分别收集了处置前和处置后的估计量. 在温和的条件下, 当样本容量$N\to\infty$时有$\sqrt{N}(\hat{\beta}-\beta)\xrightarrow{d}\mathcal{N}(0,\Sigma)$.
 
 现在我们假设$\beta$可以被分解为
 $$\beta=\underbrace{\begin{pmatrix}
@@ -281,11 +304,26 @@ $$\beta=\underbrace{\begin{pmatrix}
           \delta_\text{pre} \\
           \delta_\text{post}
         \end{pmatrix}}_{=:\delta},\quad \tau_\text{pre}=0$$
-其中$\tau$表示感兴趣的处置效应, $\delta$表示如果没有政策冲击 (处置), 控制组和处置组的趋势差异. 当无预期效应成立时有$\tau_\text{pre}=0$, 而当平行趋势成立时有$\delta_\text{post}=0$, 因此$\beta_\text{post}=\tau_\text{post}$. 当然, 检验平行趋势的通常做法则是检验\textbf{事前趋势} (pre-trend)假设\footnote{值得注意的是, 这一检验的检验势较低, 也即可能无法检测出违反平行趋势的情况, 并且基于处置前趋势的分析可能会扭曲结论, 加剧点估计和推论的偏差 (Roth, 2022). 因此不检验事前趋势, 而考虑使用以下方法进行敏感性分析 (sensitive analysis)或许是更好的选择.}$\mathbb{H} _0:\beta_\text{pre}=0$.
+其中$\tau$表示感兴趣的处置效应, $\delta$表示如果没有政策冲击 (处置), 控制组和处置组的趋势差异. 当无预期效应成立时有$\tau_\text{pre}=0$, 而当平行趋势成立时有$\delta_\text{post}=0$, 因此$\beta_\text{post}=\tau_\text{post}$. 当然, 检验平行趋势的通常做法则是检验\textbf{事前趋势} (pre-trend)假设$\mathbb{H} _0:\beta_\text{pre}=0$.
 
 可以证明, 在经典DiD和事件研究的框架下, $\beta$都可以被这样分解. 例如
 $$\beta_s=\tau_{\text{ATT},s}+\underbrace{\E[Y_{i,s}(0)-Y_{i,0}(0)|D_i=1]-\E[Y_{i,s}(0)-Y_{i,0}(0)|D_i=0]}_{=:\delta_s}$$
 其中$\tau_{\text{ATT},s}=\E[Y_{i,s}(1)-Y_{i,s}(0)|D_i=1]$, 在无参与效应条件, 对任意$s<0$都有$\tau_{\text{ATT},s}=0$, 这就完成了分解.
+
+\begin{figure}[htbp!]
+  \centering
+  \includegraphics[width=15cm]{Figure4.pdf}
+  \caption{违反平行趋势的事件图.}\label{Figure4}
+\end{figure}
+
+值得注意的是, 这一检验的检验势较低, 也即可能无法检测出违反平行趋势的情况 (Roth, 2022). 如图\ref{Figure4}所示, 当我们假设的事前趋势为二次曲线时, 事前趋势检验既无法拒绝平行趋势假设, 也无法拒绝这一假设.
+
+粉色虚线还显示了在没有发现显著的事前趋势的条件下, 如果实际情况就是假设的粉色实线, 我们所期望的系数平均值. 由于实线和虚线都包含在所有的95\%置信区间内, 因此粉色实线所假设的趋势似乎是可信的.
+
+更令人担忧的是, 如果组间差异确实存在某种时间趋势, 而事前趋势假设并没有拒绝原假设, 那么此时对平均处置效应的估计偏误会非常严重 (Roth, 2022).
+
+\subsection{敏感性分析}
+由于事前趋势检验难以真正检验平行趋势是否成立, 实行敏感性分析或许是一个更好的选择.
 
 现在我们关注的目标参数是处置后因果效应的线性组合$\theta=l'\tau_\text{post}$, 其中$l$是已知的$L\times1$维向量. 通过将$\delta$置于可能的趋势差异集$\Delta\subset\mathbb{R}^{K+L}$中, 参数$\theta$可以被\textbf{部分识别} (partial identified). 例如, 将$\delta$限制在$\Delta=\{\delta:\delta_\text{post}=0\}$中就意味着平行趋势假设成立.
 
@@ -317,49 +355,52 @@ $$\Delta^\text{SD}(M)=\{\delta:|(\delta_{t+1}-\delta_t)-(\delta_{t}-\delta_{t-1}
 \subsection{实例: 医疗补助扩张对保险覆盖率的影响}
 考虑无交错时间处置的经典DiD模型
 $$Y_{i,t}=\alpha_i+\lambda_t+\sum_{s\neq2013}1[s=t]\times D_i\times \beta_s+\epsilon_{i,t}$$
-其中$Y_{i,t}$代表美国第$i$个州在第$t$年的低收入无孩成人的保险覆盖率, 如果$i$在2014年受到医疗补助扩张的影响, 那么$D_i=1$, 否则$D_i=0$\footnote{为了简单起见, 这里将样本限制在2015年及以前, 并且剔除掉在2015年前首次受到政策冲击的少数州.}.
+其中$Y_{i,t}$代表美国第$i$个州在第$t$年的低收入无孩成人的保险覆盖率, 如果$i$在2014年受到医疗补助扩张的影响, 那么$D_i=1$, 否则$D_i=0$. 为了简单起见, 这里将样本限制在2015年及以前, 并且剔除掉在2015年前首次受到政策冲击的少数州.
 
-根据图\ref{figure2}可知, 在$t<2014$的时期, 95\%的置信区间都包含了0, 事前趋势检验通过, 似乎可以认定平行趋势假设成立. 但正如Roth (2022)提到的, 事前趋势检验的检验势较低, 难以真正检验平行趋势是否成立. 为了稳健考虑, 我们转而进行敏感性分析.
-\begin{figure}
-  \centering
-  \includegraphics[width=15cm]{Figure2.pdf}
-  \caption{事前趋势检验}\label{figure2}
-\end{figure}
-
-考虑$\Delta=\Delta^\text{RM}(\overbar{M})$, 图\ref{figure3}展示了不同的$\overbar{M}$的设置下的稳健置信区间, 当$\overbar{M}$=0.5时, 违反平行趋势下的稳健置信区间和OLS的结果相似, 只是稍宽一些, 但仍然排除了医疗补助扩张的零效应 (null effect); 当$\overbar{M}$约等于2时, 出现了关于零效应的“击穿值” (breakdown value), 表明如果违反并行趋势的程度达到处置前最大违反程度的两倍, 这一显著结果也是稳健的.
-
-考虑$\Delta=\Delta^\text{SD}(M)$, 图\ref{figure4}展示了敏感性分析的另一结果, 可知显著影响的击穿值大约为$M\approx 0.03$, 意味着除非允许跨连续时期的线性外推偏差超过0.03, 否则就可以拒绝零效应.
-
-最后, 假设处置是交错时间发生的, 也即医疗补助扩张不仅只发生在2014年, 还发生在接下来的年份, 根据前文可知在异质性处置效应下直接使用事件研究是有偏的, 此时可以将\href{https://github.com/mcaceresb/stata-honestdid}{HonestDiD}与\href{https://github.com/friosavila/csdid2}{csdid2}搭配以使用CS估计量, 具体结果如图\ref{figure5}所示.
-
-\begin{figure}
-  \centering
-  \includegraphics[width=15cm]{Figure3.pdf}
-  \caption{$\Delta=\Delta^\text{RM}(\overbar{M})$下的敏感性分析}\label{figure3}
-\end{figure}
-
-
-\begin{figure}
-  \centering
-  \includegraphics[width=15cm]{Figure4.pdf}
-  \caption{$\Delta=\Delta^\text{SD}(M)$下的敏感性分析}\label{figure4}
-\end{figure}
-
+根据图\ref{Figure5}可知, 在$t<2014$的时期, 95\%的置信区间都包含了0, 事前趋势检验通过, 似乎可以认定平行趋势假设成立. 但正如Roth (2022)提到的, 事前趋势检验的检验势较低, 难以真正检验平行趋势是否成立. 为了稳健考虑, 我们转而进行敏感性分析.
 \begin{figure}
   \centering
   \includegraphics[width=15cm]{Figure5.pdf}
-  \caption{交错时间处置下的敏感性分析}\label{figure5}
+  \caption{事前趋势检验图.}\label{Figure5}
+\end{figure}
+
+考虑$\Delta=\Delta^\text{RM}(\overbar{M})$, 图\ref{Figure6}展示了不同的$\overbar{M}$的设置下的稳健置信区间, 当$\overbar{M}$=0.5时, 违反平行趋势下的稳健置信区间和OLS的结果相似, 只是稍宽一些, 但仍然排除了医疗补助扩张的零效应 (null effect); 当$\overbar{M}$约等于2时, 出现了关于零效应的“击穿值” (breakdown value), 表明如果违反并行趋势的程度达到处置前最大违反程度的两倍, 这一显著结果也是稳健的.
+
+考虑$\Delta=\Delta^\text{SD}(M)$, 图\ref{Figure7}展示了敏感性分析的另一结果, 可知显著影响的击穿值大约为$M\approx 0.03$, 意味着除非允许跨连续时期的线性外推偏差超过0.03, 否则就可以拒绝零效应.
+
+最后, 假设处置是交错时间发生的, 也即医疗补助扩张不仅只发生在2014年, 还发生在接下来的年份,\footnote{与单一时点处置不同, 这里取消了前面对样本年份和州的限制.} 根据前文可知在异质性处置效应下直接使用事件研究是有偏的, 此时可以将\href{https://github.com/mcaceresb/stata-honestdid}{HonestDiD}与\href{https://github.com/friosavila/csdid2}{csdid2}搭配以使用CS估计量, 具体结果如图\ref{Figure8}所示.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=15cm]{Figure6.pdf}
+  \caption{$\Delta=\Delta^\text{RM}(\overbar{M})$下的敏感性分析.}\label{Figure6}
+\end{figure}
+
+
+\begin{figure}
+  \centering
+  \includegraphics[width=15cm]{Figure7.pdf}
+  \caption{$\Delta=\Delta^\text{SD}(M)$下的敏感性分析.}\label{Figure7}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=15cm]{Figure8.pdf}
+  \caption{交错时间处置下的敏感性分析.}\label{Figure8}
 \end{figure}
 \newpage
 
 \nocite{Andrews2023inference}
 \nocite{baker2022much}
 \nocite{callaway2021difference}
+\nocite{cengiz2019effect}
 \nocite{de2020two}
 \nocite{goodman2021difference}
+\nocite{miller2023introductory}
 \nocite{rambachan2023more}
 \nocite{roth2022pretest}
 \nocite{roth2023s}
+\nocite{stevenson2006bargaining}
 \nocite{sun2021estimating}
 \nocite{Zhang2023}
 \printbibliography[heading=bibintoc, title=\ebibname]
