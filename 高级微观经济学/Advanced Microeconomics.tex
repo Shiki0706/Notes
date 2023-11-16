@@ -647,15 +647,17 @@ x_i(\p,y)&=\frac{yp_i^{r-1}}{p_1^r+p_2^r},\quad i=1,2
 这就表明式(\ref{eq1.20})推导出了Marshall需求函数, 而式(\ref{eq1.21})推导出了Hicks需求函数, 它们与之前UMP和EMP推导出的结论相同.
 \end{example}
 
-图\ref{fig1.13}描述了定理\ref{thm:thm1.3}和\ref{thm:thm1.4}. 当价格为$\p$且收入为$y$时, 消费者通过选择最优消费束$x_1^\ast$和$x_2^\ast$达到了最大效用$u$, 可以将其视为给定的效用水平$v(\p,y)$, 点$(p_1,x^\ast_1)$将位于商品1的Marshall需求函数上.
-
-接下来考虑消费者EMP, 假设寻找的是达到效用水平$u$的最小支出, 显然当价格为$\p$时, EMP的最低等支出线和UMP最大预算约束线重合, 而且EMP的选择也是$x_1^\ast$和$x_2^\ast$, 从而$(p_1,x_1^\ast)$位于商品1的Hicks需求曲线上.
 \begin{figure}[htbp!]
   \centering
   \includegraphics[width=10cm]{fig1-13.pdf}
   \caption{定理\ref{thm:thm1.3}和\ref{thm:thm1.4}的图示.}\label{fig1.13}
 \end{figure}
-\newpage
+
+图\ref{fig1.13}描述了定理\ref{thm:thm1.3}和\ref{thm:thm1.4}. 当价格为$\p$且收入为$y$时, 消费者通过选择最优消费束$x_1^\ast$和$x_2^\ast$达到了最大效用$u$, 可以将其视为给定的效用水平$v(\p,y)$, 点$(p_1,x^\ast_1)$将位于商品1的Marshall需求函数上.
+
+接下来考虑消费者EMP, 假设寻找的是达到效用水平$u$的最小支出, 显然当价格为$\p$时, EMP的最低等支出线和UMP最大预算约束线重合, 而且EMP的选择也是$x_1^\ast$和$x_2^\ast$, 从而$(p_1,x_1^\ast)$位于商品1的Hicks需求曲线上.
+
+
 \section{消费者的性质}
 \subsection{收入效应与替代效应}
 在消费者行为模型中, 一个重要的问题是当价格变动时需求数量如何变动. 一般地, 我们倾向于认为在其他条件不变时, 若某商品价格下降, 消费者会多买一些, 若价格上升, 她会少买一些, 然而图\ref{fig1.14}表明实际情况并非如此.
@@ -847,7 +849,9 @@ $$A(\p^1,u^0)=\{\x\in\R_+^n: \p^1\cdot\x\ge E(\p^1,u^0)\}$$
 
 \begin{theorem}\label{thm:thm2.1}
   如果$E:\R_{++}^n\times\R_+^n\to\R_+$满足定理\ref{thm:thm1.6}中的性质, 并且$A(u)$的定义与式(\ref{eq2.1})一致, 那么由下式给出的实值函数
-  $$u(\x)=\max\{u\ge0: \x\in A(u)\}$$
+  \begin{equation}\label{eq2.5}
+    u(\x)=\max\{u\ge0: \x\in A(u)\}
+  \end{equation}
   是单调递增的、无上界的和拟凹的.
 \end{theorem}
 \begin{proof}
@@ -890,7 +894,7 @@ $$A(\p^1,u^0)=\{\x\in\R_+^n: \p^1\cdot\x\ge E(\p^1,u^0)\}$$
 \end{proof}
 
 \begin{theorem}
-  如果$E:\R_{++}^n\times\R_+\to\R_+$满足定理\ref{thm:thm1.6}中的性质, $u$像定理\ref{thm:thm2.1}那样推导出, 那么对于一切非负价格和效用都有
+  如果$E:\R_{++}^n\times\R_+\to\R_+$满足定理\ref{thm:thm1.6}中的性质, $u$是式(\ref{eq2.5})所定义的那样, 那么对于一切非负价格和效用都有
   $$E(\p,u)=\min_{\x\in\R_+^n}\p\cdot\x\quad\text{s.t.}\quad u(\x)\geq u$$
   也即$E(\p,u)$是由派生效用函数$u(\x)$生成的支出函数.
 \end{theorem}
