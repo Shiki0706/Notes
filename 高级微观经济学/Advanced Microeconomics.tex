@@ -339,7 +339,7 @@ $$\mathcal{L}(\x,\lambda)=u(\x)-\lambda(\p\cdot\x-y)$$
 
 一般而言, 式(\ref{eq1.8})表示的一阶条件 (First Order Condition, FOC)只是局部最优解的必要条件, 但以下定理表明, FOC也是UMP全局最优解的充分条件.
 
-\begin{theorem}
+\begin{theorem}\label{thm:thm1.7}
   设$u$在$\R_+^n$是连续和拟凹的, $(\p,y)\gg\mathbf{0}$, 如果$u$在$\x^\ast$处可微并且$(\x^\ast,\lambda^\ast)$是方程组(\ref{eq1.8})的解, 那么$\x^\ast$也是UMP在$(\p,y)$时的解.
 \end{theorem}
 \begin{proof}
@@ -439,7 +439,7 @@ $$v(\p,y)=u(\x(\p,y))$$
 \end{theorem}
 \begin{proof}
   假设$\x^0=\x(\p^0,y^0)$, 再定义$v(\p,\p\cdot\x^0)$, 于是
-  $$v(\p,\p\cdot\x^0)=\max_{\x\in\R_+^n}u(\x)\text{s.t.}\quad \p\cdot\x\leq \p\cdot\x^0$$
+  $$v(\p,\p\cdot\x^0)=\max_{\x\in\R_+^n}u(\x)\quad\text{s.t.}\quad \p\cdot\x\leq \p\cdot\x^0$$
   由于$\x^0$位于预算集内, 故而$v(\p,\p\cdot\x^0)\geq u(\x^0)=v(\p^0,\p^0\cdot\x^0)$对任意$\p\gg\mathbf{0}$成立. 再定义函数$f(\p)=v(\p,\p\cdot\x^0)$, 显然当$\p=\p^0$时, $f(\p)$在$\R_{++}^n$内取得最小值, 由于$v$在$(\p^0,y^0)$处可微, 故而$f$在$\p=\p^0$处的梯度为$\mathbf{0}$, 因此
   $$\frac{\partial f(\p^0)}{\partial \p}=\frac{\partial v(\p^0,\p^0\cdot\x^0)}{\partial \p}+\frac{\partial v(\p^0,\p^0\cdot\x^0)}{\partial (\p\cdot\x^0)}\x^0=\mathbf{0}$$
   整理即得结论.
@@ -775,12 +775,12 @@ $$\sigma(\p,u)=\begin{pmatrix}
 \begin{theorem}\label{thm:thm1.5}
   设$\x(\p,y)$是消费者的Marshall需求方程组, 定义第$(i,j)$个Slutsky项为
   $$s_{ij}=\frac{x_i^h(\p,u)}{\partial p_j}+x_j(\p,y)\frac{\partial x_i(\p,y)}{\partial y}$$
-  那么Slutsky矩阵$s(\p,y)=(s_{ij})_{n\times n}$是对称和半负定的.
+  那么Slutsky矩阵$\mathbf{s}(\p,y)=(s_{ij})_{n\times n}$是对称和半负定的.
 \end{theorem}
 \begin{proof}
   设$u$是价格为$\p$收入为$y$时, 消费者效用可以达到的最大值, 于是$u=v(\p,y)$. 根据Slutsky方程可得第$(i,j)$个替代项为
   $$\frac{x_i^h(\p,u)}{\partial p_j}=\frac{x_i(\p,y)}{\partial p_j}+x_j(\p,y)\frac{\partial x_i(\p,y)}{\partial y}$$
-  于是Slutsky矩阵$s(\p,y)$的每一个元素恰好等于Hicks替代矩阵$\sigma(\p,u)$的相应元素. 根据命题\ref{pro:pro1.3}可知替代矩阵关于$u$是对称的, 而命题\ref{pro:pro1.4}又表明替代矩阵关于$u$是半负定的, 结论成立.
+  于是Slutsky矩阵$\mathbf{s}(\p,y)$的每一个元素恰好等于Hicks替代矩阵$\sigma(\p,u)$的相应元素. 根据命题\ref{pro:pro1.3}可知替代矩阵关于$u$是对称的, 而命题\ref{pro:pro1.4}又表明替代矩阵关于$u$是半负定的, 结论成立.
 \end{proof}
 定理\ref{thm:thm1.5}表明, 可以使用替代矩阵的知识推断出所有价格和收入变动对可观测的Marshall需求方程组的影响.
 \subsection{弹性关系}
@@ -800,7 +800,7 @@ $$s_i=\frac{p_ix_i(\p,y)}{y}$$
 
 $\eta_i$衡量的是消费者收入变动1\%导致商品$i$需求量变动的百分比. $\epsilon_{ij}$衡量的是价格$p_j$变动1\%引起的商品$i$需求量变动的百分比, 如果$j=i$, 则$\epsilon_{ij}$称为\textbf{自价格弹性} (own-price elasitcity), 如果$j\ne i$, 则$\epsilon_{ij}$称为关于$p_j$的\textbf{交叉价格弹性} (cross-price elasticity). $s_i$表示消费者花费在商品$i$上的金额占总收入的比例, 显然有$s_i\ge0$且$\sum_{i=1}^{n}s_i=y$.
 
-\begin{theorem}
+\begin{theorem}\label{thm:thm1.8}
   设$\x(\p,y)$是消费者的Marshall需求方程组, 那么以下关系成立
   \begin{enumerate}[label=\arabic*.]
     \item Engle加总: $\sum_{i=1}^{n}s_i\eta_i=1$;
@@ -856,7 +856,9 @@ $$A(\p^1,u^0)=\{\x\in\R_+^n: \p^1\cdot\x\ge E(\p^1,u^0)\}$$
 \end{theorem}
 \begin{proof}
   根据$A(u)$的定义, 可以将$u(\x)$改写为
-  $$u(\x)=\max\{u\ge0: \p\cdot\x\geq E(\p,u),\forall \p\gg\mathbf{0}\}$$
+  \begin{equation}\label{eq2.9}
+    u(\x)=\max\{u\ge0: \p\cdot\x\geq E(\p,u),\forall \p\gg\mathbf{0}\}
+  \end{equation}
   首先需要证明$u(\x)$是良好定义的, 也即需要证明集合
   $$B(\x)=\{u\ge0: \p\cdot\x\geq E(\p,u),\forall \p\gg\mathbf{0}\}$$
   包含着$u(\x)$的最大元素. 由于$E(\p,u)$关于$u$递增且无上界, 因此$B(\x)$有上界和上确界$\hat{u}$, 又因为$B(\x)$是闭的, 根据点集拓扑的知识可知$\hat{u}\in B(\x)$.\footnote{设$E$是一个非空且有上界的实数集, $\overbar{E}$是$E$的闭包, 令$y=\sup E$, 那么$y\in\overbar{E}$.}
@@ -893,9 +895,290 @@ $$A(\p^1,u^0)=\{\x\in\R_+^n: \p^1\cdot\x\ge E(\p^1,u^0)\}$$
   这就得到了希望的结果.
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}\label{thm:thm2.2}
   如果$E:\R_{++}^n\times\R_+\to\R_+$满足定理\ref{thm:thm1.6}中的性质, $u$是式(\ref{eq2.5})所定义的那样, 那么对于一切非负价格和效用都有
   $$E(\p,u)=\min_{\x\in\R_+^n}\p\cdot\x\quad\text{s.t.}\quad u(\x)\geq u$$
   也即$E(\p,u)$是由派生效用函数$u(\x)$生成的支出函数.
 \end{theorem}
+\begin{proof}
+  任意固定$(\p,u)\in\R_{++}^n\times\R_+$, 假设$\x\in\R_+^n$满足$u(\x)\geq u^0$, 根据$u$的定义可知, 对于任意$\p\gg\mathbf{0}$都有
+  $$\p\cdot\x\geq E(\p,u(\x))$$
+  因为$E$是关于$u$的增函数, $u(\x)\geq u^0$, 故而
+  $$\p\cdot\x\geq E(\p,u^0)$$
+  也即对于任意给定的$\p^0\gg\mathbf{0}$, 我们已经得到对于任意$\x\in\R_+^n$都有
+  $$E(\p^0,u^0)\leq \p^0\cdot\x\quad\text{s.t.}\quad u(\x)\ge u^0$$
+  上式意味着
+  $$E(\p^0,u^0)\leq\min_{\x\in\R_+^n}\p^0\cdot\x\quad\text{s.t.}\quad u(\x)\geq u^0$$
+  现在需要证明上式是个等式, 实际上只需证明存在$\x^0\in\R_+^n$, 使得
+  \begin{equation}\label{eq2.6}
+    \p^0\cdot\x^0\leq E(\p^0,u^0),\quad u(\x^0)\geq u^0
+  \end{equation}
+  即可. 
+  
+  由于$E$关于$\p$是可微和一次齐次的, 根据Euler定理可知对于任意$\p\gg\mathbf{0}$都有
+  \begin{equation}\label{eq2.7}
+    E(\p,u)=\frac{\partial E(\p,u)}{\partial\p}\cdot\p
+  \end{equation}
+  因为$E$是关于$\p$的凹函数, 故而
+  \begin{equation}\label{eq2.8}
+    E(\p,u^0)\leq E(\p^0,u^0)+\frac{\partial E(\p^0,u^0)}{\partial\p}\cdot(\p-\p^0)
+  \end{equation}
+  计算式(\ref{eq2.7})在$(\p^0,u^0)$处的值, 并将其与式(\ref{eq2.8})联立得到
+  $$E(\p,u^0)\leq \frac{\partial E(\p^0,u^0)}{\partial\p}\cdot\p$$
+  再令$\x^0=\partial E(\p^0,u^0)/\partial \p$, 现在可以将式(\ref{eq2.8})改写为
+  $$\p\cdot\x^0\geq E(\p,u^0)$$
+  根据$u$的定义可知$u(\x^0)$是使得$\p\cdot\x^0\geq E(\p,u)$的最大效用水平$u$, 因此必有$$u(\x^0)\geq u^0$$于是式(\ref{eq2.7})在$(\p^0,u^0)$处必有$E(\p^0,u^0)=\p^0\cdot\x^0$.
+\end{proof}
+上面两个定理告诉我们, 只要能写出一个关于价格和效用的函数, 而且这个函数满足定理\ref{thm:thm1.6}中的性质, 那么它将是某些偏好 (这些偏好满足常见的公理)的支出函数. 此外, 可以将这个函数关于产品价格微分, 从而得到相应的Hicks需求方程组. 如果消费者潜在的偏好是连续的且严格递增的, 我们可以逆转这个关于$u$的函数, 从而得到相应的间接效用函数, 应用Roy恒等式后可以推导出Marshall需求.
+\subsection{凸性和单调性}
+设$e$是效用函数$u$生成的支出函数, $u$的连续性足以保证$e$是定义良好的, 并且它还是连续函数. 进一步考虑函数$w:\R_+^n\to\R_+$, 它与式(\ref{eq2.9})是类似的, 也即
+\begin{equation}\label{eq2.10}
+  w(\x)=\max\{u\ge0:\p\cdot\x\ge e(\p,u),\forall\p\gg\mathbf{0}\}
+\end{equation}
+回顾定理\ref{thm:thm2.1}的证明过程, 无论$u$是否是单调递增和拟凹的, $w$都是单调递增和拟凹的.
+
+\begin{figure}[htbp!]
+  \centering
+  \includegraphics[width=12cm]{fig2-2.pdf}
+  \caption{支出与效用的对偶性.}\label{fig2.2}
+\end{figure}
+
+对于任意的$u\ge0$, 设$u(\x)$是关于效用水平$u$的优势集为$S(u)$, 它包含于$w(\x)$关于效用水平$u$的优势集$T(u)$中, 由于$w(\x)$是拟凹函数, 因此$T(u)$是一个凸集.
+
+如图\ref{fig2.2}的第一张所示, 若$u(\x)$碰巧是单调递增和拟凹的, 则$S(u)$的边界产生的无差异曲线$u(\x)=u$是凸的且斜率为负. 注意到$S(u)$边界上的每个点都是在价格向量$\p\gg\mathbf{0}$时实现效用$u$的最小支出消费束, 故而如果$u(\x^0)=u$, 那么存在某个$\p^0\gg\mathbf{0}$, 使得$e(\p^0,u)=\p^0\cdot\x^0$, 又因为$e$是关于$u$的递增函数, 这就意味着$w(\x^0)\leq u=u(\x^0)$. 另一方面, 根据$u$和$w$的定义可知$w(\x^0)\ge u(\x^0)$, 所以$w(\x^0)=u(\x^0)$总成立, 根据效用水平$u$的任意性, $w(\x)=u(\x)$对于一切$\x\in\R_+^n$成立.
+
+图\ref{fig2.2}的剩余部分更有意思, 此时的$u(\x)$既非递增也非拟凹, $S(u)$产生了无差异曲线$u(\x)=u$, 但无差异曲线上的某些商品束在任何价格向量上都无法使实现效用水平$u$的支出最小化, 而的确可以使得支出最小化的商品束必有$u(\x)=w(\x)=u$, 由于$w(\x)$必定是严格递增和拟凹的, 因此$w(\x)=u$的曲线必定是粗实线的部分. 最终, $u(\x)$和$w(\x)$的区别仅仅在于$w(\x)$是单调递增和拟凹的.
+\subsection{间接效用与消费者偏好}
+假设$u(\x)$生成了间接效用函数$v(\p,y)$, 根据定义可知对于任意$\x\in\R_+^n$和$\p\gg\mathbf{0}$都有$v(\p,\p\cdot\x)\ge u(\x)$, 而且通常存在价格向量$\p^0$, 使得该不等式为等式, 也即
+\begin{equation}\label{eq2.11}
+  u(\x)=\min_{\p\in\R_{++}^n}v(\p,\p\cdot\x)
+\end{equation}
+因此式(\ref{eq2.11})表明即使我们仅知道某个效用函数$u(\x)$产生的间接效用函数, 我们也可以使用式(\ref{eq2.1})还原该效用函数.
+
+\begin{theorem}
+  设$u(\x)$在$\R_{++}^n$上是拟凹和可微的, 而且它的偏导数严格为正, 那么对于一切$\x\in\R_{++}^n$, $v(\p,\p\cdot\x)$在$\p\in\R_{++}^n$处达到最小值, 并且
+  \begin{equation}\label{eq2.12}
+    u(\x)=\min_{\p\in\R_{++}^n}v(\p,\p\cdot\x)
+  \end{equation}
+\end{theorem}
+\begin{proof}
+  根据之前的讨论, 式(\ref{eq2.12})的左端不会大于右端, 只要证明对于任意$\x\in\R_{++}^n$, 总存在$\p\gg\mathbf{0}$, 使得
+  \begin{equation}\label{eq2.13}
+    u(\x)=v(\p,\p\cdot\x)
+  \end{equation}
+  成立即可. 任意固定$\x^0\gg\mathbf{0}$, 令$\p^0=\nabla u(\x^0)$, 再令$\lambda^0=1$且$y^0=\p^0\cdot\x^0$, 于是
+  \begin{align*}
+  \frac{\partial u(\x^0)}{\partial x_i}-\lambda^0p_i^0&=0 \\
+  \p^0\cdot\x^0&=y^0
+  \end{align*}
+  因此$(\x^0,\lambda^0)$是UMP
+  $$\max_{\x\in\R_{++}^n}u(\x)\quad\text{s.t.}\quad\p^0\cdot\x^0=y^0$$
+  的OFC, 又因为$u(\x)$在$\R_{++}^n$上是拟凹和可微的, 根据定理\ref{thm:thm1.7}可知, 这些条件足够保证$(\p,y)=(\p^0,y^0)$时$\x^0$是UMP的最优解. 由此可见$u(\x^0)=v(\p^0,y^0)=v(\p^0,\p^0\cdot\x^0)$, 根据$\x^0$的任意性可知结论成立.
+\end{proof}
+
+最后指出, 式(\ref{eq2.12})可以写成另一种更方便的形式. 由于$v(\p,y)$关于$(\p,y)$是零次齐次的, 于是对于$\p\cdot\x>0$必有$v(\p,\p\cdot\x)=v(\p/(\p\cdot\x),1)$, 此时式(\ref{eq2.12})可以改写为
+\begin{equation}\label{eq2.14}
+  u(\x)=\min_{\p\in\R_{++}^n}v(\p,1)\quad\text{s.t.}\quad\p\cdot\x=1
+\end{equation}
+\begin{theorem}[Hotelling-Wold对偶性]
+  设直接效用函数$u$是可微的, 那么与收入水平$y=1$相伴的商品$i$的反需求函数为
+  $$p_i(\x)=\frac{\partial u(\x)/\partial x_i}{\sum_{j=1}^{n}x_j[\partial u(\x)/\partial x_j]}\quad i=1,\cdots,n$$
+\end{theorem}
+\begin{proof}
+  根据$\p(\x)$的定义, 对于所有$\x$都有$u(\x)=v(\p(\x),1)$和$\p(\x)\cdot\x=1$, 于是
+  \begin{equation}\label{eq2.15}
+    u(\x)=v(\p(\x),1)=\min_{\p\in\R_{++}^n}v(\p,1)\quad\text{s.t.}\quad\p\cdot\x=1
+  \end{equation}
+  定义Lagrangian函数得到
+  $$\mathcal{L}(\p,\lambda)=v(\p,1)-\lambda(\p\cdot\x-1)$$
+  根据包络定理可得
+  $$\frac{\partial u(\x)}{\partial x_i}=\frac{\partial\mathcal{L}(\x^\ast,\lambda^\ast)}{\partial x_i}=-\lambda^\ast p_i^\ast$$
+  其中$\p^\ast=\p(\x)$, 并且$\lambda^\ast$是最优Lagrangian乘子. 在上式两端同时乘以$x_i$并且在$i$上加总得到
+  $$\sum_{i=1}^{n}x_i\frac{\partial u(\x)}{\partial x_i}=\lambda^\ast\sum_{i=1}^{n}p_i^\ast x_i=\lambda^\ast\sum_{i=1}^{n}p_i(\x)x_i=\lambda^\ast$$
+  由于$\p(\x)\cdot\x=1$, 因此结论成立.
+\end{proof}
+\section{可积性问题}
+在第1章, 我们已经证明追求效用最大化的消费者的Marshall需求函数必然满足零次齐次性、 预算平衡性、对称性、半负定性以及Engle加总和Cournot加总, 但是这里面有些条件是多余的. 事实上, 只有预算平衡性、对称性和半正定性才是真正独立的条件.
+
+下面的定理表明, 预算平衡性与对称性意味着零次齐次性.
+\begin{theorem}
+  如果$\x(\p,y)$满足预算平衡性, 并且它的Slutsky矩阵$\mathbf{s}(\p,y)$是对称的, 那么它关于$\p$和$y$是零次齐次的.
+\end{theorem}
+\begin{proof}
+  根据定理\ref{thm:thm1.8}的证明可知, 当预算平衡性成立时, 将预算约束对价格和收入进行微分
+  \begin{align}
+  \sum_{j=1}^{n}p_j\frac{\partial x_j(\p,y)}{\partial p_i}&=-x_i(\p,y) \label{eq2.16} \\
+  \sum_{j=1}^{n}p_j\frac{\partial x_j(\p,y)}{\partial y}&=1 \label{eq2.17}
+  \end{align}
+  固定$(\p,y)$, 对任意$t>0$定义函数$f_i(t)=x_i(t\p,ty)$, 只需证明$f_i(t)$不随着$t$的变化而变化, 也即$f_i'(t)=0$对一切$t>0$成立. 
+  
+  现在将$f_i$对$t$微分可得
+  \begin{equation}\label{eq2.18}
+    f_i'(t)=\sum_{j=1}^{n}\frac{\partial x_i(t\p,ty)}{\partial p_j}p_j+\frac{\partial x_i(t\p,ty)}{\partial y}
+  \end{equation}
+  根据预算平衡性可知$t\p\cdot\x(t\p,ty)=ty$, 将该式除以$t$可得
+  \begin{equation}\label{eq2.19}
+    y=\sum_{j=1}^{n}p_jx_j(t\p,ty)
+  \end{equation}
+  再用式(\ref{eq2.19})替代(\ref{eq2.18})得到
+  $$f_i'(t)=\sum_{j=1}^{n}p_j\left[\frac{\partial x_i(t\p,ty)}{\partial p_j}+\frac{\partial x_i(t\p,ty)}{\partial y}x_j(t\p,ty)\right]$$
+  上式方括号内的项是Slutsky矩阵$\mathbf{s}(\p,y)$的第$(i,j)$个元素, 根据假设可知该矩阵是对称的, 交换$i$和$j$的位置后可得
+  \begin{align*}
+  f_i'(t)&=\sum_{j=1}^{n}p_j\frac{\partial x_j(t\p,ty)}{\partial p_i}+x_i(t\p,ty)\sum_{j=1}^{n}p_j\frac{\partial x_j(t\p,ty)}{\partial p_i} \\
+  &=\frac{1}{t}\sum_{j=1}^{n}tp_j\frac{\partial x_j(t\p,ty)}{\partial p_i}+x_i(t\p,ty)\frac{1}{t}\sum_{j=1}^{n}tp_j\frac{\partial x_j(t\p,ty)}{\partial p_i} \\
+  &=\frac{1}{t}[-x_i(t\p,ty)]+x_i(t\p,ty)\frac{1}{t}\cdot1\\
+  &=0
+  \end{align*}
+  其中倒数第二个等式是由式(\ref{eq2.16})和(\ref{eq2.17})在$(t\p,ty)$处的值得到的.
+\end{proof}
+现在, 如果$\x(\p,y)$是由UMP得到的Marshall需求方程组, 那么可以将观测到的消费者行为使用下列三个性质进行总结
+\begin{itemize}
+  \item 预算平衡性: $\p\cdot\x(\p,y)=y$;
+  \item 半负定性: $\mathbf{s}(\p,y)$是半负定的;
+  \item 对称性: $\mathbf{s}(\p,y)$是对称的.
+\end{itemize}
+可以证明, 以上三个性质是UMP推导出的可观测的消费者行为的全部性质, 除此之外, 追求效用最大化的消费者理论没有对需求行为施加其它独立的限制.
+
+事实上, 如果某个关于价格和收入的向量值函数正好满足前面列举的三个条件, 那么的确存在生成这个需求函数的效用函数, 从消费者的效用还原出他的需求函数的问题称为\textbf{可积性问题} (integrability problem).
+
+\begin{theorem}[可积性定理]
+  连续可微函数$\x:\R_{++}^{n+1}\to \R_+^n$是某个严格递增的、严格拟凹的连续效用函数生成的需求函数, 当且仅当它满足预算平衡性、对称性和半负定性.
+\end{theorem}
+\begin{proof}
+  由于已证得“仅当”的部分, 现在只证“当”这部分的论断, 也即证明如果某个函数$\x(\p,y)$满足预算平衡性、对称性和半负定性, 那么存在某个效用函数, 它可以生成$\x(\p,y)$作为它的需求函数.
+  
+  考虑任意一个支出函数$e(\p,u)$, 假设它由某个单调递增的拟凹效用函数$u(\x)$生成, 并且该效用函数生成的Marshall需求函数为$\x^m(\p,y)$. 首先证明, 如果$\x$和$e$的关系恰好如下所示
+  \begin{equation}\label{eq2.20}
+    \frac{\partial e(\p,u)}{\partial p_i}=x_i(\p,e(\p,u)),\quad \forall (\p,u)
+  \end{equation}
+  那么$\x(\p,y)$与效用函数$u(\x)$生成的$\x^m(\p,y)$相等.
+  
+  根据Shephard引理可知, 式(\ref{eq2.20})左侧等于$\x^h(\p,u)$, 式(\ref{eq2.20})意味着对任意的$(\p,u)$都有
+  \begin{equation}\label{eq2.21}
+    \x^h(\p,u)=\x(\p,e(\p,u))
+  \end{equation}
+  根据定理\ref{thm:thm1.4}可知
+  \begin{equation}\label{eq2.22}
+    \x^h(\p,u)=\x^m(\p,e(\p,u))
+  \end{equation}
+  联立式(\ref{eq2.21})和(\ref{eq2.22})得到
+  $$\x(\p,e(\p,u))=\x^m(\p,e(\p,u))$$
+  由于$e$作为支出函数, 对于每个固定的价格水平$\p$, 当$u$在其定义域内变动时, $e(\p,u)$取遍每个非负数, 故而对每个$(\p,y)$都有$\x(\p,y)=\x^m(\p,y)$.
+  
+  现在的任务简化为, 证明存在一个支出函数$e(\p,u)$, 使得它和$\x(\p,y)$的关系的确如式(\ref{eq2.20})所示. 假设偏微分方程组(\ref{eq2.20})的解为$e(\p,u)$, 在式(\ref{eq2.20})两端对$p_j$微分得到
+  $$\frac{\partial^2 e(\p,u)}{\partial p_j\partial p_i}=\frac{\partial x_i(\p,e(\p,u))}{\partial p_j}+\frac{\partial e(\p,u)}{\partial p_j}\frac{\partial x_i(\p,e(\p,u))}{\partial y}$$
+  令$y=e(\p,u)$, 根据Shephard引理和式(\ref{eq2.21})可将上式改写为
+  \begin{equation}\label{eq2.23}
+    \frac{\partial^2e(\p,u)}{\partial p_i\partial p_j}=\frac{\partial x_i(\p,y)}{\partial p_j}+x_j(\p,y)\frac{\partial x_i(\p,y)}{\partial y}
+  \end{equation}
+  根据Young定理可知, 式(\ref{eq2.23})左端关于$(i,j)$是对称的, 因此右端也是如此, 也即式(\ref{eq2.23})关于$(i,j)$的对称性是偏微分方程组(\ref{eq2.20})存在解的必要条件.
+  
+  事实上, 根据微分几何中的Frobenius定理, 这一对称条件也是(\ref{eq2.20})存在解的充分条件, 因此现在得到了解存在的充要条件. 注意到式(\ref{eq2.23})右端是与$\x(\p,y)$相关的Slutsky矩阵的第$(i,j)$项, 由于Slutsky矩阵关于$(i,j)$是对称的, 因此必定存在函数$e(\p,u)$满足式(\ref{eq2.20}).
+  
+  最后只需证明这样的函数$e(\p,u)$的确是支出函数, 通过验证$e(\p,u)$具有定理\ref{thm:thm1.6}中的性质, 根据定理\ref{thm:thm2.2}即可证得$e(\p,u)$是支出函数.
+\end{proof}
+如果我们想在有限的数据基础上估计消费者的需求函数, 而且还希望这个需求函数是由效用函数生成的, 有了可积性定理这个结论之后, 我们可以提出任何需求函数形式, 只要它满足预算平衡性、 对称性和负半定性即可. 而我们刚才已知道, 这样的需求函数必定是由效用函数产生的.
+\section{显示偏好}
+到目前为止, 我们处理需求理论的方法是假设消费者的偏好满足某些性质 (完备性、 传递性和严格单调性); 然后我们再推导出市场需求的所有可观测到的性质 (预算平衡性、 对称性以及Slutsky矩阵的半负定性).
+
+Samuelson提出了另一种方法, 也即对消费者可观测的选择本身 (而非对不可观测到的偏好)做出若干简单和合理的假设, 然后在这些假设条件下进行推导. 这种方法的基本思想非常简明, 如果消费者选择消费束$\x^0$而非$\x^1$, 则称$\x^0$被显示偏好于$\x^1$.
+
+\begin{definition}
+对于任意两个组合$(\p^0,y^0)$和$(\p^1,y^1)$, 如果当$\x(\p^0,y^0)\neq \x(\p^1,y^1)$时有
+$$\p^0\cdot\x(\p^1,y^1)\leq y^0\Rightarrow\p^1\cdot\x(\p^0,y^0)>y^1$$
+那么称消费者的行为满足显示偏好弱公理 (Weak Axiom of Revealed Preference, WARP).
+\end{definition}
+换言之, 如果$\x(\p^0,y^0)$曾被显示偏好于$\x(\p^1,y^1)$, 那么$\x(\p^1,y^1)$绝不会被显示偏好于$\x(\p^0,y^0)$.
+
+在图\ref{fig2.3}中, 消费者的行为都是在价格为$\p^0$时选择$\x^0$, 而在价格为$\p^1$时选择$\x^1$. 在左图中, 消费者的行为满足WARP, 因为她在本可以选择$\x^1$时的情形下选择了$\x^0$, 而当她选择$\x^1$时却买不起$\x^0$. 在右图中, 她在本可以选择$\x^1$的情形下选择了$\x^0$, 而她在选择$\x^1$时也可以选择$\x^0$但却没选, 因此这一消费行为违背WARP.
+
+\begin{figure}[htbp!]
+  \centering
+  \includegraphics[width=12cm]{fig2-3.pdf}
+  \caption{显示偏好弱公理.}\label{fig2.3}
+\end{figure}
+
+现在假设某消费者的行为满足WARP, 令$\x(\p,y)$表示在价格为$\p$且收入为$y$时该消费者的选择. 值得注意的是, 这个函数不是需求函数, 这是因为没有涉及到UMP, 所以$\x(\p,y)$只是表明了面临$(\p,y)$时消费者的选择, 此时称$\x(\p,y)$为\textbf{选择函数} (choice function). 除了WARP以外, 还对消费者的行为作出预算平衡性假设, 也即对于任意$\p\gg\mathbf{0}$, 选择函数$\x(\p,y)$满足预算平衡性$\p\cdot\x(\p,y)=y$.
+
+\begin{theorem}
+如果WARP和预算平衡性成立, 那么选择函数$\x(\p,y)$关于$(\p,y)$是零次齐次的.
+\end{theorem}
+\begin{proof}
+  假设价格为$\p^0$且收入为$y^0$时消费者的选择为$\x^0$, 再假设价格为$\p^1=t\p^0$且收入为$y^1=ty^0$时消费者的选择为$\x^1$, 其中$t>0$. 由此可知, 当消费者所有收入花完时, 必定有$\p^1\cdot\x^1=t\p^0\cdot\x^0$, 进而
+  \begin{equation}\label{eq2.24}
+    \p^0\cdot\x^1=\p^0\cdot\x^0
+  \end{equation}
+  以及
+  \begin{equation}\label{eq2.25}
+    \p^1\cdot\x^1=\p^1\cdot\x^0
+  \end{equation}
+  如果式(\ref{eq2.24})中的$\x^0$和$\x^1$是两个不同的消费束, 则WARP意味着式(\ref{eq2.25})左端必然严格小于右端, 这就产生矛盾, 因此$\x^0$和$\x^1$必定是相同的消费束.
+\end{proof}
+
+第1章已经提过, 商品价格变化对消费者的影响有两个方面, 其一是相对价格的变化, 其二是改变了消费者的实际收入. 为了研究WARP的意义, 需要隔离第一种效应. 
+
+当商品价格变动时, 相应调整消费者的收入水平, 使得他恰好能在新价格下买得起原来的消费束. 换言之, 如果消费者原来面对着价格$\p^0$和收入$y^0$时, 他选择消费束$\x(\p^0,y^0)$, 那么当价格变为$\p^1$时, 设想将消费者的收入调整为$y^1=\p^1\cdot\x(\p^0,y^0)$. 因此, 收入调整量为$\Delta y=\Delta \p\cdot\x(\p^0,y^0)$, 其中$\Delta \p=\p^1-\p^0$, 这种收入调整称为Slutsky补偿变化, 如图\ref{fig2.4}所示.
+
+\begin{figure}[htbp!]
+  \centering
+  \includegraphics[width=8cm]{fig2-4.pdf}
+  \caption{Slutsky补偿变化.}\label{fig2.4}
+\end{figure}
+
+\begin{theorem}
+  如果WARP和预算平衡性成立, 那么$\x(\p,y)$满足WARP, 当且仅当对于从$(\p^0,y^0)$变化至$(\p^1,\p^1\cdot \x(\p^0,y^0))$的任何Slutsky补偿变化都有
+  \begin{equation}\label{eq2.26}
+    (\p^1-\p^0)\cdot[\x(\p^1,y^1)-\x(\p^0,y^0)]\le0
+  \end{equation}
+  且仅当$\x(\p^1,y^1)\neq \x(\p^0,y^0)$时, 严格不等式成立.
+\end{theorem}
+\begin{proof}
+  先证明必要性: 显然当$\x(\p^1,y^1)=\x(\p^0,y^0)$时, 结果必然成立, 进而假设$\x(\p^1,y^1)\neq \x(\p^0,y^0)$, 式(\ref{eq2.26})左端可以写为
+  \begin{equation}\label{eq2.27}
+    \p^1\cdot[\x(\p^1,y^1)-\x(\p^0,y^0)]-\p^0\cdot[\x(\p^1,y^1)-\x(\p^0,y^0)]
+  \end{equation}
+  对于式(\ref{eq2.27})的第一项, 因为从$\p^0$至$\p^1$是Slutsky补偿变化, 故而$\p^1\cdot\x(\p^0,y^0)=y^1$, 根据预算平衡性可知$y^1=\p^1\cdot\x(\p^1,y^1)$, 因此
+  \begin{equation}\label{eq2.28}
+    \p^1\cdot[\x(\p^1,y^1)-\x(\p^0,y^0)]=0
+  \end{equation}
+  对于式(\ref{eq2.27})的第二项, 因为$\p^1\cdot\x(\p^0,y^0)=y^1$, 所以消费束$\x(\p^0,y^0)$是面对$(\p^1,y^1)$时消费者买得起的. 根据WARP可知$\p^0\cdot\x(\p^1,y^1)>y^0$, 再由预算平衡性得到
+  \begin{equation}\label{eq2.29}
+    \p^0\cdot[\x(\p^1,y^1)-\x(\p^0,y^0)]>0
+  \end{equation}
+  最后由式(\ref{eq2.27})、(\ref{eq2.28})和(\ref{eq2.29})就得到了想要的结果.
+  
+  再证明充分性: 首先证明对于任意$(\p^0,y^0)$和$(\p^1,y^1)$, 如果当$\p^0\cdot\x(\p^1,y^1)=y^0$和$\x(\p^1,y^1)\neq \x(\p^0,y^0)$时有$\p^1\cdot\x(\p^0,y^0)>y^1$, 那么WARP成立. 等价地, 只需证明这个论断的逆否命题: 如果WARP不成立, 则必然存在违反WARP的Slutsky补偿变化.
+   
+   假设存在违反WARP的情形: 考虑两个价格收入组合$(\p^0,y^0)$和$(\p^1,y^1)$, 使得$\x(\p^0,y^0)\neq \x(\p^1,y^1)$, 并且$\p^0\cdot\x(\p^1,y^1)\leq y^0$及$\p^1\cdot\x(\p^0,y^0)\leq y^1$. 若这两个不等式中任意一个以等式成立, 则它就是一个Slutsky补偿变化, 结论即刻证得, 因此下面均考虑严格不等式成立.
+  
+  现在任取$t\in(0,1)$, 使得
+  $$\p\cdot\x(\p^0,y^0)\leq \p\cdot\x(\p^1,y^1)$$
+  其中$\p=t\p^0+(1-t)\p^1$. 再令$y=\p\cdot\x(\p^0,y^0)$, 于是
+  \begin{align*}
+  ty^0+(1-t)y^1&>t\p^0\cdot\x(\p^0,y^0)+(1-t)\p^1\cdot\x(\p^0,y^0) \\
+  &=y \\
+  &=\p\cdot\x(\p,y) \\
+  &=t\p^0\cdot\x(\p,y)+(1-t)\p^1\cdot\x(\p,y)
+  \end{align*}
+  因此要么$\p^0\cdot\x(\p,y)<y^0$, 要么$\p^1\cdot\x(\p,y)<y^1$, 或者二者兼具. 假设第一个不等号成立 (其余情形类似), 那么$\x(\p,y)\neq \x(\p^0,y^0)$, 并且$\p\cdot\x(\p^0,y^0)=y$和$\p^0\cdot\x(\p,y)<y^0$, 这就构造出了从$(\p^0,y^0)$到$(\p,y)$的违反WARP的Slutsky补充变化.
+  
+  现在回到对充分性的证明. 假设式(\ref{eq2.26})成立并不意味着WARP, 此时必然存在从$(\p^0,y^0)$到$(\p,y)$的Slutsky补偿变化, 使得
+  $$\x(\p,y)\neq \x(\p^0,y^0),\quad \p\cdot\x(\p^0,y^0)=y,\quad \p^1\cdot(\p,y)\leq y^1$$
+  由于选择函数$\x(\p,y)$满足预算平衡性, 因此
+  \begin{align*}
+  \p\cdot[\x(\p^0,y^0)-\x(\p,y)]&=0 \\
+  \p^0\cdot [\x(\p^0,y^0)-\x(\p,y)]&\ge0
+  \end{align*}
+  因此当$\x(\p^0,y^0)\neq \x(\p,y)$时必有
+  $$(\p^1-\p)\cdot [\x(\p^1,y^1)-\x(\p,y)]\geq 0$$
+  这就与式(\ref{eq2.26})产生矛盾, 因此WARP必然成立.
+  \end{proof}
+
+\chapter{生产者理论}
+
+\chapter{局部均衡}
+
+\chapter{一般均衡}
+
+\chapter{社会选择与福利}
 \end{document} 
