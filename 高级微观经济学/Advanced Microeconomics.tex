@@ -500,7 +500,7 @@ EMP的任意解向量都非负且取决于$(\p,u)$, 如果效用函数$u$是连�
   1. 略.
 
   2. 假设$e$关于$u$不是递增的, 设$\x^0$和$\x^1$分别为效用水平为$u^0$和$u^1$时的最优消费束, 并且$u^1>u^0$, $\p\cdot\x^0\geq \p\cdot\x^1>0$. 设$t\in[0,1]$为充分接近1的某个数, $\x^2=t\x^1$, 由于效用函数$u$是连续的, 故而$u(\x^2)>u^0$且$\p\cdot\x^0>\p\cdot\x^2$, 但这与$\x^0$是既定效用水平为$u^0$时的最优消费束这一事实矛盾.
-  
+
   由于$u$在$\R_+^n$上连续且严格递增, 当$u(\x)\to \infty$时, $\x$中至少有一个分量趋近于$\infty$, 因此$\min \p\cdot\x$也是如此.
 
   3. 假设$\p^0\ge\p^1$, $\x^0$是价格为$\p^0$时EMP的最优解, 于是
@@ -862,7 +862,7 @@ $$A(\p^1,u^0)=\{\x\in\R_+^n: \p^1\cdot\x\ge E(\p^1,u^0)\}$$
   首先需要证明$u(\x)$是良好定义的, 也即需要证明集合
   $$B(\x)=\{u\ge0: \p\cdot\x\geq E(\p,u),\forall \p\gg\mathbf{0}\}$$
   包含着$u(\x)$的最大元素. 由于$E(\p,u)$关于$u$递增且无上界, 因此$B(\x)$有上界和上确界$\hat{u}$, 又因为$B(\x)$是闭的, 根据点集拓扑的知识可知$\hat{u}\in B(\x)$.\footnote{设$E$是一个非空且有上界的实数集, $\overbar{E}$是$E$的闭包, 令$y=\sup E$, 那么$y\in\overbar{E}$.}
-  
+
   下面证明$u$是单调递增的. 考虑$\x^1\ge\x^2$, 于是对于任意$\p\gg\mathbf{0}$都有
   \begin{equation}\label{eq2.2}
     \p\cdot\x^1\ge\p\cdot\x^2
@@ -873,10 +873,10 @@ $$A(\p^1,u^0)=\{\x\in\R_+^n: \p^1\cdot\x\ge E(\p^1,u^0)\}$$
   \end{equation}
   于是由式(\ref{eq2.2})和(\ref{eq2.3})可知
   $$\p\cdot\x^1\geq E(\p,u(\x^2))$$
-  这就表明$\x^1\in A(u(\x^2))$, 因为$u(\x^1)$是使得$\x^1\in A(u)$的最大效用水平$u$, 所以$u(\x^1)\ge u(\x^2)$. 
-  
-  这里略去$u$无上界的证明. 
-  
+  这就表明$\x^1\in A(u(\x^2))$, 因为$u(\x^1)$是使得$\x^1\in A(u)$的最大效用水平$u$, 所以$u(\x^1)\ge u(\x^2)$.
+
+  这里略去$u$无上界的证明.
+
   最后证明$u$是拟凹函数, 也即对于任意$t\in[0,1]$, 都有
   $$u(t\x^1+(1-t)\x^2)\geq \min\{u(\x^1), u(\x^2)\}$$
   不妨令$u(\x^2)=\min\{u(\x^1), u(\x^2)\}$. 因为$u$是单调递增的, 故而$E(\p,u(\x^1))\geq E(\p,u(\x^2))$, 所以对任意$t\in[0,1]$都有
@@ -913,8 +913,8 @@ $$A(\p^1,u^0)=\{\x\in\R_+^n: \p^1\cdot\x\ge E(\p^1,u^0)\}$$
   \begin{equation}\label{eq2.6}
     \p^0\cdot\x^0\leq E(\p^0,u^0),\quad u(\x^0)\geq u^0
   \end{equation}
-  即可. 
-  
+  即可.
+
   由于$E$关于$\p$是可微和一次齐次的, 根据Euler定理可知对于任意$\p\gg\mathbf{0}$都有
   \begin{equation}\label{eq2.7}
     E(\p,u)=\frac{\partial E(\p,u)}{\partial\p}\cdot\p
@@ -1010,8 +1010,8 @@ $$A(\p^1,u^0)=\{\x\in\R_+^n: \p^1\cdot\x\ge E(\p^1,u^0)\}$$
   \sum_{j=1}^{n}p_j\frac{\partial x_j(\p,y)}{\partial p_i}&=-x_i(\p,y) \label{eq2.16} \\
   \sum_{j=1}^{n}p_j\frac{\partial x_j(\p,y)}{\partial y}&=1 \label{eq2.17}
   \end{align}
-  固定$(\p,y)$, 对任意$t>0$定义函数$f_i(t)=x_i(t\p,ty)$, 只需证明$f_i(t)$不随着$t$的变化而变化, 也即$f_i'(t)=0$对一切$t>0$成立. 
-  
+  固定$(\p,y)$, 对任意$t>0$定义函数$f_i(t)=x_i(t\p,ty)$, 只需证明$f_i(t)$不随着$t$的变化而变化, 也即$f_i'(t)=0$对一切$t>0$成立.
+
   现在将$f_i$对$t$微分可得
   \begin{equation}\label{eq2.18}
     f_i'(t)=\sum_{j=1}^{n}\frac{\partial x_i(t\p,ty)}{\partial p_j}p_j+\frac{\partial x_i(t\p,ty)}{\partial y}
@@ -1046,13 +1046,13 @@ $$A(\p^1,u^0)=\{\x\in\R_+^n: \p^1\cdot\x\ge E(\p^1,u^0)\}$$
 \end{theorem}
 \begin{proof}
   由于已证得“仅当”的部分, 现在只证“当”这部分的论断, 也即证明如果某个函数$\x(\p,y)$满足预算平衡性、对称性和半负定性, 那么存在某个效用函数, 它可以生成$\x(\p,y)$作为它的需求函数.
-  
+
   考虑任意一个支出函数$e(\p,u)$, 假设它由某个单调递增的拟凹效用函数$u(\x)$生成, 并且该效用函数生成的Marshall需求函数为$\x^m(\p,y)$. 首先证明, 如果$\x$和$e$的关系恰好如下所示
   \begin{equation}\label{eq2.20}
     \frac{\partial e(\p,u)}{\partial p_i}=x_i(\p,e(\p,u)),\quad \forall (\p,u)
   \end{equation}
   那么$\x(\p,y)$与效用函数$u(\x)$生成的$\x^m(\p,y)$相等.
-  
+
   根据Shephard引理可知, 式(\ref{eq2.20})左侧等于$\x^h(\p,u)$, 式(\ref{eq2.20})意味着对任意的$(\p,u)$都有
   \begin{equation}\label{eq2.21}
     \x^h(\p,u)=\x(\p,e(\p,u))
@@ -1064,7 +1064,7 @@ $$A(\p^1,u^0)=\{\x\in\R_+^n: \p^1\cdot\x\ge E(\p^1,u^0)\}$$
   联立式(\ref{eq2.21})和(\ref{eq2.22})得到
   $$\x(\p,e(\p,u))=\x^m(\p,e(\p,u))$$
   由于$e$作为支出函数, 对于每个固定的价格水平$\p$, 当$u$在其定义域内变动时, $e(\p,u)$取遍每个非负数, 故而对每个$(\p,y)$都有$\x(\p,y)=\x^m(\p,y)$.
-  
+
   现在的任务简化为, 证明存在一个支出函数$e(\p,u)$, 使得它和$\x(\p,y)$的关系的确如式(\ref{eq2.20})所示. 假设偏微分方程组(\ref{eq2.20})的解为$e(\p,u)$, 在式(\ref{eq2.20})两端对$p_j$微分得到
   $$\frac{\partial^2 e(\p,u)}{\partial p_j\partial p_i}=\frac{\partial x_i(\p,e(\p,u))}{\partial p_j}+\frac{\partial e(\p,u)}{\partial p_j}\frac{\partial x_i(\p,e(\p,u))}{\partial y}$$
   令$y=e(\p,u)$, 根据Shephard引理和式(\ref{eq2.21})可将上式改写为
@@ -1072,9 +1072,9 @@ $$A(\p^1,u^0)=\{\x\in\R_+^n: \p^1\cdot\x\ge E(\p^1,u^0)\}$$
     \frac{\partial^2e(\p,u)}{\partial p_i\partial p_j}=\frac{\partial x_i(\p,y)}{\partial p_j}+x_j(\p,y)\frac{\partial x_i(\p,y)}{\partial y}
   \end{equation}
   根据Young定理可知, 式(\ref{eq2.23})左端关于$(i,j)$是对称的, 因此右端也是如此, 也即式(\ref{eq2.23})关于$(i,j)$的对称性是偏微分方程组(\ref{eq2.20})存在解的必要条件.
-  
+
   事实上, 根据微分几何中的Frobenius定理, 这一对称条件也是(\ref{eq2.20})存在解的充分条件, 因此现在得到了解存在的充要条件. 注意到式(\ref{eq2.23})右端是与$\x(\p,y)$相关的Slutsky矩阵的第$(i,j)$项, 由于Slutsky矩阵关于$(i,j)$是对称的, 因此必定存在函数$e(\p,u)$满足式(\ref{eq2.20}).
-  
+
   最后只需证明这样的函数$e(\p,u)$的确是支出函数, 通过验证$e(\p,u)$具有定理\ref{thm:thm1.6}中的性质, 根据定理\ref{thm:thm2.2}即可证得$e(\p,u)$是支出函数.
 \end{proof}
 如果我们想在有限的数据基础上估计消费者的需求函数, 而且还希望这个需求函数是由效用函数生成的, 有了可积性定理这个结论之后, 我们可以提出任何需求函数形式, 只要它满足预算平衡性、 对称性和负半定性即可. 而我们刚才已知道, 这样的需求函数必定是由效用函数产生的.
@@ -1115,7 +1115,7 @@ $$\p^0\cdot\x(\p^1,y^1)\leq y^0\Rightarrow\p^1\cdot\x(\p^0,y^0)>y^1$$
   如果式(\ref{eq2.24})中的$\x^0$和$\x^1$是两个不同的消费束, 则WARP意味着式(\ref{eq2.25})左端必然严格小于右端, 这就产生矛盾, 因此$\x^0$和$\x^1$必定是相同的消费束.
 \end{proof}
 
-第1章已经提过, 商品价格变化对消费者的影响有两个方面, 其一是相对价格的变化, 其二是改变了消费者的实际收入. 为了研究WARP的意义, 需要隔离第一种效应. 
+第1章已经提过, 商品价格变化对消费者的影响有两个方面, 其一是相对价格的变化, 其二是改变了消费者的实际收入. 为了研究WARP的意义, 需要隔离第一种效应.
 
 当商品价格变动时, 相应调整消费者的收入水平, 使得他恰好能在新价格下买得起原来的消费束. 换言之, 如果消费者原来面对着价格$\p^0$和收入$y^0$时, 他选择消费束$\x(\p^0,y^0)$, 那么当价格变为$\p^1$时, 设想将消费者的收入调整为$y^1=\p^1\cdot\x(\p^0,y^0)$. 因此, 收入调整量为$\Delta y=\Delta \p\cdot\x(\p^0,y^0)$, 其中$\Delta \p=\p^1-\p^0$, 这种收入调整称为Slutsky补偿变化, 如图\ref{fig2.4}所示.
 
@@ -1125,7 +1125,7 @@ $$\p^0\cdot\x(\p^1,y^1)\leq y^0\Rightarrow\p^1\cdot\x(\p^0,y^0)>y^1$$
   \caption{Slutsky补偿变化.}\label{fig2.4}
 \end{figure}
 
-\begin{theorem}
+\begin{theorem}\label{thm:thm2.3}
   如果WARP和预算平衡性成立, 那么$\x(\p,y)$满足WARP, 当且仅当对于从$(\p^0,y^0)$变化至$(\p^1,\p^1\cdot \x(\p^0,y^0))$的任何Slutsky补偿变化都有
   \begin{equation}\label{eq2.26}
     (\p^1-\p^0)\cdot[\x(\p^1,y^1)-\x(\p^0,y^0)]\le0
@@ -1146,11 +1146,11 @@ $$\p^0\cdot\x(\p^1,y^1)\leq y^0\Rightarrow\p^1\cdot\x(\p^0,y^0)>y^1$$
     \p^0\cdot[\x(\p^1,y^1)-\x(\p^0,y^0)]>0
   \end{equation}
   最后由式(\ref{eq2.27})、(\ref{eq2.28})和(\ref{eq2.29})就得到了想要的结果.
-  
+
   再证明充分性: 首先证明对于任意$(\p^0,y^0)$和$(\p^1,y^1)$, 如果当$\p^0\cdot\x(\p^1,y^1)=y^0$和$\x(\p^1,y^1)\neq \x(\p^0,y^0)$时有$\p^1\cdot\x(\p^0,y^0)>y^1$, 那么WARP成立. 等价地, 只需证明这个论断的逆否命题: 如果WARP不成立, 则必然存在违反WARP的Slutsky补偿变化.
-   
+
    假设存在违反WARP的情形: 考虑两个价格收入组合$(\p^0,y^0)$和$(\p^1,y^1)$, 使得$\x(\p^0,y^0)\neq \x(\p^1,y^1)$, 并且$\p^0\cdot\x(\p^1,y^1)\leq y^0$及$\p^1\cdot\x(\p^0,y^0)\leq y^1$. 若这两个不等式中任意一个以等式成立, 则它就是一个Slutsky补偿变化, 结论即刻证得, 因此下面均考虑严格不等式成立.
-  
+
   现在任取$t\in(0,1)$, 使得
   $$\p\cdot\x(\p^0,y^0)\leq \p\cdot\x(\p^1,y^1)$$
   其中$\p=t\p^0+(1-t)\p^1$. 再令$y=\p\cdot\x(\p^0,y^0)$, 于是
@@ -1160,8 +1160,8 @@ $$\p^0\cdot\x(\p^1,y^1)\leq y^0\Rightarrow\p^1\cdot\x(\p^0,y^0)>y^1$$
   &=\p\cdot\x(\p,y) \\
   &=t\p^0\cdot\x(\p,y)+(1-t)\p^1\cdot\x(\p,y)
   \end{align*}
-  因此要么$\p^0\cdot\x(\p,y)<y^0$, 要么$\p^1\cdot\x(\p,y)<y^1$, 或者二者兼具. 假设第一个不等号成立 (其余情形类似), 那么$\x(\p,y)\neq \x(\p^0,y^0)$, 并且$\p\cdot\x(\p^0,y^0)=y$和$\p^0\cdot\x(\p,y)<y^0$, 这就构造出了从$(\p^0,y^0)$到$(\p,y)$的违反WARP的Slutsky补充变化.
-  
+  因此要么$\p^0\cdot\x(\p,y)<y^0$, 要么$\p^1\cdot\x(\p,y)<y^1$, 或者二者兼具. 假设第一个不等号成立 (其余情形类似), 那么$\x(\p,y)\neq \x(\p^0,y^0)$, 并且$\p\cdot\x(\p^0,y^0)=y$和$\p^0\cdot\x(\p,y)<y^0$, 这就构造出了从$(\p^0,y^0)$到$(\p,y)$的违反WARP的Slutsky补偿变化.
+
   现在回到对充分性的证明. 假设式(\ref{eq2.26})成立并不意味着WARP, 此时必然存在从$(\p^0,y^0)$到$(\p,y)$的Slutsky补偿变化, 使得
   $$\x(\p,y)\neq \x(\p^0,y^0),\quad \p\cdot\x(\p^0,y^0)=y,\quad \p^1\cdot(\p,y)\leq y^1$$
   由于选择函数$\x(\p,y)$满足预算平衡性, 因此
@@ -1173,7 +1173,71 @@ $$\p^0\cdot\x(\p^1,y^1)\leq y^0\Rightarrow\p^1\cdot\x(\p^0,y^0)>y^1$$
   $$(\p^1-\p)\cdot [\x(\p^1,y^1)-\x(\p,y)]\geq 0$$
   这就与式(\ref{eq2.26})产生矛盾, 因此WARP必然成立.
   \end{proof}
+现在给定某个组合$(\p,y)$, 现在价格发生微分变化$\text{d}\p$, 现在对消费者进行Slutsky补偿$\text{d}y=\x(\p,y)\text{d}\p$, 定理\ref{thm:thm2.3}表明
+\begin{equation}\label{eq2.30}
+  \text{d}\p\cdot\text{d}\x\leq0
+\end{equation}
+根据链式法则可知
+\begin{align*}
+\text{d}\x&=\frac{\partial \x(\p,y)}{\partial\p}\text{d}\p+\frac{\partial \x(\p,y)}{\partial y}\text{d}y \\
+&=\frac{\partial \x(\p,y)}{\partial\p}\text{d}\p+\frac{\partial \x(\p,y)}{\partial y}\x(\p,y)\text{d}\p
+\end{align*}
+由式(\ref{eq2.30})可知
+$$\text{d}\p\cdot \mathbf{s}(\p,y)\cdot \text{d}\p\leq 0$$
+其中$\mathbf{s}(\p,y)$为选择函数$\x(\p,y)$的Slutsky矩阵.
 
+事实上, 我们已经证明了如果某个选择函数满足WARP和预算平衡性, 那么它的Slutsky矩阵是半负定的. 此时, 如果能证明某个选择函数的Slutsky矩阵是对称的, 那么根据可积性定理, 这个选择函数必定是Marshall需求函数. 另一方面, 容易证明如果$\x(\p,y)$碰巧是某个效用函数生成的Marshall需求函数, 那么$\x(\p,y)$必定满足WARP.
+
+特别地, 当商品数量$n=2$时, WARP成立意味着Slutsky矩阵必定是对称的, 而当$n>2$时WARP无法保证Slutsky矩阵的对称性, 因此WARP和预算平衡性不等于效用最大化的假设. 然而, 如果将WARP加强为\textbf{显示偏好强公理} (Strong Axiom of Revealed Preference, SARP), 那么基于SARP之上的基于选择的需求理论, 在本质上等于基于偏好的需求理论.
+
+\begin{definition}[显示偏好强公理]
+Marshall需求函数$\x(\p,y)$满足SARP: 对于任意一列
+$$(\p^1,y^1),(\p^2,y^2),\cdots,(\p^N,y^N)$$
+如果对$n\le N-1$都有$\x(\p^{n+1},y^{n+1})\neq \x(\p^n,y^n)$, 并且$\p^n\cdot\x(\p^{n+1},y^{n+1})\leq y^n$对于一切$n\leq N-1$成立, 那么$\p^N\cdot\x(\p^1,y^1)>y^N$.
+\end{definition}
+
+显然, 当商品数量$n=2$时, WARP和SARP是等价的. 进一步, SARP排除了不可传递的显示偏好, 因此可用于诱导出一个完备且传递的偏好关系$\succsim$, 对于这个偏好关系存在着能使可观测到的行为理性化的效用函数. 无论是在SARP假设还是在效用最大化假设下, 消费者的需求都是齐次的, 而且Slutsky矩阵都是半负定的和对称的.
+
+\newpage
+\section{不确定性}
+\subsection{偏好}
+之前我们假设消费者在他的消费集$X$中的所有消费束$\x$上拥有偏好关系. 在加入不确定性因素之后, 我们只要稍微变动一下视角即可. 我们将保留偏好关系的符号, 但我们不再假设消费者对消费束具有偏好关系, 而是对\textbf{赌博} (gamble)具有偏好关系. 更正式地说, 令$A=\{a_1,\cdots,a_n\}$表示结果 (outcome)的有限集, 这些$a_i$可以为消费束、金额数量或其它任何东西, 关键在于$a_i$本身涉及不确定性, 并且我们使用$A$作为赌博的基.
+
+例如令$A=\{1,-1\}$, 其中$1$代表赢得1元钱的结果, $-1$代表输掉1元钱的结果, 赌局就是投掷一枚质地均匀的硬币, 如果正面朝上则赢1元, 反之则输1元, 这两种结果发生的概率均为$1/2$. 
+
+更一般地, \textbf{简单赌博} (simple gamble)对$A$中每个结果$a_i$赋予一个概率$p_i$, 显然每个$p_i$是非负的, 由于赌博必定导致$A$中某个结果发生, 因此$p_i$之和为1, 我们将简单赌博记为$(p_1\circ a_1,\cdots,p_n\circ a_n)$. 如果某个赌博的奖品也是赌博, 那么称这个赌博为\textbf{复合赌博} (compound gamble).
+
+\begin{definition}[简单赌博]\label{def:def2.1}
+令$A=\{a_1,\cdots,a_n\}$表示结果集, 那么$A$上的简单赌博集为
+$$\mathcal{G}_S\equiv\left\{(p_1\circ a_1,\cdots,p_n\circ a_n)\left|p_i\ge0, \sum_{i=1}^{n}p_i=1\right.\right\}$$
+\end{definition}
+特别地, 如果某些$p_i=0$, 那么就将相应的项从表达式中去掉. 如果对于每个$i$都有$p_i=1$, 那么将$1\circ a_i$简写为$a_i$, 表示必然发生结果$a_i$的赌博, 此时$\mathcal{G}_S$就包含了选择集$A$. 回到投掷硬币的例子中, 每个人都面对着简单赌博$(\frac{1}{2}\circ 1, \frac{1}{2}\circ -1)$.
+
+最后设$\mathcal{G}=\bigcup_{j=0}^\infty \mathcal{G}_j$表示全体赌博构成的集合, 其中$\mathcal{G}_0=A$, 并且$\mathcal{G}_j=\{(p_1\circ g^1,\cdots, p_k\circ g^k)|k\ge1; p_i\ge0, g^i\in \mathcal{G}_{j-1}, \forall i=1,\cdots,k; \sum_{i=1}^{k}p_i=1\}$.
+
+不确定情形下的选择的就是赌博. 与消费者理论对应, 假设决策制定者在赌博集$\mathcal{G}$上有偏好$\succsim$, 接下来还需要对决策制定者的偏好关系$\succsim$设置一组公理, 称为\textbf{不确定性下的选择公理} (axiom of choice under uncertainty).
+
+\begin{axiom}[完备性]\label{axi:axi2.1}
+对于$\mathcal{G}$中的任意两个赌博$g$和$g'$, 要么$g\succsim g'$, 要么$g'\succsim g$.
+\end{axiom}
+
+\begin{axiom}[传递性]\label{axi:axi2.2}
+对于$\mathcal{G}$中的任意三个赌博$g$, $g'$和$g''$, 如果$g\succsim g'$并且$g'\succsim g''$, 那么$g\succsim g''$.
+\end{axiom}
+
+由于可以将$A$中的每个$a_i$视作$\mathcal{G}$中的退化赌博, 公理\ref{axi:axi2.1}和\ref{axi:axi2.2}意味着$A$的有限个元素可以被$
+\succsim$排序. 不失一般性, 假设我们已经对$A$的元素进行了标识, 从而$a_1\succsim a_2\succsim\cdots\succsim a_n$. 因此在所有赌博中, 最好的是以概率1产生结果$a_1$的赌博, 而最差的是以概率1产生结果$a_n$的赌博.
+
+\begin{axiom}[连续性]\label{axi:axi2.3}
+对于$\mathcal{G}$中的任意赌博$g$, 存在某个概率$\alpha\in[0,1]$使得$g\sim (\alpha\circ a_1,(1-\alpha)\circ a_n)$.
+\end{axiom}
+举例来说, 假设$A=\{1000\text{元},100\text{元},\text{死亡}\}$, 对于绝大多数人都有$1000\text{元}\succ100\text{元}\succ\text{死亡}$, 但得到1000元需要开车出门去拿, 100元是送上门来, 而开车伴随着很小的死亡的正概率, 这样人就会在1000元和100元中进行选择. 倘若可以增加死亡概率直到这两个选择对某人来说是无差异的, 那么就是找到一个让她觉得无差异的概率.
+
+\begin{axiom}[单调性]\label{axi:axi2.4}
+对于所有概率$\alpha,\beta\in[0,1]$, $(\alpha\circ a_1,(1-\alpha)\circ a_n)\succsim (\beta\circ a_1,(1-\beta)\circ a_n)$当且仅当$\alpha\ge\beta$.
+\end{axiom}
+
+正如单调性要求的, 大多数人通常偏好以更高概率产生更好结果的赌博, 但事实未必总是如此. 例如, 对于长途跋涉的狩猎者来说, 死亡可能是这种行动的最差结果, 然而死亡的可能性增加了狩猎活动的刺激性. 因此, 狩猎者更喜欢较小死亡概率而不是绝对安全,这显然违背了单调性.
 \chapter{生产者理论}
 
 \chapter{局部均衡}

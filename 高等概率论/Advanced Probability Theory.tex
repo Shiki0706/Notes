@@ -1816,13 +1816,13 @@ $$\int_{X}f(x,y)\,\mu_1(\text{d}y)=0\Rightarrow\int_{Y}\int_{X}f\,\text{d}(\mu_1
   由条件(3)可知$\nu$在$y$处连续, 令$h\to0$即可证得结论.
 \end{proof}
 \begin{example}
-设$\varphi(s)=\int_{-\infty}^{\infty}\cos xs\text{e}^{-x^2/2}\,\text{d}x$, 那么它的表达式为
+设$\varphi(s)=\int_{-\infty}^{\infty}\cos (xs)\text{e}^{-x^2/2}\,\text{d}x$, 那么它的表达式为
 $$\varphi(s)=\sqrt{2\uppi}\text{e}^{-s^2/2}$$
 \end{example}
 \begin{proof}
   首先设
   $$u(x)=\int_{-\infty}^{\infty}\text{e}^{-x^2/2}\cos xs\,\text{d}x$$
-  其中$f(x,t)=\text{e}^{-x^2/2}\cos xs$. 容易验证
+  其中$f(x,s)=\text{e}^{-x^2/2}\cos xs$. 容易验证
   $$\int_{-\infty}^{\infty}|\text{e}^{-x^2/2}\cos xs|\,\text{d}x\leq \int_{-\infty}^{\infty}\text{e}^{-x^2/2}\,\text{d}x<\infty$$
   以及
   $$\frac{\partial f}{\partial x}(x,s)=-\text{e}^{-x^2/2}(s\sin xs+x\cos xs)$$
