@@ -1,6 +1,6 @@
 %!TEX program = xelatex
 %!BIB program = biber
-\documentclass[cn, 12pt, math=mtpro2, bibstyle=apa, blue, twocol]{elegantbook}
+\documentclass[cn, 12pt, math=mtpro2, bibstyle=apa, blue]{elegantbook}
 \title{高级微观经济学}
 \subtitle{Advanced Microeconomics}
 
@@ -28,6 +28,8 @@
 \newcommand{\p}{\mathbf{p}}
 \newcommand{\x}{\mathbf{x}}
 \newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+\newcommand{\ubar}[1]{\mkern 1.5mu\underline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+
 
 \emergencystretch=4em
 \begin{document}
@@ -239,9 +241,11 @@ $$\text{MRS}_{12}(x_1^1,x_2^1)=|f'(x_1^1)|=-f'(x_1^1)$$
   \frac{\partial u}{\partial x_1}+\frac{\partial u}{\partial x_2}f'(x_1)=0
 \end{equation}
 根据式(\ref{eq1.1})和(\ref{eq1.2})可得
-$$\text{MRS}_{12}(\x^1)=\frac{\partial u(\x^1)/\partial x_2}{\partial u(\x^1)/\partial x_1}$$
+$$\text{MRS}_{12}(\x^1)=\frac{\partial u(\x^1)/\partial x_1}{\partial u(\x^1)/\partial x_2}$$
 一般地, 对于某个消费者来说, 商品$i$对商品$j$的边际替代率为
-$$\text{MRS}_{ij}(\x)=\frac{\partial u(\x)/\partial x_j}{\partial u(\x)/\partial x_i},\quad i,j=1,\cdots,n$$
+$$\text{MRS}_{ij}(\x)=\frac{\partial u(\x)/\partial x_i}{\partial u(\x)/\partial x_j}=\left|\frac{\text{d}x_j}{\text{d}x_i}\right|$$
+其中$i,j=1,\cdots,n$. 上式表明如果想让消费者在边际上减少一单位商品$i$的消费, 我们应该补偿给他多少单位商品$j$. 
+
 当$u(\x)$在$\R^n_{++}$上可微并且它表示的偏好关系$\succsim$严格单调时, 每种商品的边际效用“几乎”严格为正,\footnote{“几乎”表示除开Lebesgue测度为0的消费束$\x$.} 也即几乎对于一切消费束$\x$都有$\partial u(\x)/\partial x_j>0$. 更一般地, 对于任何拟凹效用函数, 由它的二阶偏导构成的Hessian矩阵$\mathbf{H}(\x)$满足
 $$\mathbf{y}'\mathbf{H}(\x)\mathbf{y}\le0,\quad \nabla u(\x)\cdot\mathbf{y}=0$$
 
@@ -783,6 +787,8 @@ $$\sigma(\p,u)=\begin{pmatrix}
   于是Slutsky矩阵$\mathbf{s}(\p,y)$的每一个元素恰好等于Hicks替代矩阵$\sigma(\p,u)$的相应元素. 根据命题\ref{pro:pro1.3}可知替代矩阵关于$u$是对称的, 而命题\ref{pro:pro1.4}又表明替代矩阵关于$u$是半负定的, 结论成立.
 \end{proof}
 定理\ref{thm:thm1.5}表明, 可以使用替代矩阵的知识推断出所有价格和收入变动对可观测的Marshall需求方程组的影响.
+
+
 \subsection{弹性关系}
 设$x_i(\p,y)$是消费者的Marshall需求函数, 预算平衡指的是对于每组价格和收入, 预算约束必然以等式形式成立, 也即
 $$y=\sum_{i=1}^{n}p_ix_i(\p,y)$$
@@ -800,6 +806,7 @@ $$s_i=\frac{p_ix_i(\p,y)}{y}$$
 
 $\eta_i$衡量的是消费者收入变动1\%导致商品$i$需求量变动的百分比. $\epsilon_{ij}$衡量的是价格$p_j$变动1\%引起的商品$i$需求量变动的百分比, 如果$j=i$, 则$\epsilon_{ij}$称为\textbf{自价格弹性} (own-price elasitcity), 如果$j\ne i$, 则$\epsilon_{ij}$称为关于$p_j$的\textbf{交叉价格弹性} (cross-price elasticity). $s_i$表示消费者花费在商品$i$上的金额占总收入的比例, 显然有$s_i\ge0$且$\sum_{i=1}^{n}s_i=y$.
 
+通常而言, 如果$|\eta_i|>1$, 或者$|\epsilon_{ij}|>1$, 或者$|\epsilon_{ii}|>1$, 则称富有弹性; 如果是小于1, 则称为缺乏弹性; 如果是等于1, 则称为单位弹性. 对于富有弹性的商品, 则降低价格会增加销售额, 而对于缺乏弹性的商品, 降价则会导致销售额下降, 对于单位弹性的商品, 销售额不受价格变动的影响.
 \begin{theorem}\label{thm:thm1.8}
   设$\x(\p,y)$是消费者的Marshall需求方程组, 那么以下关系成立
   \begin{enumerate}[label=\arabic*.]
@@ -827,6 +834,8 @@ $\eta_i$衡量的是消费者收入变动1\%导致商品$i$需求量变动的百
   也即$-s_j=\sum_{i=1}^{n}s_i\epsilon_{ij}$, $j=1,\cdots,n$.
 \end{proof}
 以上定理表明, 如果以收入份额为权重, 那么收入弹性的加权和为1 (Engle加总), 而需求价格弹性的加权和必定呈现出某种特别方式 (Cournot加总).
+
+
 \chapter{消费者理论\rom{2}}
 \section{对偶性}
 \subsection{支出和消费者偏好}
@@ -1199,50 +1208,475 @@ $$(\p^1,y^1),(\p^2,y^2),\cdots,(\p^N,y^N)$$
 显然, 当商品数量$n=2$时, WARP和SARP是等价的. 进一步, SARP排除了不可传递的显示偏好, 因此可用于诱导出一个完备且传递的偏好关系$\succsim$, 对于这个偏好关系存在着能使可观测到的行为理性化的效用函数. 无论是在SARP假设还是在效用最大化假设下, 消费者的需求都是齐次的, 而且Slutsky矩阵都是半负定的和对称的.
 
 \newpage
-\section{不确定性}
+\section{不确定性下的选择}
 \subsection{偏好}
-之前我们假设消费者在他的消费集$X$中的所有消费束$\x$上拥有偏好关系. 在加入不确定性因素之后, 我们只要稍微变动一下视角即可. 我们将保留偏好关系的符号, 但我们不再假设消费者对消费束具有偏好关系, 而是对\textbf{赌博} (gamble)具有偏好关系. 更正式地说, 令$A=\{a_1,\cdots,a_n\}$表示结果 (outcome)的有限集, 这些$a_i$可以为消费束、金额数量或其它任何东西, 关键在于$a_i$本身涉及不确定性, 并且我们使用$A$作为赌博的基.
+之前我们假设消费者在他的消费集$X$中的所有消费束$\x$上拥有偏好关系. 在加入不确定性因素之后, 我们只要稍微变动一下视角即可. 我们将保留偏好关系的符号, 但我们不再假设消费者对消费束具有偏好关系, 而是对\textbf{彩票} (lottery)具有偏好关系. 更正式地说, 令$A=\{a_1,\cdots,a_n\}$表示结果 (outcome)的有限集, 这些$a_i$可以为消费束、金额数量或其它任何东西, 关键在于$a_i$本身涉及不确定性, 并且我们使用$A$作为彩票的基.
 
-例如令$A=\{1,-1\}$, 其中$1$代表赢得1元钱的结果, $-1$代表输掉1元钱的结果, 赌局就是投掷一枚质地均匀的硬币, 如果正面朝上则赢1元, 反之则输1元, 这两种结果发生的概率均为$1/2$. 
+例如令$A=\{1,-1\}$, 其中$1$代表赢得1元钱的结果, $-1$代表输掉1元钱的结果, 彩票代表投掷一枚质地均匀的硬币, 如果正面朝上则赢1元, 反之则输1元, 这两种结果发生的概率均为$1/2$.
 
-更一般地, \textbf{简单赌博} (simple gamble)对$A$中每个结果$a_i$赋予一个概率$p_i$, 显然每个$p_i$是非负的, 由于赌博必定导致$A$中某个结果发生, 因此$p_i$之和为1, 我们将简单赌博记为$(p_1\circ a_1,\cdots,p_n\circ a_n)$. 如果某个赌博的奖品也是赌博, 那么称这个赌博为\textbf{复合赌博} (compound gamble).
+更一般地, \textbf{简单彩票} (simple lottery)对$A$中每个结果$a_i$赋予一个概率$p_i$, 显然每个$p_i$是非负的, 由于彩票必定导致$A$中某个结果发生, 因此$p_i$之和为1, 我们将简单彩票记为$(p_1\circ a_1,\cdots,p_n\circ a_n)$. 如果某个彩票的奖品也是彩票, 那么称这个彩票为\textbf{复合彩票} (compound lottery).
 
-\begin{definition}[简单赌博]\label{def:def2.1}
-令$A=\{a_1,\cdots,a_n\}$表示结果集, 那么$A$上的简单赌博集为
-$$\mathcal{G}_S\equiv\left\{(p_1\circ a_1,\cdots,p_n\circ a_n)\left|p_i\ge0, \sum_{i=1}^{n}p_i=1\right.\right\}$$
+\begin{definition}[简单彩票]\label{def:def2.1}
+令$A=\{a_1,\cdots,a_n\}$表示结果集, 那么$A$上的简单彩票空间为
+$$\mathscr{L}_S\equiv\left\{(p_1\circ a_1,\cdots,p_n\circ a_n)\left|p_i\ge0, \sum_{i=1}^{n}p_i=1\right.\right\}$$
 \end{definition}
-特别地, 如果某些$p_i=0$, 那么就将相应的项从表达式中去掉. 如果对于每个$i$都有$p_i=1$, 那么将$1\circ a_i$简写为$a_i$, 表示必然发生结果$a_i$的赌博, 此时$\mathcal{G}_S$就包含了选择集$A$. 回到投掷硬币的例子中, 每个人都面对着简单赌博$(\frac{1}{2}\circ 1, \frac{1}{2}\circ -1)$.
+特别地, 如果某些$p_i=0$, 那么就将相应的项从表达式中去掉. 如果对于每个$i$都有$p_i=1$, 那么将$1\circ a_i$简写为$a_i$, 表示必然发生结果$a_i$的彩票, 此时$\mathscr{L}_S$就包含了选择集$A$. 回到投掷硬币的例子中, 每个人都面对着简单彩票$(\frac{1}{2}\circ 1, \frac{1}{2}\circ -1)$. 
 
-最后设$\mathcal{G}=\bigcup_{j=0}^\infty \mathcal{G}_j$表示全体赌博构成的集合, 其中$\mathcal{G}_0=A$, 并且$\mathcal{G}_j=\{(p_1\circ g^1,\cdots, p_k\circ g^k)|k\ge1; p_i\ge0, g^i\in \mathcal{G}_{j-1}, \forall i=1,\cdots,k; \sum_{i=1}^{k}p_i=1\}$.
-
-不确定情形下的选择的就是赌博. 与消费者理论对应, 假设决策制定者在赌博集$\mathcal{G}$上有偏好$\succsim$, 接下来还需要对决策制定者的偏好关系$\succsim$设置一组公理, 称为\textbf{不确定性下的选择公理} (axiom of choice under uncertainty).
+不确定情形下的选择的就是彩票. 与消费者理论对应, 假设决策制定者在彩票集$\mathscr{L}$上有偏好$\succsim$, 接下来还需要对决策制定者的偏好关系$\succsim$设置一组公理, 称为\textbf{不确定性下的选择公理} (axiom of choice under uncertainty).
 
 \begin{axiom}[完备性]\label{axi:axi2.1}
-对于$\mathcal{G}$中的任意两个赌博$g$和$g'$, 要么$g\succsim g'$, 要么$g'\succsim g$.
+对于$\mathscr{L}$中的任意两个彩票$L$和$L'$, 要么$L\succsim L'$, 要么$L'\succsim L$.
 \end{axiom}
 
 \begin{axiom}[传递性]\label{axi:axi2.2}
-对于$\mathcal{G}$中的任意三个赌博$g$, $g'$和$g''$, 如果$g\succsim g'$并且$g'\succsim g''$, 那么$g\succsim g''$.
+对于$\mathscr{L}$中的任意三个彩票$L$, $L'$和$L''$, 如果$L\succsim L'$并且$L'\succsim L''$, 那么$L\succsim L''$.
 \end{axiom}
 
-由于可以将$A$中的每个$a_i$视作$\mathcal{G}$中的退化赌博, 公理\ref{axi:axi2.1}和\ref{axi:axi2.2}意味着$A$的有限个元素可以被$
-\succsim$排序. 不失一般性, 假设我们已经对$A$的元素进行了标识, 从而$a_1\succsim a_2\succsim\cdots\succsim a_n$. 因此在所有赌博中, 最好的是以概率1产生结果$a_1$的赌博, 而最差的是以概率1产生结果$a_n$的赌博.
+由于可以将$A$中的每个$a_i$视作$\mathscr{L}$中的退化彩票, 公理\ref{axi:axi2.1}和\ref{axi:axi2.2}意味着$A$的有限个元素可以被$
+\succsim$排序. 不失一般性, 假设我们已经对$A$的元素进行了标识, 从而$a_1\succsim a_2\succsim\cdots\succsim a_n$. 因此在所有彩票中, 最好的是以概率1产生结果$a_1$的彩票, 而最差的是以概率1产生结果$a_n$的彩票.
 
 \begin{axiom}[连续性]\label{axi:axi2.3}
-对于$\mathcal{G}$中的任意赌博$g$, 存在某个概率$\alpha\in[0,1]$使得$g\sim (\alpha\circ a_1,(1-\alpha)\circ a_n)$.
+对于$\mathscr{L}$中的任意$L$, $L'$和$L''$, 集合$\{\alpha\in[0,1]:\alpha L+(1-\alpha)L'\succsim L''\}$和$\{\alpha\in[0,1]:L''\succsim \alpha L+(1-\alpha)L'\}$都是闭的.
 \end{axiom}
-举例来说, 假设$A=\{1000\text{元},100\text{元},\text{死亡}\}$, 对于绝大多数人都有$1000\text{元}\succ100\text{元}\succ\text{死亡}$, 但得到1000元需要开车出门去拿, 100元是送上门来, 而开车伴随着很小的死亡的正概率, 这样人就会在1000元和100元中进行选择. 倘若可以增加死亡概率直到这两个选择对某人来说是无差异的, 那么就是找到一个让她觉得无差异的概率.
+举例来说, 假设$A=\{1000\text{元},\text{死亡}\}$, 对于绝大多数人都有$1000\text{元}\succ\text{死亡}$, 但得到1000元需要开车出门去拿, 而开车伴随着很小的死亡的正概率, 这样人就会在1000元和呆在家里中进行选择, 而连续性公理表明“出门取钱”和“死于车祸”的组合比“呆在家里”更受偏好. 
 
-\begin{axiom}[单调性]\label{axi:axi2.4}
-对于所有概率$\alpha,\beta\in[0,1]$, $(\alpha\circ a_1,(1-\alpha)\circ a_n)\succsim (\beta\circ a_1,(1-\beta)\circ a_n)$当且仅当$\alpha\ge\beta$.
+事实上, 连续性公理排除了决策者对于某个发生概率为零的结果具有字典序偏好.
+
+\begin{axiom}[独立性]\label{axi:axi2.4}
+对于任意$L$, $L'$和$L''$以及$\alpha\in(0,1)$, 总有
+$$L\succsim L'\Longleftrightarrow \alpha L+(1-\alpha)L''\succsim \alpha L'+(1-\alpha)L''$$
 \end{axiom}
+独立性公理是不确定性下的选择理论的核心, 它与之前基于偏好选择的理论不同, 正是因为不确定性结构的存在.
 
-正如单调性要求的, 大多数人通常偏好以更高概率产生更好结果的赌博, 但事实未必总是如此. 例如, 对于长途跋涉的狩猎者来说, 死亡可能是这种行动的最差结果, 然而死亡的可能性增加了狩猎活动的刺激性. 因此, 狩猎者更喜欢较小死亡概率而不是绝对安全,这显然违背了单调性.
-\chapter{生产者理论}
+\begin{proposition}[复合彩票的简化]\label{pro:pro2.1}
+对于任意彩票$L\in\mathscr{L}$, 如果$(p_1\circ a_1,\cdots,p_n\circ a_n)$是由$L$产生的简单彩票, 那么$(p_1\circ a_1,\cdots,p_n\circ a_n)\sim L$.
+\end{proposition}
+例如$A=\{a_1,a_2\}$, 某复合彩票以概率$\alpha$产生结果$a_1$, 以概率$1-\alpha$产生彩票, 该彩票以概率$\beta$产生结果$a_1$, 以概率$1-\beta$产生结果$a_2$, 那么决策者认为复合彩票和它产生的简单彩票$((\alpha+(1-\alpha)\beta)\circ a_1, (1-\alpha)(1-\beta)\circ a_2)$是无差异的.
+
+\subsection{Von Neumann-Morgenstern效用函数}
+据我们对确定性条件下偏好的研究, 我们知道公理\ref{axi:axi2.1}和 \ref{axi:axi2.2}以及一些连续性假设应该足以保证存在着能代表$\succsim$的连续函数$u:\mathscr{L}\to\R$, 事实上, 不确定性选择公理的剩余部分则为这一函数提供了其它良好性质.
+\begin{definition}
+对于效用函数$u:\mathscr{L}\to\R$, 如果对于每一个$L\in\mathscr{L}$都有
+$$u(L)=\sum_{i=1}^{n}p_iu(a_i)$$
+其中$(p_1\circ a_1,\cdots,p_n\circ a_n)$是由$L$产生的简单彩票, 那么称$u$具有期望效用性质.
+\end{definition}
+我们说$u$具有\textbf{期望效用} (expected utility)性质, 等价于说$u$对每个彩票$L$指定了它可能产生的效用期望值, 其中$L$可能产生的每个效用伴随着该效用的实际概率, 并且$L$产生效用$u(a_i)$的实际概率正是$L$产生结果$a_i$的实际概率$p_i$.
+
+我们称具有期望效应性质的效用函数为Von Neumann-Morgenstern效用函数, 简记为VNM效用函数, 根据不确定性选择公理\ref{axi:axi2.1}-\ref{axi:axi2.4}, 可以证明VNM效用函数的存在性.
+
+\begin{theorem}[期望效用定理]
+  设$\mathscr{L}$上的偏好关系$\succsim$满足公理\ref{axi:axi2.1}-\ref{axi:axi2.4}, 那么在$\mathscr{L}$上存在能代表$\succsim$的VNM效用函数$u:\mathscr{L}\to\R$.
+\end{theorem}
+\begin{proof}
+  本质上需要证明对于任意$L, L'\in\mathscr{L}$, 总有
+  $$L\succsim L'\Longleftrightarrow\sum_{i=1}^{n}u_ip_i\geq \sum_{i=1}^{n}u_ip_i'$$
+  为简单起见, 假设$\mathscr{L}$中存在最好的彩票$\overbar{L}$和最差的彩票$\ubar{L}$, 也即对于任意$L\in\mathscr{L}$都有$\overbar{L}\succsim L\succsim \ubar{L}$. 如果$\overbar{L}\sim\ubar{L}$, 那么$\mathscr{L}$中的所有彩票都是无差异的, 结论自然成立, 现在只需假设$\overbar{L}\succ\ubar{L}$, 按以下6个步骤证明.
+
+  Step 1: 如果$L\succ L'$且$\alpha\in(0,1)$, 那么$g\succ \alpha L+(1-\alpha)L'\succ L'$.
+
+  根据独立性公理可以直接得到
+  $$L=\alpha L+(1-\alpha)L\succ \alpha L+(1-\alpha)L'\succ \alpha L'+(1-\alpha)L'=L'$$
+  这表明决策者对两个彩票非退化组合的偏好位置必定严格位于她对这两个彩票偏好之间.
+
+  Step 2: 对于$\alpha,\beta\in(0,1)$, 总有$\beta\overbar{L}+(1-\beta)\ubar{L}\succ \alpha\overbar{L}+(1-\alpha)\ubar{L}$当且仅当$\beta>\alpha$.
+
+  假设$\beta>\alpha$, 注意到
+  $$\beta\overbar{L}+(1-\beta)\ubar{g}=\gamma\overbar{L}+(1-\gamma)[\alpha\overbar{L}+(1-\alpha)\ubar{L}]$$
+  其中$\displaystyle\gamma=\frac{\beta-\alpha}{1-\alpha}\in[0,1]$. 根据Step 1可知$\overbar{L}\succ \alpha\overbar{L}+(1-\alpha)\ubar{L}$, 再次利用Step 1可知
+  $$\gamma\overbar{L}+(1-\gamma)[\alpha\overbar{L}+(1-\alpha)\ubar{L}]\succ \alpha\overbar{L}+(1-\alpha)\ubar{L}$$
+  这就证明了$\beta\overbar{L}+(1-\beta)\ubar{L}\succ \alpha\overbar{L}+(1-\alpha)\ubar{L}$.
+
+  反过来假设$\beta\leq\alpha$, 如果$\beta=\alpha$, 那么有$\beta\overbar{L}+(1-\beta)\ubar{L}\sim \alpha\overbar{L}+(1-\alpha)\ubar{L}$, 故而只需假设$\beta<\alpha$. 根据刚才的结论, 只需调换$\alpha$和$\beta$的位置即可得到$\alpha\overbar{L}+(1-\alpha)\ubar{L}\succ\beta\overbar{L}+(1-\beta)\ubar{L}$.
+  
+  Step 3: 对于任意$L\in\mathscr{L}$, 存在唯一的$\alpha_L$使得$[\alpha_L\overbar{L}+(1-\alpha_L)\ubar{L}]\sim L$.
+  
+  定义集合$\{\alpha\in[0,1]: \alpha\overbar{L}+(1-\alpha)\ubar{L}\succsim L\}$和$\{\alpha\in[0,1]: L\succsim \alpha\overbar{L}+(1-\alpha)\ubar{L}\}$, 根据$\succsim$的完备性和连续性可知它们都是闭集, 而且$\alpha\in[0,1]$至少位于这两个集合中的一个. 由于这两个集合非空且$[0,1]$是连通的, 因此存在某个$\alpha_L$使得$\alpha_L\overbar{L}+(1-\alpha_L)\ubar{L}\sim L$, 根据Step 2的结论可以得到$\alpha_L$的唯一性.
+  
+  Step 4: 如果函数$u:\mathscr{L}\to\R$对每一个$L\in\mathscr{L}$都能赋于$u(L)=\alpha_L$, 那么$u$可以代表偏好关系$\succsim$.
+  
+  根据Step 3可知, 对于任意$L, L'\in\mathscr{L}$总有
+  $$L\succsim L'\Longleftrightarrow \alpha_L\overbar{L}+(1-\alpha_L)\ubar{L}\succsim \alpha_{L'}\overbar{L}+(1-\alpha_{L'})\ubar{L}$$
+  因此根据Step 2有$L\succsim L'$当且仅当$\alpha_L\geq \alpha_{L'}$, 也即$u(L)\geq u(L')$.
+  
+  Step 5: 效用函数$u:\mathscr{L}\to\R$具有期望效用性质当且仅当它是线性的, 也即对于任意$k$个彩票, $(\alpha_1,\cdots,\alpha_k)\ge 0$和$\sum_{j=1}^k \alpha_j=1$, 总有
+  \begin{equation}\label{eq2.31}
+    u\left(\sum_{j=1}^{k}\alpha_j L_j\right)=\sum_{j=1}^{k}\alpha_ju(L_j)
+  \end{equation}
+  
+  假设$u:\mathscr{L}\to\R$满足式(\ref{eq2.31}), 可以将彩票$L=(p_1\circ a_1,\cdots, p_n\circ a_n)$作为退化彩票$(a_1,\cdots,a_n)$的凸组合, 也即$L=\sum_{i} p_ia_i$, 这里$i=1,\cdots,n$, 于是$u(L)=u(\sum_ip_ia_i)=\sum_ip_iu(a_i)$, 因此$u:\mathscr{L}\to\R$具有期望效用性质.
+  
+  假设$u:\mathscr{L}\to\R$具有期望效用性质, 对于任意复合彩票$(\alpha_1\circ L_1,\cdots,\alpha_k\circ L_k)$, 其中$L_j=(p_1^j\circ a_1,\cdots, p_n^j\circ a_n)$, 该复合彩票的退化彩票为$L'=\sum_j\alpha_jL_j$, 其中$j=1,\cdots,k$. 根据期望效用性质可知式(\ref{eq2.31})成立.
+  
+  Step 6: 对于任意$L\in\mathscr{L}$, 每个指定$u(L)=\alpha_L$的效用函数$u:\mathscr{L}\to\R$是线性的.
+  
+  根据Step 5可知, 只需证明对于任意$L$, $L'\in\mathscr{L}$和$\beta\in[0,1]$, 总有
+  $$u[\beta L+(1-\beta)L']=\beta u(L)+(1-\beta)u(L')$$
+  即可. 根据定义可知
+  $$L\sim u(L)\overbar{L}+[1-u(L)]\ubar{L}$$
+  以及
+  $$L'\sim u(L')\overbar{L}+[1-u(L')]\ubar{L}$$
+  再由独立性公理可得
+  \begin{align*}
+  \beta L+(1-\beta)L'&\sim\beta\{u(L)\overbar{L}+[1-u(L)]\ubar{L}\}+(1-\beta)L' \\
+  &\sim\beta\{u(L)\overbar{L}+[1-u(L)]\ubar{L}\}+(1-\beta)\{u(L')\overbar{L}+[1-u(L')]\ubar{L}\}
+  \end{align*}
+  也即在代数上等价于
+  $$\beta L+(1-\beta)L'\sim [\beta u(L)+(1-\beta)u(L')]\overbar{L}+[1-\beta u(L)-(1-\beta)u(L')]\ubar{L}$$
+  根据Step 4中对效用函数$u$的构造可得
+  $$u[\beta L+(1-\beta)L']=\beta u(L)+(1-\beta)u(L')$$
+  证明完毕.
+\end{proof}
+
+\begin{example}\label{exp:exp2.1}
+假定$A=\{10\text{元},4\text{元},-2\text{元}\}$, 分别记为$a_1$, $a_2$和$a_3$. 这里的最好结果是获得10元, 最差结果是损失2元, 并且这两个结构的概率未知, 但概率之和为1. 现在问消费者, 当获得10元的概率为多少时, 他才会认为我们构造的最好-最差彩票组合与以概率1得到$a_i$是无差异的?
+
+假定消费者回答
+\begin{align*}
+10\text{元}&\sim (1\circ 10\text{元}, 0\circ -2\text{元}) \\
+4\text{元}&\sim (0.6\circ 10\text{元}, 0.4\circ -2\text{元}) \\
+-2\text{元}&\sim (0\circ 10\text{元}, 1\circ -2\text{元})
+\end{align*}
+那么可以定义$u(10\text{元})=1$, $u(4\text{元})=0.6$, $u(-2\text{元})=0$, 最好结果的效用为1, 最差结果的效用为0, 而中间结果的效用取决于消费者对风险的态度. 可以看到, 消费者将以概率1获得4元, 与不确定条件获得5.2元的期望收入视作一样好, 说明他有规避风险的态度.
+
+以上信息已经足够我们对这些结果涉及的彩票进行排序, 考虑
+\begin{align*}
+L_1&=(0.2\circ 4\text{元}, 0.8\circ 10\text{元}) \\
+L_2&=(0.07\circ -2\text{元}, 0.03\circ 4\text{元}, 0.9\circ 10\text{元})
+\end{align*}
+如果消费者对彩票的偏好满足公理\ref{axi:axi2.1}-\ref{axi:axi2.4}, 根据VNM效用函数的性质可得
+\begin{align*}
+u(L_1)&=0.2u(4\text{元})+0.8u(10\text{元})=0.920 \\
+u(L_2)&=0.07u(-2\text{元})+0.03u(4\text{元})+0.9u(10\text{元})=0.918
+\end{align*}
+此时消费者对彩票$L_1$的期望效用大于$L_2$, 因此他必定偏好于$L_1$. 值得注意的是, 尽管期望收入$E(L_1)=8.8\text{元}<E(L_2)=8.98\text{元}$, 但消费者仍然偏好于$L_1$, 这是因为彩票$L_2$面临损失的风险过高.
+\end{example}
+
+\begin{example}[$\,$Allais悖论]
+假设有三种货币商品, 一等奖赢500万, 二等奖赢100万, 三等奖什么也没有, 将它们分别记作$a_1$, $a_2$和$a_3$. 假设彩票
+\begin{align*}
+L_1&=(0\circ a_1, 1\circ a_2, 0\circ a_3) \\
+L_1'&=(0.10\circ a_1,0.89\circ a_2, 0.01\circ a_3) \\
+L_2&=(0\circ a_1, 0.11\circ a_2, 0.89\circ a_3) \\
+L_2'&=(0\circ a_1, 0.10\circ a_2, 0.90\circ a_3)
+\end{align*}
+某人需要在$L_1$和$L_1'$之间, 以及$L_2$和$L_2'$之间进行选择. 
+
+根据期望效用理论, 倘若某人认为$L_1\succ L_1'$, 则可以用VNM效用函数表示为
+$$u(a_1)>0.10u(a_1)+0.89u(a_2)+0.01u(a_3)$$
+在两侧同时加上$0.89u(a_3)-0.89u(a_2)$得到
+$$0.11u(a_2)+0.89u(a_3)>0.10u(a_1)+0.90u(a_3)$$
+也即他必定认为$L_2\succ L_2'$. 
+
+然而, 根据实际的调查结果, 绝大多数人认为$L_1\succ L_1'$且$L_2'\succ L_2$, 这就和期望效用理论矛盾. 究其原因, 主要是在于独立性公理不成立, 期望效用理论不适用.
+
+\end{example}
+
+\begin{example}
+在确定性条件下的消费者理论中, 效用值本身只有序数含义, 也即效用函数的严格单调变化可以表示的偏好关系$\succsim$是相同的, 然而与代表消费者对彩票偏好的VNM效用函数来说, 效用值具有基数含义.
+
+为了看到这一点, 假设$A=\{a,b,c\}$且$a\succ b \succ c$, 那么由偏好关系$\succsim$的完备性和连续性可知存在$p\in (0,1)$使得
+$$b\sim (p\circ a, (1-p\circ c)$$
+令$u$是能代表$\succsim$的VNM效用函数, 那么
+$$u(b)=u[p\circ a, (1-p)\circ c]=pu(a)+(1-p)u(c)$$
+从而
+$$\frac{u(a)-u(b)}{u(b)-u(c)}=\frac{1-\alpha}{\alpha}$$
+也即对于具有期望效用形式的效用函数来说, 效用之差是有含义的.
+
+显然, 对于任何 VNM效用函数, 它的严格递增变换很有可能不再是个VNM效用函数 (它仍是一个效用函数, 但是不具有期望效用性质). 下面的定理表明, 如果我们想让它的单调变换也具有期望效用性质, 那么我们只能进行正仿射变换.
+\end{example}
+\begin{theorem}
+  假设$u:\mathscr{L}\to\R$是代表$\mathscr{L}$上的偏好关系$\succsim$的VNM效用函数, 那么$\tilde{u}$是$\mathscr{L}$上关于$\succsim$的另一个VNM效用函数, 当且仅当存在$\beta>0$和$\gamma\in\R$, 使得对于任意$L\in\mathscr{L}$都有$\tilde{u}(L)=\beta u(L)+\gamma$.
+\end{theorem}
+\begin{proof}
+  在简单彩票空间$\mathscr{L}$中选取$\overbar{L}$和$\ubar{L}$, 使得对于任意$L\in\mathscr{L}$都有$\overbar{L}\succ L\succ \ubar{L}$. 
+  
+  设$(p_1\circ a_1,\cdots,p_n\circ a_n)$是由$L\in\mathscr{L}$产生的简单彩票, $L$可以视为退化彩票$(a_1,\cdots,a_n)$的凸组合, 也即$L=\sum_i p_ia_i$, 再设$u$是$\mathscr{L}$上关于$\succsim$的VNM效用函数, 于是
+  \begin{align*}
+  \tilde{u}(L)&=\beta u(L)+\gamma=\beta\left[\sum_{i=1}^{n}p_iu(a_i)\right]+\gamma \\
+  &=\sum_{i=1}^{n}p_i[\beta u(a_i)+\gamma]=\sum_{i=1}^{n}p_i\tilde{u}(a_i)
+  \end{align*}
+  根据上一定理中的Step 5可知效用函数$\tilde{u}$具有期望效用性质, 因此是VNM效用函数.
+  
+  反过来, 需要证明如果$\tilde{u}$和$u$具有相同的期望效用形式, 那么存在$\beta>0$和$\gamma\in\R$, 使得对于一切$L\in\mathscr{L}$都有$\tilde{u}(L)=\beta u(L)+\gamma$.
+  
+  任取$L\in\mathscr{L}$, 将$\lambda_L\in[0,1]$定义为
+  $$u(L)=\lambda_Lu(\overbar{L})+(1-\lambda_L)u(\ubar{L})$$
+  故而
+  \begin{equation}\label{eq2.32}
+    \lambda_L=\frac{u(L)-u(\ubar{L})}{u(\overbar{L})-u(\ubar{L})}
+  \end{equation}
+  由于$u$是VNM效用函数, 故而$\lambda_Lu(\overbar{L})+(1-\lambda_L)u(\ubar{L})=u[\lambda_L\overbar{L}+(1-\lambda_L)\ubar{L}]$, 又因为$u$可以代表偏好关系$\succsim$, 因此$L\sim \lambda_L\overbar{L}+(1-\lambda_L)\ubar{L}$. 这样的话, 由于$\tilde{u}$也是VNM效用函数且代表相同的偏好, 那么
+  \begin{align*}
+  \tilde{U}(L)&=\tilde{u}[\lambda_L\overbar{L}+(1-\lambda_L)\ubar{L}] \\
+  &=\lambda_L\tilde{u}(\overbar{L})+(1-\lambda_L)\tilde{u}(\ubar{L}) \\
+  &=\lambda_L[\tilde{u}(\overbar{L})-\tilde{u}(\ubar{L})]+\tilde{u}(\ubar{L})
+  \end{align*}
+  将式(\ref{eq2.32})代入后得$\tilde{u}(L)=\beta u(L)+\gamma$, 其中
+  $$\beta=\frac{\tilde{u}(\overbar{L})-\tilde{u}(\ubar{L})}{u(\overbar{L})-u(\ubar{L})},\quad \gamma=\tilde{u}(\ubar{L})-u(\ubar{L})\frac{\tilde{u}(\overbar{L})-\tilde{u}(\ubar{L})}{u(\overbar{L})-u(\ubar{L})}$$
+
+\end{proof}
+
+\subsection{决策者的风险态度}
+在示例\ref{exp:exp2.1}中, 我们构造的VNM效用函数反映了消费者具有规避风险的愿望, 现在可以将其正式地定义为\textbf{风险厌恶} (risk aversion).
+
+考虑结果集$A=\R_+$, 尽管结果集包含不可数个结果, 但我们假定只对有限多个结果指定严格为正的概率, 此时的简单彩票形式为$(p_1\circ w_1,\cdots,p_n\circ w_n)$, 这里的$n$为某个正整数, $w$代表非负财富水平, 非负概率$p_1,\cdots,p_n$之和为1. 最后, 假设VNM效用函数是可微的, 并且$u'(w)>0$.
+
+\begin{remark}
+事实上, 由于财富水平是连续变量, 我们可以将彩票空间$\mathscr{L}$视为非负财富量$w$的所有分布函数$F(w)$构成的集合, 将她的理性偏好$\succsim$定义在$\mathscr{L}$上, 并使用Lebesgue积分来定义VNM效用函数, 这是更一般化的表达.
+\end{remark}
+
+现在我们考察 VNM效用函数与决策者的风险态度之间的关系, 对于以概率$p_i$产生结果$w_i$的彩票$L$, 它的期望收入为$E(L)=\sum_{i=1}^{n}p_iw_i$. 现在决策者有两个选择, 一是选择彩票$L$, 二是以概率1得到彩票$L$的期望值. 如果$u$是决策者的VNM效用函数, 那么
+\begin{align*}
+u(L)&=\sum_{i=1}^{n}p_iu(w_i) \\
+u(E(L))&=u\left(\sum_{i=1}^{n}p_iw_i\right)
+\end{align*}
+分别为彩票$L$的VNM效用及彩票$L$期望值的VNM效用. 如果决策者满足公理\ref{axi:axi2.1}-\ref{axi:axi2.4}, 那么她的偏好能带来更高期望效用的选择. 当某个人宁可接受赌博的期望值 (这个期望值是确定性的), 而不愿意面对该赌博内在的风险时, 我们说她是风险厌恶的.
+
+\begin{definition}[风险态度的分类]
+设$u$是决策者对基于非负财富水平彩票的VNM效用函数, 对于简单彩票$L=(p_1\circ w_1,\cdots, p_n\circ w_n)$, 我们称决策者在$L$上是
+\begin{enumerate}[\arabic*.]
+  \item 风险厌恶的, 如果$u(E(L))>u(L)$;
+  \item 风险中性的, 如果$u(E(L))=u(L)$;
+  \item 风险喜爱的, 如果$u(E(L))<u(L)$.
+\end{enumerate}
+\end{definition}
+容易证明, 消费者是风险厌恶的、风险中性的或风险喜爱的, 当且仅当他的VNM效用函数在合适的定义域上是凹的、线性的或凸的. 我们考虑涉及两个结果的一个简单彩票
+$$L=(p\circ w_1,(1-p)\circ w_2)$$
+那么选择$L$的VNM效用为
+$$u(L)=pu(w_1)+(1-p)u(w_2)$$
+选择以概率1获得财富$E(L)$的VNM效用为
+$$u(E(L))=u(pw_1+(1-p)w_2)$$
+如果消费者是风险厌恶的, 那么VNM效用函数是凹的, 并且$u(E(L))>u(L)$. 
+
+这可由图\ref{fig2.5}来表示, 其中点$R$的坐标为$(w_1,u(w_1))$, 点$S$的坐标为$(w_2,u(w_2))$, 这两点的凸组合$T=pR+(1-p)S$, 则$T$的横坐标为$E(L)$, 纵坐标为$u(L)$, 由VNM效用函数的凹性立即可得$u(E(L))>u(L)$.
+
+\begin{figure}[htbp!]
+  \centering
+  \includegraphics[width=10cm]{fig2-5.pdf}
+  \caption{风险厌恶及严格凹的VNM效用函数}\label{fig2.5}
+\end{figure}
+
+\begin{definition}[确定性等价与风险溢价]
+任何定义在财富水平上的简单彩票的确定性等价是确定性地提供财富CE, 使得$u(L)=u(\text{CE})$. 风险溢价是一定量的财富水平$P$, 使得$u(L)=u(E(L)-P)$. 显然, $P=E(L)-\text{CE}$.
+\end{definition}
+
+\begin{example}
+假设$u(w)=\ln w$, 由于这个函数是严格凹的, 因此消费者风险厌恶. 假设消费者的初始财富为$w_0$, 彩票$L=(0.5\circ (w_0+h), 0.5\circ (w_0-h))$, 那么$E(L)=w_0$, $L$的确定性等价必定满足
+$$\ln \text{CE}=0.5\ln (w_0+h)+0.5\ln (w_0-h)=0.5\ln (w_0^2-h^2)$$
+因此$\text{CE}=\sqrt{w_0^2-h^2}<E(L)$, 并且$P=w_0-\sqrt{w_0^2-h^2}>0$.
+\end{example}
+
+很多时候, 我们不仅向知道某个人是否厌恶风险, 而且想知道他厌恶风险的程度, 下面给出它的数学刻画. 假设消费者的初始财富为$w$, 彩票$L=(p\circ (w+h), (1-p)\circ (w-h))$, 于是VNM效用函数
+\begin{equation}\label{eq2.33}
+  u(w)=pu(w+h)+(1-p)u(w-h)
+\end{equation}
+将$u(w+h)$和$u(w-h)$分别在$w$处二阶Taylor展开得到
+\begin{align*}
+u(w+h)&=u(w)+hu'(w)+\frac{h^2}{2}u''(w)+o(h^2) \\
+u(w-h)&=u(w)-hu'(w)+\frac{h^2}{2}u''(w)+o(h^2)
+\end{align*}
+忽略高阶余项后将其代入到式(\ref{eq2.33})有
+$$u(w)=p\left[u(w)+hu'(w)+\frac{h^2}{2}u''(w)\right]+(1-p)\left[u(w)-hu'(w)+\frac{h^2}{2}u''(w)\right]$$
+从中可以解出
+$$p=\frac{1}{2}+\frac{h}{4}\left[-\frac{u''(w)}{u'(w)}\right]$$
+这里的$p$就可以视为对决策者风险厌恶的度量, 越大的$p$值可以吸引越多的决策者购买彩票.
+\begin{definition}[Arrow-Pratt风险测度]
+设效用函数$u:\R_+\to \R$二阶可微, 则Arrow-Pratt风险测度为
+$$R_a(w)=-\frac{u''(w)}{u'(w)}$$
+又称为绝对风险厌恶系数.
+\end{definition}
+可以证明, 当消费者厌恶风险、风险中性或喜爱风险时, $R_a(w)$的符号分别为正、零或负, 而且效用函数的任何正仿射变换都不会改变这个测度. 
+
+现在考虑彩票带来的损益与决策者的初始财富$w$成正比, 也即彩票为$L=(p\circ (w+\theta w),(1-p)\circ (w-\theta w))$, 于是
+$$u(w)=pu(w+\theta w)+(1-p)u(w-\theta w)$$
+运用Taylor展开的技术可得
+$$p=\frac{1}{2}+\frac{\theta}{4}\left[-\frac{wu''(w)}{u'(w)}\right]$$
+我们称
+$$R_R(w)=-\frac{wu''(w)}{u'(w)}$$
+为\textbf{相对风险厌恶系数}. 
+
+\begin{example}
+假设某车主厌恶风险, 她的初始财富为$w_0$, VNM效用函数为$u$且二阶可微, 现在她需要决定是否购买车险. 假设她遭遇车祸的概率为$\alpha\in(0,1)$, 车祸损失为$l$, 则在公平的保险价格下, 她应该购买保险金额为多少的保险?
+
+设$\rho$表示为1元保险金额的保险费, 也即花费$\rho$元购买保险, 风险发生时保险公司赔付1元钱, 于是保险公司的期望利润为$\alpha(\rho-1)+(1-\alpha)\rho$, 公平的保险价格要求保险公司利润为0, 解得$\rho=\alpha$, 也即每1元钱保险金额的保险费为$\alpha$.
+
+设她购买的保险金额为$x$, 由于车主追求利润最大化, 因此期望效用
+$$\alpha u(w_0-\alpha x-l+x)+(1-\alpha)u(w_0-\alpha x)$$
+应该最大, 将上式关于$x$微分, 并令微分为0可得
+$$(1-\alpha)\alpha u'(w_0-\alpha x-l+x)-\alpha(1-\alpha)u'(w_0-\alpha x)=0$$
+也即
+$$u'(w_0-\alpha x-l+x)=u'(w_0-\alpha x)$$
+由于该车主是风险厌恶的, 因此$u''(w)<0$, 从而$u'(w)$单调递减, 因此
+$$w_0-\alpha x-l+x=w_0-\alpha x$$
+最终得到$x=l$, 也即在保险价格为精算公平价格下, 厌恶风险的个人将购买刚好覆盖全部损失的足额保险.
+\end{example}
+
+\begin{example}
+假设某位投资者的初始资产为$w$, 风险资产的回报率为$r_i$ (可正可负), 每种回报结果发生的概率为$p_i>0$并且$\sum_{i=1}^{n}p_i=1$. 假设该投资者花了$\beta$购买风险资产, 则他在结果$i$下的财富变为
+$$(w-\beta)+(1+r_i)\beta=w+\beta r_i$$
+投资者的问题是选择合适的$\beta$, 使得财富带来的期望效用最大化, 也即
+\begin{equation}\label{eq2.34}
+  \max_\beta \sum_{i=1}^{n}p_iu(w+\beta r_i)\quad \text{s.t.}\quad 0\leq \beta\leq w
+\end{equation}
+其中$u$为二阶可微的VNM效用函数. 
+
+首先明确投资者何时不投资任何风险资产, 此时$\beta^\ast=0$, 将式(\ref{eq2.34})的期望效用对$\beta$微分, 然后求微分在$\beta^\ast=0$的值可得
+$$\sum_{i=1}^{n}p_ir_iu'(w+\beta^\ast r_i)=u'(w)\sum_{i=1}^{n}p_ir_i\leq 0$$
+由于$u'(w)$严格为正, 因此当且仅当风险资产的期望回报非正时, 风险厌恶的投资者不会购买风险资产. 
+
+现在假设风险资产的期望回报为正, 这意味着$\beta^\ast\neq 0$, 假设$\beta^\ast<w$, 故而内部最优解的一阶条件和二阶条件为
+\begin{equation}\label{eq2.35}
+  \sum_{i=1}^{n}p_ir_iu'(w+\beta^\ast r_i)=0
+\end{equation}
+以及
+\begin{equation}\label{eq2.36}
+\sum_{i=1}^{n}p_ir_i^2u''(w+\beta^\ast r_i)<0
+\end{equation}
+其中二阶条件用到了$u$关于$\beta$是凹函数的这一事实.
+
+当投资者的财富水平增加时, 他用于购买风险资产的财富量将会发生什么样的变化? 可以证明, 随着财富水平的增加, 投资者将增加购买风险资产的绝对财富量, 也即风险资产是正常品而非劣等品.
+
+将$\beta^\ast$视作$w$的函数, 在式(\ref{eq2.35})两端求$\beta^\ast$关于$w$的微分得到
+\begin{equation}\label{eq2.37}
+  \frac{\text{d}\beta^\ast}{\text{d}w}=-\frac{\sum_{i=1}^{n}p_ir_iu''(w+\beta^\ast r)}{\sum_{i=1}^{n}p_ir_i^2u''(w+\beta^\ast r)}
+\end{equation}
+风险厌恶保证了式(\ref{eq2.37})的分母为负, 因此当且仅当分子部分为正时, 风险资产是正常品, 这要求投资者是绝对风险厌恶递减的.
+
+注意到恒等式
+$$u''(w+\beta^\ast r_i)r_i=R_a(w+\beta^\ast r_i)u'(w+\beta^\ast r_i)r_i$$
+在绝对风险厌恶递减下, 当$r_i>0$时有$R_a(w)>R_a(w+\beta^\ast r_i)$, 当$r_i<0$时有$R_a(w)<R_a(w+\beta^\ast r_i)$, 因此总有
+\begin{equation}\label{eq2.38}
+  R_a(w)r_i>R_a(w+\beta^\ast r_i)r_i
+\end{equation}
+由式(\ref{eq2.37})和(\ref{eq2.38})可得
+$$u''(w+\beta^\ast r_i)r_i>-R_a(w)u'(w+\beta^\ast r_i)r_i$$
+上式两端取期望得到
+$$\sum_{i=1}^{n}p_ir_iu''(w+\beta^\ast r_i)>-R_a(w)\sum_{i=1}^{n}p_ir_iu'(w+\beta^\ast r_i)=0$$
+这就完成了证明.
+
+\end{example}
+\subsection{随机占优}
+期望效用理论给了我们判断随机回报在投资者眼中孰优孰劣的依据, 但期望效用依赖于投资者的偏好, 我们在这里想问的问题是, 有没有一种不依赖于投资者的偏好而比较两个随机回报的方法? 
+
+更具体地, 有没有办法说一个随机回报比另一个回报更好, 从而使得所有投资者 (即使是风险厌恶者)都偏好于前者? 有没有办法说一个随机回报比另一个回报风险更低, 从而使得所有风险厌恶的投资者都偏好于前者? 本节介绍的\textbf{随机占优 }(stochastic dominance)理论就可以回答这些问题.
+
+我们知道财富$w$的累积分布函数$F(w)$可以用来描述彩票, 例如彩票
+$$L=(0.25\circ 1, 0.5\circ 4, 0.25\circ 6)$$
+可用
+$$F(w)=\begin{cases}
+         0, & w\in (-\infty,1) \\
+         0.25, & w\in [1,4) \\
+         0.75, & w\in [4,6) \\
+         1, & w\in[6,\infty)
+       \end{cases}$$
+进行表示, 其中$U(w)$是非负财富水平的效用函数 (称为Bernoulli效用函数), 并且它是递增且连续的, 称为Bernoulli效用函数. 对于财富水平$w$, $F(w)$是获取小于等于财富水平$w$的概率.
+
+\begin{definition}[一阶随机占优]
+对于两个随机分布$F$和$G$, 如果对于任意非减函数$u:\R\to\R$都有
+$$\int U(w)\,\text{d}F(w)\geq \int U(w)\,\text{d}G(w)$$
+那么$F$对$G$是一阶随机占优的 (First Stochastic Dominance, FSD).
+\end{definition} 
+FSD表明随机分布$F$产生的报酬明确地比分布$G$的报酬更高, 也即对于每个财富水平$w$, 在$F$下得到财富$w$的概率大于等于在$G$下得到的概率.
+
+\begin{theorem}
+  累计分布$F$一阶随机占优于$G$, 当且仅当对于每个$w$都有$F(w)\leq G(w)$.
+\end{theorem}
+\begin{proof}
+  给定$F$和$G$, 再令$H(w)=F(w)-G(w)$. 假设对于某个$\overbar{w}$有$H(\overbar{w})>0$, 那么可以定义非减函数
+  $$U(w)=\begin{cases}
+           1, & w>\overbar{w} \\
+           0, & w\leq\overbar{w}
+         \end{cases}$$
+  于是
+  $$\int U(w)\,\text{d}H(w)=-H(\overbar{w})<0$$
+  这就证明了必要性部分.
+  
+  现在来看充分性的部分, 首先不加证明地指出只要我们能够证明相应等价关系对于可微效用函数$u(w)$成立就足够了. 根据分部积分法可得
+  $$\int U(w)\,\text{d}H(w)=\left.U(w)H(w)\right|_0^\infty-\int U'(w)H(w)\,\text{d}w$$
+  由于$\displaystyle \lim_{w\to\infty}H(w)=0$且$H(0)=0$, 故而上式第一项为0. 另一方面, 假设$H(w)\leq0$且$U(w)$是递增的, 故而$\int U'(w)H(w)\,\text{d}w\leq0$, 由此可得上式第二项大于等于0, 因此
+  $$\int U(w)\,\text{d}H(w)\ge0$$
+  这就完成了证明.
+\end{proof}
+以上定理表明, 对于所有人, 不管他是风险厌恶还是风险喜爱, 都会对一阶随机占优的分布有更高的期望效用水平. 换言之, 在两个随机收益之间如果存在一阶随机占优的关系, 所有人都会选择一阶随机占优的那个随机收益.
+\begin{example}
+对于彩票$L_1=(0.4\circ 1, 0.3\circ 2, 0.3\circ 3)$和$L_2=(0.4\circ 1, 0.5\circ2, 0.1\circ 3)$, $L_1$和$L_2$的期望收入分别为190和170, 但彩票$L_1$的收益方差大于$L_2$的, 因此无法在均值方差框架下对$L_1$和$L_2$排序. 然而, 这两个彩票的累积分布函数为
+$$F(w)=\begin{cases}
+         0, & w\in (-\infty,1) \\
+         0.4, & w\in [1,2) \\
+         0.7, & w\in [2,3) \\
+         1, & w\in[3,\infty)
+       \end{cases},\quad G(w)=\begin{cases}
+         0, & w\in (-\infty,1) \\
+         0.4, & w\in [1,2) \\
+         0.9, & w\in [2,3) \\
+         1, & w\in[3,\infty)
+       \end{cases}$$
+因此$F$关于$G$是一阶随机占优的.
+\end{example}
+
+FSD涉及的思想是“较高/较好”对“较低/较差”, 下面我们试图引入另外一种比较方法, 这种方法建立在相对风险或者相对分散度上, 称为二阶随机占优.
+
+\begin{definition}[二阶随机占优]
+给定两个分布$F$和$G$, 它们的均值相同, 如果对于每个非减的凹函数$U:\R_+\to\R$都有
+$$\int U(w)\,\text{d}F(w)\geq\int U(w)\,\text{d}G(w)$$
+那么$F$对$G$是二阶随机占优的 (Second Stochastic Dominance, SSD), 或者说$F$的风险小于$G$.
+\end{definition}
+
+根据随机占优的定义, FSD意味着SSD, 但是反过来SSD并不一定意味着FSD. 例如对于随机变量$X_i\in \mathcal{N}(0,\sigma_i^2)$, $i=1,2$, $\sigma_1^2<\sigma_2^2$, 可以证明$F_{X_1}$二阶随机占优于$F_{X_2}$, 但$F_{X_1}$并不一阶随机占优于$F_{X_2}$.
+
+\begin{definition}[保均展形]
+随机变量$w$是随机变量$x$的保均展形 (mean-preserving spread), 当且仅当存在随机变量$z$使得$w=x+z$, 且对$x$的任意实现值$\tilde{x}$都有$E(z|\tilde{x})=0$.
+\end{definition}
+
+\begin{example}
+考虑随机变量
+$$x=\begin{cases}
+      4, & p=0.5 \\
+      1, & p=0.5
+    \end{cases},\quad z=\begin{cases}
+                          1, & p=0.5 \\
+                          -1, & p=0.5
+                        \end{cases}$$
+从而随机变量
+$$w=x+z=\begin{cases}
+          5, & p=0.25 \\
+          3, & p=0.25 \\
+          2, & p=0.25 \\
+          0, & p=0.25
+        \end{cases}$$
+尽管$E(x)=E(w)=2.5$, 但是$w$的风险看起来更大一些.
+\end{example}
+
+\begin{theorem}
+  对于累计分布$F$和$G$, 如果它们的均值相等, 那么$F$二阶随机占优于$G$, 当且仅当$G$是$F$的保均展形.
+\end{theorem}
+这里不加证明地给出此定理, 表明如果两个随机收益之间存在二阶随机占优的关系, 那么所有风险厌恶者都会选择二阶随机占优的那个随机收益, 可见二阶随机占优是比一阶随机占优更弱的比较关系.
+
+\chapter{厂商理论}
+\section{生产}
+厂商是将生产要素转变为产品的过程. 厂商在生产过程中必须面对的基本现实是技术可行性, 技术状况决定和限制了如何联合要素生产产品. 
+
+一般地, 厂商有一个\textbf{生产可能集} (production possibility set), 记作$Y\subset\R^m$, 并且$Y$中的每个向量$\mathbold{y}=(y_1,\cdots,y_m)'$称为一个\textbf{生产计划} (production plan), 每一个分量表示生产过程中的投入品或产出品, 我们用正数表示产出, 负数表示投入, 零表示该元素在生产过程中没有被用到. 尽管目前描述厂商技术的最一般方法是生产可能集, 我们通常考虑的是企业使用多种投入生产一种产品的情形, 此时使用\textbf{生产函数} (production function)描述企业的技术更为方便.
+
+当使用多种生产要素来生产一种商品时, 可以用$y$表示产量, $x_i$表示生产要素$i$的投入量, $\x=(x_1,\cdots,x_n)$表示整个生产要素投入向量. 通常, 我们假设投入向量和产量必须非负, 也即要求$\x\ge \mathbf{0}$和$y\ge0$. 当我们写下$y=f(\x)$时, 我们的意思是说使用投入向量$\x$最多可以生产$y$单位产品. 此外, 我们还需要对生产函数施加一定限制.
+
+\begin{definition}
+生产函数$f:\R_n^+\to\R$在$\R_n^+$上是连续、严格递增和严格拟凹的, 并且$f(\mathbf{0})=0$.
+\end{definition}
+
+$f$的连续性是说投入向量的微小变化导致的产量变化也是微小的, 我们要求$f$为严格递增的, 目的是保证如果每种要素的投入量都严格增加, 则产量也严格增加. $f$为严格拟凹的, 则主要出于简化分析的需要. 与消费者的偏好为严格凸的假设类似. 当然, 如果不使用这条假设也可以, 它对我们的结论没有多大的影响. 最后, $f(\mathbf{0})=0$表明正的产量要求某些要素的投入量是正的.
+
+如果还假设生产函数是可微的, 则它的偏导数$\partial f(\x)/\partial x_i$称为要素$i$的\textbf{边际产量} (marginal production), 它表示其它要素投入品不变时, 额外多使用一单位要素$i$所增加的产量. 由于生产函数$f$总是严格递增的, 因此$\partial f(\x)/\partial x_i>0$对几乎所有投入向量都成立, 表明投入品越多, 产量越高.
 
 \chapter{局部均衡}
 
 \chapter{一般均衡}
 
 \chapter{社会选择与福利}
+
+\chapter{博弈论}
+
+\chapter{信息经济学}
+
+\chapter{拍卖与机制设计}
 \end{document} 
