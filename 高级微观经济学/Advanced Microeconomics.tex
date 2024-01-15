@@ -1255,7 +1255,7 @@ $$L\succsim L'\Longleftrightarrow \alpha L+(1-\alpha)L''\succsim \alpha L'+(1-\a
 \end{proposition}
 例如$A=\{a_1,a_2\}$, 某复合彩票以概率$\alpha$产生结果$a_1$, 以概率$1-\alpha$产生彩票, 该彩票以概率$\beta$产生结果$a_1$, 以概率$1-\beta$产生结果$a_2$, 那么决策者认为复合彩票和它产生的简单彩票$((\alpha+(1-\alpha)\beta)\circ a_1, (1-\alpha)(1-\beta)\circ a_2)$是无差异的.
 
-\subsection{Von Neumann-Morgenstern效用函数}
+\subsection{von Neumann-Morgenstern效用函数}
 据我们对确定性条件下偏好的研究, 我们知道公理\ref{axi:axi2.1}和 \ref{axi:axi2.2}以及一些连续性假设应该足以保证存在着能代表$\succsim$的连续函数$u:\mathscr{L}\to\R$, 事实上, 不确定性选择公理的剩余部分则为这一函数提供了其它良好性质.
 \begin{definition}
 对于效用函数$u:\mathscr{L}\to\R$, 如果对于每一个$L\in\mathscr{L}$都有
@@ -1264,10 +1264,10 @@ $$u(L)=\sum_{i=1}^{n}p_iu(a_i)$$
 \end{definition}
 我们说$u$具有\textbf{期望效用} (expected utility)性质, 等价于说$u$对每个彩票$L$指定了它可能产生的效用期望值, 其中$L$可能产生的每个效用伴随着该效用的实际概率, 并且$L$产生效用$u(a_i)$的实际概率正是$L$产生结果$a_i$的实际概率$p_i$.
 
-我们称具有期望效应性质的效用函数为Von Neumann-Morgenstern效用函数, 简记为VNM效用函数, 根据不确定性选择公理\ref{axi:axi2.1}-\ref{axi:axi2.4}, 可以证明VNM效用函数的存在性.
+我们称具有期望效应性质的效用函数为von Neumann-Morgenstern效用函数, 简记为vNM效用函数, 根据不确定性选择公理\ref{axi:axi2.1}-\ref{axi:axi2.4}, 可以证明vNM效用函数的存在性.
 
 \begin{theorem}[期望效用定理]
-  设$\mathscr{L}$上的偏好关系$\succsim$满足公理\ref{axi:axi2.1}-\ref{axi:axi2.4}, 那么在$\mathscr{L}$上存在能代表$\succsim$的VNM效用函数$u:\mathscr{L}\to\R$.
+  设$\mathscr{L}$上的偏好关系$\succsim$满足公理\ref{axi:axi2.1}-\ref{axi:axi2.4}, 那么在$\mathscr{L}$上存在能代表$\succsim$的vNM效用函数$u:\mathscr{L}\to\R$.
 \end{theorem}
 \begin{proof}
   本质上需要证明对于任意$L, L'\in\mathscr{L}$, 总有
@@ -1345,7 +1345,7 @@ $$u(L)=\sum_{i=1}^{n}p_iu(a_i)$$
 L_1&=(0.2\circ 4\text{元}, 0.8\circ 10\text{元}) \\
 L_2&=(0.07\circ -2\text{元}, 0.03\circ 4\text{元}, 0.9\circ 10\text{元})
 \end{align*}
-如果消费者对彩票的偏好满足公理\ref{axi:axi2.1}-\ref{axi:axi2.4}, 根据VNM效用函数的性质可得
+如果消费者对彩票的偏好满足公理\ref{axi:axi2.1}-\ref{axi:axi2.4}, 根据vNM效用函数的性质可得
 \begin{align*}
 u(L_1)&=0.2u(4\text{元})+0.8u(10\text{元})=0.920 \\
 u(L_2)&=0.07u(-2\text{元})+0.03u(4\text{元})+0.9u(10\text{元})=0.918
@@ -1363,7 +1363,7 @@ L_2'&=(0\circ a_1, 0.10\circ a_2, 0.90\circ a_3)
 \end{align*}
 某人需要在$L_1$和$L_1'$之间, 以及$L_2$和$L_2'$之间进行选择. 
 
-根据期望效用理论, 倘若某人认为$L_1\succ L_1'$, 则可以用VNM效用函数表示为
+根据期望效用理论, 倘若某人认为$L_1\succ L_1'$, 则可以用vNM效用函数表示为
 $$u(a_1)>0.10u(a_1)+0.89u(a_2)+0.01u(a_3)$$
 在两侧同时加上$0.89u(a_3)-0.89u(a_2)$得到
 $$0.11u(a_2)+0.89u(a_3)>0.10u(a_1)+0.90u(a_3)$$
@@ -1374,30 +1374,30 @@ $$0.11u(a_2)+0.89u(a_3)>0.10u(a_1)+0.90u(a_3)$$
 \end{example}
 
 \begin{example}
-在确定性条件下的消费者理论中, 效用值本身只有序数含义, 也即效用函数的严格单调变化可以表示的偏好关系$\succsim$是相同的, 然而与代表消费者对彩票偏好的VNM效用函数来说, 效用值具有基数含义.
+在确定性条件下的消费者理论中, 效用值本身只有序数含义, 也即效用函数的严格单调变化可以表示的偏好关系$\succsim$是相同的, 然而与代表消费者对彩票偏好的vNM效用函数来说, 效用值具有基数含义.
 
 为了看到这一点, 假设$A=\{a,b,c\}$且$a\succ b \succ c$, 那么由偏好关系$\succsim$的完备性和连续性可知存在$p\in (0,1)$使得
 $$b\sim (p\circ a, (1-p\circ c)$$
-令$u$是能代表$\succsim$的VNM效用函数, 那么
+令$u$是能代表$\succsim$的vNM效用函数, 那么
 $$u(b)=u[p\circ a, (1-p)\circ c]=pu(a)+(1-p)u(c)$$
 从而
 $$\frac{u(a)-u(b)}{u(b)-u(c)}=\frac{1-\alpha}{\alpha}$$
 也即对于具有期望效用形式的效用函数来说, 效用之差是有含义的.
 
-显然, 对于任何 VNM效用函数, 它的严格递增变换很有可能不再是个VNM效用函数 (它仍是一个效用函数, 但是不具有期望效用性质). 下面的定理表明, 如果我们想让它的单调变换也具有期望效用性质, 那么我们只能进行正仿射变换.
+显然, 对于任何vNM效用函数, 它的严格递增变换很有可能不再是个vNM效用函数 (它仍是一个效用函数, 但是不具有期望效用性质). 下面的定理表明, 如果我们想让它的单调变换也具有期望效用性质, 那么我们只能进行正仿射变换.
 \end{example}
 \begin{theorem}
-  假设$u:\mathscr{L}\to\R$是代表$\mathscr{L}$上的偏好关系$\succsim$的VNM效用函数, 那么$\tilde{u}$是$\mathscr{L}$上关于$\succsim$的另一个VNM效用函数, 当且仅当存在$\beta>0$和$\gamma\in\R$, 使得对于任意$L\in\mathscr{L}$都有$\tilde{u}(L)=\beta u(L)+\gamma$.
+  假设$u:\mathscr{L}\to\R$是代表$\mathscr{L}$上的偏好关系$\succsim$的vNM效用函数, 那么$\tilde{u}$是$\mathscr{L}$上关于$\succsim$的另一个vNM效用函数, 当且仅当存在$\beta>0$和$\gamma\in\R$, 使得对于任意$L\in\mathscr{L}$都有$\tilde{u}(L)=\beta u(L)+\gamma$.
 \end{theorem}
 \begin{proof}
   在简单彩票空间$\mathscr{L}$中选取$\overbar{L}$和$\ubar{L}$, 使得对于任意$L\in\mathscr{L}$都有$\overbar{L}\succ L\succ \ubar{L}$. 
   
-  设$(p_1\circ a_1,\cdots,p_n\circ a_n)$是由$L\in\mathscr{L}$产生的简单彩票, $L$可以视为退化彩票$(a_1,\cdots,a_n)$的凸组合, 也即$L=\sum_i p_ia_i$, 再设$u$是$\mathscr{L}$上关于$\succsim$的VNM效用函数, 于是
+  设$(p_1\circ a_1,\cdots,p_n\circ a_n)$是由$L\in\mathscr{L}$产生的简单彩票, $L$可以视为退化彩票$(a_1,\cdots,a_n)$的凸组合, 也即$L=\sum_i p_ia_i$, 再设$u$是$\mathscr{L}$上关于$\succsim$的vNM效用函数, 于是
   \begin{align*}
   \tilde{u}(L)&=\beta u(L)+\gamma=\beta\left[\sum_{i=1}^{n}p_iu(a_i)\right]+\gamma \\
   &=\sum_{i=1}^{n}p_i[\beta u(a_i)+\gamma]=\sum_{i=1}^{n}p_i\tilde{u}(a_i)
   \end{align*}
-  根据上一定理中的Step 5可知效用函数$\tilde{u}$具有期望效用性质, 因此是VNM效用函数.
+  根据上一定理中的Step 5可知效用函数$\tilde{u}$具有期望效用性质, 因此是vNM效用函数.
   
   反过来, 需要证明如果$\tilde{u}$和$u$具有相同的期望效用形式, 那么存在$\beta>0$和$\gamma\in\R$, 使得对于一切$L\in\mathscr{L}$都有$\tilde{u}(L)=\beta u(L)+\gamma$.
   
@@ -1407,7 +1407,7 @@ $$\frac{u(a)-u(b)}{u(b)-u(c)}=\frac{1-\alpha}{\alpha}$$
   \begin{equation}\label{eq2.32}
     \lambda_L=\frac{u(L)-u(\ubar{L})}{u(\overbar{L})-u(\ubar{L})}
   \end{equation}
-  由于$u$是VNM效用函数, 故而$\lambda_Lu(\overbar{L})+(1-\lambda_L)u(\ubar{L})=u[\lambda_L\overbar{L}+(1-\lambda_L)\ubar{L}]$, 又因为$u$可以代表偏好关系$\succsim$, 因此$L\sim \lambda_L\overbar{L}+(1-\lambda_L)\ubar{L}$. 这样的话, 由于$\tilde{u}$也是VNM效用函数且代表相同的偏好, 那么
+  由于$u$是vNM效用函数, 故而$\lambda_Lu(\overbar{L})+(1-\lambda_L)u(\ubar{L})=u[\lambda_L\overbar{L}+(1-\lambda_L)\ubar{L}]$, 又因为$u$可以代表偏好关系$\succsim$, 因此$L\sim \lambda_L\overbar{L}+(1-\lambda_L)\ubar{L}$. 这样的话, 由于$\tilde{u}$也是vNM效用函数且代表相同的偏好, 那么
   \begin{align*}
   \tilde{U}(L)&=\tilde{u}[\lambda_L\overbar{L}+(1-\lambda_L)\ubar{L}] \\
   &=\lambda_L\tilde{u}(\overbar{L})+(1-\lambda_L)\tilde{u}(\ubar{L}) \\
@@ -1419,43 +1419,43 @@ $$\frac{u(a)-u(b)}{u(b)-u(c)}=\frac{1-\alpha}{\alpha}$$
 \end{proof}
 
 \subsection{决策者的风险态度}
-在示例\ref{exp:exp2.1}中, 我们构造的VNM效用函数反映了消费者具有规避风险的愿望, 现在可以将其正式地定义为\textbf{风险厌恶} (risk aversion).
+在示例\ref{exp:exp2.1}中, 我们构造的vNM效用函数反映了消费者具有规避风险的愿望, 现在可以将其正式地定义为\textbf{风险厌恶} (risk aversion).
 
-考虑结果集$A=\R_+$, 尽管结果集包含不可数个结果, 但我们假定只对有限多个结果指定严格为正的概率, 此时的简单彩票形式为$(p_1\circ w_1,\cdots,p_n\circ w_n)$, 这里的$n$为某个正整数, $w$代表非负财富水平, 非负概率$p_1,\cdots,p_n$之和为1. 最后, 假设VNM效用函数是可微的, 并且$u'(w)>0$.
+考虑结果集$A=\R_+$, 尽管结果集包含不可数个结果, 但我们假定只对有限多个结果指定严格为正的概率, 此时的简单彩票形式为$(p_1\circ w_1,\cdots,p_n\circ w_n)$, 这里的$n$为某个正整数, $w$代表非负财富水平, 非负概率$p_1,\cdots,p_n$之和为1. 最后, 假设vNM效用函数是可微的, 并且$u'(w)>0$.
 
 \begin{remark}
-事实上, 由于财富水平是连续变量, 我们可以将彩票空间$\mathscr{L}$视为非负财富量$w$的所有分布函数$F(w)$构成的集合, 将她的理性偏好$\succsim$定义在$\mathscr{L}$上, 并使用Lebesgue积分来定义VNM效用函数, 这是更一般化的表达.
+事实上, 由于财富水平是连续变量, 我们可以将彩票空间$\mathscr{L}$视为非负财富量$w$的所有分布函数$F(w)$构成的集合, 将她的理性偏好$\succsim$定义在$\mathscr{L}$上, 并使用Lebesgue积分来定义vNM效用函数, 这是更一般化的表达.
 \end{remark}
 
-现在我们考察 VNM效用函数与决策者的风险态度之间的关系, 对于以概率$p_i$产生结果$w_i$的彩票$L$, 它的期望收入为$E(L)=\sum_{i=1}^{n}p_iw_i$. 现在决策者有两个选择, 一是选择彩票$L$, 二是以概率1得到彩票$L$的期望值. 如果$u$是决策者的VNM效用函数, 那么
+现在我们考察vNM效用函数与决策者的风险态度之间的关系, 对于以概率$p_i$产生结果$w_i$的彩票$L$, 它的期望收入为$E(L)=\sum_{i=1}^{n}p_iw_i$. 现在决策者有两个选择, 一是选择彩票$L$, 二是以概率1得到彩票$L$的期望值. 如果$u$是决策者的vNM效用函数, 那么
 \begin{align*}
 u(L)&=\sum_{i=1}^{n}p_iu(w_i) \\
 u(E(L))&=u\left(\sum_{i=1}^{n}p_iw_i\right)
 \end{align*}
-分别为彩票$L$的VNM效用及彩票$L$期望值的VNM效用. 如果决策者满足公理\ref{axi:axi2.1}-\ref{axi:axi2.4}, 那么她的偏好能带来更高期望效用的选择. 当某个人宁可接受赌博的期望值 (这个期望值是确定性的), 而不愿意面对该赌博内在的风险时, 我们说她是风险厌恶的.
+分别为彩票$L$的vNM效用及彩票$L$期望值的vNM效用. 如果决策者满足公理\ref{axi:axi2.1}-\ref{axi:axi2.4}, 那么她的偏好能带来更高期望效用的选择. 当某个人宁可接受赌博的期望值 (这个期望值是确定性的), 而不愿意面对该赌博内在的风险时, 我们说她是风险厌恶的.
 
 \begin{definition}[风险态度的分类]
-设$u$是决策者对基于非负财富水平彩票的VNM效用函数, 对于简单彩票$L=(p_1\circ w_1,\cdots, p_n\circ w_n)$, 我们称决策者在$L$上是
+设$u$是决策者对基于非负财富水平彩票的vNM效用函数, 对于简单彩票$L=(p_1\circ w_1,\cdots, p_n\circ w_n)$, 我们称决策者在$L$上是
 \begin{enumerate}[\arabic*.]
   \item 风险厌恶的, 如果$u(E(L))>u(L)$;
   \item 风险中性的, 如果$u(E(L))=u(L)$;
   \item 风险喜爱的, 如果$u(E(L))<u(L)$.
 \end{enumerate}
 \end{definition}
-容易证明, 消费者是风险厌恶的、风险中性的或风险喜爱的, 当且仅当他的VNM效用函数在合适的定义域上是凹的、线性的或凸的. 我们考虑涉及两个结果的一个简单彩票
+容易证明, 消费者是风险厌恶的、风险中性的或风险喜爱的, 当且仅当他的vNM效用函数在合适的定义域上是凹的、线性的或凸的. 我们考虑涉及两个结果的一个简单彩票
 $$L=(p\circ w_1,(1-p)\circ w_2)$$
-那么选择$L$的VNM效用为
+那么选择$L$的vNM效用为
 $$u(L)=pu(w_1)+(1-p)u(w_2)$$
-选择以概率1获得财富$E(L)$的VNM效用为
+选择以概率1获得财富$E(L)$的vNM效用为
 $$u(E(L))=u(pw_1+(1-p)w_2)$$
-如果消费者是风险厌恶的, 那么VNM效用函数是凹的, 并且$u(E(L))>u(L)$. 
+如果消费者是风险厌恶的, 那么vNM效用函数是凹的, 并且$u(E(L))>u(L)$. 
 
-这可由图\ref{fig2.5}来表示, 其中点$R$的坐标为$(w_1,u(w_1))$, 点$S$的坐标为$(w_2,u(w_2))$, 这两点的凸组合$T=pR+(1-p)S$, 则$T$的横坐标为$E(L)$, 纵坐标为$u(L)$, 由VNM效用函数的凹性立即可得$u(E(L))>u(L)$.
+这可由图\ref{fig2.5}来表示, 其中点$R$的坐标为$(w_1,u(w_1))$, 点$S$的坐标为$(w_2,u(w_2))$, 这两点的凸组合$T=pR+(1-p)S$, 则$T$的横坐标为$E(L)$, 纵坐标为$u(L)$, 由vNM效用函数的凹性立即可得$u(E(L))>u(L)$.
 
 \begin{figure}[htbp!]
   \centering
   \includegraphics[width=10cm]{fig2-5.pdf}
-  \caption{风险厌恶及严格凹的VNM效用函数}\label{fig2.5}
+  \caption{风险厌恶及严格凹的vNM效用函数}\label{fig2.5}
 \end{figure}
 
 \begin{definition}[确定性等价与风险溢价]
@@ -1468,7 +1468,7 @@ $$\ln \text{CE}=0.5\ln (w_0+h)+0.5\ln (w_0-h)=0.5\ln (w_0^2-h^2)$$
 因此$\text{CE}=\sqrt{w_0^2-h^2}<E(L)$, 并且$P=w_0-\sqrt{w_0^2-h^2}>0$.
 \end{example}
 
-很多时候, 我们不仅向知道某个人是否厌恶风险, 而且想知道他厌恶风险的程度, 下面给出它的数学刻画. 假设消费者的初始财富为$w$, 彩票$L=(p\circ (w+h), (1-p)\circ (w-h))$, 于是VNM效用函数
+很多时候, 我们不仅向知道某个人是否厌恶风险, 而且想知道他厌恶风险的程度, 下面给出它的数学刻画. 假设消费者的初始财富为$w$, 彩票$L=(p\circ (w+h), (1-p)\circ (w-h))$, 于是vNM效用函数
 \begin{equation}\label{eq2.33}
   u(w)=pu(w+h)+(1-p)u(w-h)
 \end{equation}
@@ -1498,7 +1498,7 @@ $$R_R(w)=-\frac{wu''(w)}{u'(w)}$$
 为\textbf{相对风险厌恶系数}. 
 
 \begin{example}
-假设某车主厌恶风险, 她的初始财富为$w_0$, VNM效用函数为$u$且二阶可微, 现在她需要决定是否购买车险. 假设她遭遇车祸的概率为$\alpha\in(0,1)$, 车祸损失为$l$, 则在公平的保险价格下, 她应该购买保险金额为多少的保险?
+假设某车主厌恶风险, 她的初始财富为$w_0$, vNM效用函数为$u$且二阶可微, 现在她需要决定是否购买车险. 假设她遭遇车祸的概率为$\alpha\in(0,1)$, 车祸损失为$l$, 则在公平的保险价格下, 她应该购买保险金额为多少的保险?
 
 设$\rho$表示为1元保险金额的保险费, 也即花费$\rho$元购买保险, 风险发生时保险公司赔付1元钱, 于是保险公司的期望利润为$\alpha(\rho-1)+(1-\alpha)\rho$, 公平的保险价格要求保险公司利润为0, 解得$\rho=\alpha$, 也即每1元钱保险金额的保险费为$\alpha$.
 
@@ -1520,7 +1520,7 @@ $$(w-\beta)+(1+r_i)\beta=w+\beta r_i$$
 \begin{equation}\label{eq2.34}
   \max_\beta \sum_{i=1}^{n}p_iu(w+\beta r_i)\quad \text{s.t.}\quad 0\leq \beta\leq w
 \end{equation}
-其中$u$为二阶可微的VNM效用函数. 
+其中$u$为二阶可微的vNM效用函数. 
 
 首先明确投资者何时不投资任何风险资产, 此时$\beta^\ast=0$, 将式(\ref{eq2.34})的期望效用对$\beta$微分, 然后求微分在$\beta^\ast=0$的值可得
 $$\sum_{i=1}^{n}p_ir_iu'(w+\beta^\ast r_i)=u'(w)\sum_{i=1}^{n}p_ir_i\leq 0$$
