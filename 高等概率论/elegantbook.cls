@@ -359,6 +359,7 @@
 \newcommand{\subtitle}[1]{\gdef\@subtitle{#1}}
 \newcommand{\institute}[1]{\gdef\@institute{#1}}
 \newcommand{\version}[1]{\gdef\@version{#1}}
+\newcommand{\prep}[1]{\gdef\@prep{#1}}
 \newcommand{\extrainfo}[1]{\gdef\@extrainfo{#1}}
 
 \RequirePackage{mwe}
@@ -428,6 +429,7 @@
   \newcommand{\institutename}{\citshape 组织：}
   \newcommand{\datename}{\citshape 时间：}
   \newcommand{\versionname}{\citshape 版本：}
+  \newcommand{\prepname}{\citshape 先修课程：}
   \newcommand{\notename}{笔记}
   \renewcommand*{\proofname}{证明}
   \newcommand{\definitionname}{定义}
@@ -1323,6 +1325,7 @@
       % \ifcsname @date\endcsname  \@date\\\fi
       \ifx\@date\empty\else\datename\cnormal\@date \\ \fi
       \ifcsname @version\endcsname \cnormal\versionname\@version\\ \fi
+      \ifcsname @prep\endcsname \cnormal\prepname\@prep\\ \fi
       \ifcsname @bioinfo\endcsname \cnormal\@bioinfo\\ \fi
     \end{tabular}}
   \end{minipage}
