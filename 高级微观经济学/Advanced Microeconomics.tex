@@ -246,7 +246,7 @@ $$\text{MRS}_{12}(x_1^1,x_2^1)=|f'(x_1^1)|=-f'(x_1^1)$$
 $$\text{MRS}_{12}(\x^1)=\frac{\partial u(\x^1)/\partial x_1}{\partial u(\x^1)/\partial x_2}$$
 一般地, 对于某个消费者来说, 商品$i$对商品$j$的边际替代率为
 $$\text{MRS}_{ij}(\x)=\frac{\partial u(\x)/\partial x_i}{\partial u(\x)/\partial x_j}=\left|\frac{\text{d}x_j}{\text{d}x_i}\right|$$
-其中$i,j=1,\cdots,n$. 上式表明如果想让消费者在边际上减少一单位商品$i$的消费, 我们应该补偿给他多少单位商品$j$. 
+其中$i,j=1,\cdots,n$. 上式表明如果想让消费者在边际上减少一单位商品$i$的消费, 我们应该补偿给他多少单位商品$j$.
 
 当$u(\x)$在$\R^n_{++}$上可微并且它表示的偏好关系$\succsim$严格单调时, 每种商品的边际效用“几乎”严格为正,\footnote{“几乎”表示除开Lebesgue测度为0的消费束$\x$.} 也即几乎对于一切消费束$\x$都有$\partial u(\x)/\partial x_j>0$. 更一般地, 对于任何拟凹效用函数, 由它的二阶偏导构成的Hessian矩阵$\mathbf{H}(\x)$满足
 $$\mathbf{y}'\mathbf{H}(\x)\mathbf{y}\le0,\quad \nabla u(\x)\cdot\mathbf{y}=0$$
@@ -319,9 +319,9 @@ $$\p\cdot\x=\sum_{i=1}^{n}p_ix_i$$
 \begin{equation}\label{eq1.4}
   \max_{\x\in\R^n_+} u(\x)\quad \text{s.t.}\quad \p\cdot\x\leq y
 \end{equation}
-前面已经指出UMP具有唯一解$\x^\ast$, 将约束条件改写为$\p\cdot\x\leq y$并构造Lagrangian函数
+前面已经指出UMP具有唯一解$\x^\ast$, 将约束条件改写为$\p\cdot\x\leq y$并构造Lagrange函数
 $$\mathcal{L}(\x,\lambda)=u(\x)-\lambda(\p\cdot\x-y)$$
-其中$\lambda$为 Lagrangian乘子. 如果UMP最优解$\x^\ast\gg\mathbf{0}$, 根据Kuhn-Tucker条件可知存在$\lambda^\ast\ge0$使得$(\x^\ast,\lambda^\ast)$满足
+其中$\lambda$为 Lagrange乘子. 如果UMP最优解$\x^\ast\gg\mathbf{0}$, 根据Kuhn-Tucker条件可知存在$\lambda^\ast\ge0$使得$(\x^\ast,\lambda^\ast)$满足
 \begin{align}
 \frac{\partial\mathcal{L}}{\partial x_i}=\frac{\partial u(\x^\ast)}{\partial x_i}-\lambda^\ast p_i&=0,\,\quad i=1,\cdots, n \label{eq1.5} \\
 \p\cdot\x^\ast&\leq 0  \label{eq1.6} \\
@@ -376,7 +376,7 @@ $$\mathcal{L}(\x,\lambda)=u(\x)-\lambda(\p\cdot\x-y)$$
 \begin{equation}\label{eq1.10}
   \max_{x_1,x_2}(x_1^\rho+x_2^\rho)^{1/\rho}\quad \text{s.t.}\quad p_1x_1+p_2x_2\leq y
 \end{equation}
-构造Lagrangian函数
+构造Lagrange函数
 $$\mathcal{L}(x_1,x_2,\lambda)=(x_1^\rho+x_2^\rho)^{1/\rho}-\lambda(p_1x_1+p_2x_2-y)$$
 得到FOC为
 \begin{align*}
@@ -394,7 +394,7 @@ x_2(p_1,p_2,y)&=\frac{p_2^{r-1}y}{p_1^r+p_2^r}
 
 \section{间接效用函数与支出}
 \subsection{间接效用函数}
-上面已经指出$u(\x)$是定义在消费集$X$上表示偏好关系$\succsim$的效用函数, 更具体地称为直接效用函数 (direct utility function). 给定价格向量$\p$和收入水平$y$, 消费者选择效用最大化的商品束$\x(\p,y)$, 当$\p$和$y$发生变动时, $u(\x)$的最大值也发生变动, 这可以用函数关系$v:\R_{++}^n\times \R_+\to \R$表示, $v$的定义如下
+上面已经指出$u(\x)$是定义在消费集$X$上表示偏好关系$\succsim$的效用函数, 更具体地称为\textbf{直接效用函数} (direct utility function). 给定价格向量$\p$和收入水平$y$, 消费者选择效用最大化的商品束$\x(\p,y)$, 当$\p$和$y$发生变动时, $u(\x)$的最大值也发生变动, 这可以用函数关系$v:\R_{++}^n\times \R_+\to \R$表示, $v$的定义如下
 \begin{equation}\label{eq1.11}
   v(\p,y)=\max_{x\in\R_+^n}u(\x)\quad\text{s.t.}\quad\p\cdot\x\leq y
 \end{equation}
@@ -450,7 +450,7 @@ $$v(\p,y)=u(\x(\p,y))$$
   $$\frac{\partial f(\p^0)}{\partial \p}=\frac{\partial v(\p^0,\p^0\cdot\x^0)}{\partial \p}+\frac{\partial v(\p^0,\p^0\cdot\x^0)}{\partial (\p\cdot\x^0)}\x^0=\mathbf{0}$$
   整理即得结论.
 \end{proof}
-值得注意的是, 如果问题(\ref{eq1.11})的解$\x^\ast=\x(\p,y)$严格为正并且是可微的, 那么此时可以定义Lagrangian函数
+值得注意的是, 如果问题(\ref{eq1.11})的解$\x^\ast=\x(\p,y)$严格为正并且是可微的, 那么此时可以定义Lagrange函数
 $$\mathcal{L}(\x,\lambda;\p,y)=u(\x)-\lambda(\p\cdot\x-y)$$
 于是$v(\p,y)$是$\mathcal{L}(\x,\lambda;\p,y)$的最优值函数, 根据\textbf{包络定理} (envelope theorem)可知在最优解$(\x^\ast,\lambda^\ast)$处有
 $$\frac{\partial v(\p,y)}{\partial p_i}=\frac{\partial \mathcal{L}}{\partial p_i}=-\lambda^\ast x_i^\ast$$
@@ -540,7 +540,7 @@ EMP的任意解向量都非负且取决于$(\p,u)$, 如果效用函数$u$是连�
 \begin{example}
 考虑CES效用函数$u(x_1,x_2)=(x_1^\rho+x_2^\rho)^{1/\rho}$, $0\neq\rho<1$, 现在来推导Hicks需求函数$\x^h(\p,u)$与支出函数$e(\p,u)$. 由于偏好关系$\succsim$是严格单调的, 故而将EMP写为
 $$\min_{(x_1,x_2)\in\R_+^2}p_1x_1+p_2x_2\quad\text{s.t.}\quad u=(x_1^\rho+x_2^\rho)^{1/\rho}$$
-首先定义Lagrangian函数
+首先定义Lagrange函数
 $$\mathcal{L}(x_1,x_2,\lambda)=p_1x_1+p_2x_2-\lambda[(x_1^\rho+x_2^\rho)^{1/\rho}-u]$$
 于是
 \begin{align*}
@@ -1000,11 +1000,11 @@ $$A(\p^1,u^0)=\{\x\in\R_+^n: \p^1\cdot\x\ge E(\p^1,u^0)\}$$
   \begin{equation}\label{eq2.15}
     u(\x)=v(\p(\x),1)=\min_{\p\in\R_{++}^n}v(\p,1)\quad\text{s.t.}\quad\p\cdot\x=1
   \end{equation}
-  定义Lagrangian函数得到
+  定义Lagrange函数得到
   $$\mathcal{L}(\p,\lambda)=v(\p,1)-\lambda(\p\cdot\x-1)$$
   根据包络定理可得
   $$\frac{\partial u(\x)}{\partial x_i}=\frac{\partial\mathcal{L}(\x^\ast,\lambda^\ast)}{\partial x_i}=-\lambda^\ast p_i^\ast$$
-  其中$\p^\ast=\p(\x)$, 并且$\lambda^\ast$是最优Lagrangian乘子. 在上式两端同时乘以$x_i$并且在$i$上加总得到
+  其中$\p^\ast=\p(\x)$, 并且$\lambda^\ast$是最优Lagrange乘子. 在上式两端同时乘以$x_i$并且在$i$上加总得到
   $$\sum_{i=1}^{n}x_i\frac{\partial u(\x)}{\partial x_i}=\lambda^\ast\sum_{i=1}^{n}p_i^\ast x_i=\lambda^\ast\sum_{i=1}^{n}p_i(\x)x_i=\lambda^\ast$$
   由于$\p(\x)\cdot\x=1$, 因此结论成立.
 \end{proof}
@@ -1111,6 +1111,8 @@ $$\p^0\cdot\x(\p^1,y^1)\leq y^0\Rightarrow\p^1\cdot\x(\p^0,y^0)>y^1$$
 
 现在假设某消费者的行为满足WARP, 令$\x(\p,y)$表示在价格为$\p$且收入为$y$时该消费者的选择. 值得注意的是, 这个函数不是需求函数, 这是因为没有涉及到UMP, 所以$\x(\p,y)$只是表明了面临$(\p,y)$时消费者的选择, 此时称$\x(\p,y)$为\textbf{选择函数} (choice function). 除了WARP以外, 还对消费者的行为作出预算平衡性假设, 也即对于任意$\p\gg\mathbf{0}$, 选择函数$\x(\p,y)$满足预算平衡性$\p\cdot\x(\p,y)=y$.
 
+实际上, 如果一个人的消费行为是理性的, 那么她的购买行为必然满足WARP, 也即WARP是理性偏好的必要条件. 然而, 满足WARP的消费行为却并不意味着理性消费, 除非该消费者购买的商品数量只有2种, 本节最后部分将会解释原因. 
+
 \begin{theorem}
 如果WARP和预算平衡性成立, 那么选择函数$\x(\p,y)$关于$(\p,y)$是零次齐次的.
 \end{theorem}
@@ -1132,7 +1134,7 @@ $$\p^0\cdot\x(\p^1,y^1)\leq y^0\Rightarrow\p^1\cdot\x(\p^0,y^0)>y^1$$
 
 \begin{figure}[htbp!]
   \centering
-  \includegraphics[width=8cm]{fig2-4.pdf}
+  \includegraphics[width=7cm]{fig2-4.pdf}
   \caption{Slutsky补偿变化.}\label{fig2.4}
 \end{figure}
 
@@ -1199,7 +1201,7 @@ $$\text{d}\p\cdot \mathbf{s}(\p,y)\cdot \text{d}\p\leq 0$$
 
 事实上, 我们已经证明了如果某个选择函数满足WARP和预算平衡性, 那么它的Slutsky矩阵是半负定的. 此时, 如果能证明某个选择函数的Slutsky矩阵是对称的, 那么根据可积性定理, 这个选择函数必定是Marshall需求函数. 另一方面, 容易证明如果$\x(\p,y)$碰巧是某个效用函数生成的Marshall需求函数, 那么$\x(\p,y)$必定满足WARP.
 
-特别地, 当商品数量$n=2$时, WARP成立意味着Slutsky矩阵必定是对称的, 而当$n>2$时WARP无法保证Slutsky矩阵的对称性, 因此WARP和预算平衡性不等于效用最大化的假设. 然而, 如果将WARP加强为\textbf{显示偏好强公理} (Strong Axiom of Revealed Preference, SARP), 那么基于SARP之上的基于选择的需求理论, 在本质上等于基于偏好的需求理论.
+特别地, 当商品数量$n=2$时, WARP成立意味着Slutsky矩阵必定是对称的, 而当$n>2$时WARP无法保证Slutsky矩阵的对称性, 因此WARP和预算平衡性不等于效用最大化的假设. 值得注意的是, 如果将WARP加强为\textbf{显示偏好强公理} (Strong Axiom of Revealed Preference, SARP), 那么可以证明基于SARP之上的基于选择的需求理论, 在本质上等于基于偏好的需求理论.
 
 \begin{definition}[显示偏好强公理]
 Marshall需求函数$\x(\p,y)$满足SARP: 对于任意一列
@@ -1209,7 +1211,6 @@ $$(\p^1,y^1),(\p^2,y^2),\cdots,(\p^N,y^N)$$
 
 显然, 当商品数量$n=2$时, WARP和SARP是等价的. 进一步, SARP排除了不可传递的显示偏好, 因此可用于诱导出一个完备且传递的偏好关系$\succsim$, 对于这个偏好关系存在着能使可观测到的行为理性化的效用函数. 无论是在SARP假设还是在效用最大化假设下, 消费者的需求都是齐次的, 而且Slutsky矩阵都是半负定的和对称的.
 
-\newpage
 \section{不确定性下的选择}
 \subsection{偏好}
 之前我们假设消费者在他的消费集$X$中的所有消费束$\x$上拥有偏好关系. 在加入不确定性因素之后, 我们只要稍微变动一下视角即可. 我们将保留偏好关系的符号, 但我们不再假设消费者对消费束具有偏好关系, 而是对\textbf{彩票} (lottery)具有偏好关系. 更正式地说, 令$A=\{a_1,\cdots,a_n\}$表示结果 (outcome)的有限集, 这些$a_i$可以为消费束、金额数量或其它任何东西, 关键在于$a_i$本身涉及不确定性, 并且我们使用$A$作为彩票的基.
@@ -1222,7 +1223,7 @@ $$(\p^1,y^1),(\p^2,y^2),\cdots,(\p^N,y^N)$$
 令$A=\{a_1,\cdots,a_n\}$表示结果集, 那么$A$上的简单彩票空间为
 $$\mathscr{L}_S\equiv\left\{(p_1\circ a_1,\cdots,p_n\circ a_n)\left|p_i\ge0, \sum_{i=1}^{n}p_i=1\right.\right\}$$
 \end{definition}
-特别地, 如果某些$p_i=0$, 那么就将相应的项从表达式中去掉. 如果对于每个$i$都有$p_i=1$, 那么将$1\circ a_i$简写为$a_i$, 表示必然发生结果$a_i$的彩票, 此时$\mathscr{L}_S$就包含了选择集$A$. 回到投掷硬币的例子中, 每个人都面对着简单彩票$(\frac{1}{2}\circ 1, \frac{1}{2}\circ -1)$. 
+特别地, 如果某些$p_i=0$, 那么就将相应的项从表达式中去掉. 如果对于每个$i$都有$p_i=1$, 那么将$1\circ a_i$简写为$a_i$, 表示必然发生结果$a_i$的彩票, 此时$\mathscr{L}_S$就包含了选择集$A$. 回到投掷硬币的例子中, 每个人都面对着简单彩票$(\frac{1}{2}\circ 1, \frac{1}{2}\circ -1)$.
 
 不确定情形下的选择的就是彩票. 与消费者理论对应, 假设决策制定者在彩票集$\mathscr{L}$上有偏好$\succsim$, 接下来还需要对决策制定者的偏好关系$\succsim$设置一组公理, 称为\textbf{不确定性下的选择公理} (axiom of choice under uncertainty).
 
@@ -1240,7 +1241,7 @@ $$\mathscr{L}_S\equiv\left\{(p_1\circ a_1,\cdots,p_n\circ a_n)\left|p_i\ge0, \su
 \begin{axiom}[连续性]\label{axi:axi2.3}
 对于$\mathscr{L}$中的任意$L$, $L'$和$L''$, 集合$\{\alpha\in[0,1]:\alpha L+(1-\alpha)L'\succsim L''\}$和$\{\alpha\in[0,1]:L''\succsim \alpha L+(1-\alpha)L'\}$都是闭的.
 \end{axiom}
-举例来说, 假设$A=\{1000\text{元},\text{死亡}\}$, 对于绝大多数人都有$1000\text{元}\succ\text{死亡}$, 但得到1000元需要开车出门去拿, 而开车伴随着很小的死亡的正概率, 这样人就会在1000元和呆在家里中进行选择, 而连续性公理表明“出门取钱”和“死于车祸”的组合比“呆在家里”更受偏好. 
+举例来说, 假设$A=\{1000\text{元},\text{死亡}\}$, 对于绝大多数人都有$1000\text{元}\succ\text{死亡}$, 但得到1000元需要开车出门去拿, 而开车伴随着很小的死亡的正概率, 这样人就会在1000元和呆在家里中进行选择, 而连续性公理表明“出门取钱”和“死于车祸”的组合比“呆在家里”更受偏好.
 
 事实上, 连续性公理排除了决策者对于某个发生概率为零的结果具有字典序偏好.
 
@@ -1289,28 +1290,28 @@ $$u(L)=\sum_{i=1}^{n}p_iu(a_i)$$
   这就证明了$\beta\overbar{L}+(1-\beta)\ubar{L}\succ \alpha\overbar{L}+(1-\alpha)\ubar{L}$.
 
   反过来假设$\beta\leq\alpha$, 如果$\beta=\alpha$, 那么有$\beta\overbar{L}+(1-\beta)\ubar{L}\sim \alpha\overbar{L}+(1-\alpha)\ubar{L}$, 故而只需假设$\beta<\alpha$. 根据刚才的结论, 只需调换$\alpha$和$\beta$的位置即可得到$\alpha\overbar{L}+(1-\alpha)\ubar{L}\succ\beta\overbar{L}+(1-\beta)\ubar{L}$.
-  
+
   Step 3: 对于任意$L\in\mathscr{L}$, 存在唯一的$\alpha_L$使得$[\alpha_L\overbar{L}+(1-\alpha_L)\ubar{L}]\sim L$.
-  
+
   定义集合$\{\alpha\in[0,1]: \alpha\overbar{L}+(1-\alpha)\ubar{L}\succsim L\}$和$\{\alpha\in[0,1]: L\succsim \alpha\overbar{L}+(1-\alpha)\ubar{L}\}$, 根据$\succsim$的完备性和连续性可知它们都是闭集, 而且$\alpha\in[0,1]$至少位于这两个集合中的一个. 由于这两个集合非空且$[0,1]$是连通的, 因此存在某个$\alpha_L$使得$\alpha_L\overbar{L}+(1-\alpha_L)\ubar{L}\sim L$, 根据Step 2的结论可以得到$\alpha_L$的唯一性.
-  
+
   Step 4: 如果函数$u:\mathscr{L}\to\R$对每一个$L\in\mathscr{L}$都能赋于$u(L)=\alpha_L$, 那么$u$可以代表偏好关系$\succsim$.
-  
+
   根据Step 3可知, 对于任意$L, L'\in\mathscr{L}$总有
   $$L\succsim L'\Longleftrightarrow \alpha_L\overbar{L}+(1-\alpha_L)\ubar{L}\succsim \alpha_{L'}\overbar{L}+(1-\alpha_{L'})\ubar{L}$$
   因此根据Step 2有$L\succsim L'$当且仅当$\alpha_L\geq \alpha_{L'}$, 也即$u(L)\geq u(L')$.
-  
+
   Step 5: 效用函数$u:\mathscr{L}\to\R$具有期望效用性质当且仅当它是线性的, 也即对于任意$k$个彩票, $(\alpha_1,\cdots,\alpha_k)\ge 0$和$\sum_{j=1}^k \alpha_j=1$, 总有
   \begin{equation}\label{eq2.31}
     u\left(\sum_{j=1}^{k}\alpha_j L_j\right)=\sum_{j=1}^{k}\alpha_ju(L_j)
   \end{equation}
-  
+
   假设$u:\mathscr{L}\to\R$满足式(\ref{eq2.31}), 可以将彩票$L=(p_1\circ a_1,\cdots, p_n\circ a_n)$作为退化彩票$(a_1,\cdots,a_n)$的凸组合, 也即$L=\sum_{i} p_ia_i$, 这里$i=1,\cdots,n$, 于是$u(L)=u(\sum_ip_ia_i)=\sum_ip_iu(a_i)$, 因此$u:\mathscr{L}\to\R$具有期望效用性质.
-  
+
   假设$u:\mathscr{L}\to\R$具有期望效用性质, 对于任意复合彩票$(\alpha_1\circ L_1,\cdots,\alpha_k\circ L_k)$, 其中$L_j=(p_1^j\circ a_1,\cdots, p_n^j\circ a_n)$, 该复合彩票的退化彩票为$L'=\sum_j\alpha_jL_j$, 其中$j=1,\cdots,k$. 根据期望效用性质可知式(\ref{eq2.31})成立.
-  
+
   Step 6: 对于任意$L\in\mathscr{L}$, 每个指定$u(L)=\alpha_L$的效用函数$u:\mathscr{L}\to\R$是线性的.
-  
+
   根据Step 5可知, 只需证明对于任意$L$, $L'\in\mathscr{L}$和$\beta\in[0,1]$, 总有
   $$u[\beta L+(1-\beta)L']=\beta u(L)+(1-\beta)u(L')$$
   即可. 根据定义可知
@@ -1361,13 +1362,13 @@ L_1'&=(0.10\circ a_1,0.89\circ a_2, 0.01\circ a_3) \\
 L_2&=(0\circ a_1, 0.11\circ a_2, 0.89\circ a_3) \\
 L_2'&=(0\circ a_1, 0.10\circ a_2, 0.90\circ a_3)
 \end{align*}
-某人需要在$L_1$和$L_1'$之间, 以及$L_2$和$L_2'$之间进行选择. 
+某人需要在$L_1$和$L_1'$之间, 以及$L_2$和$L_2'$之间进行选择.
 
 根据期望效用理论, 倘若某人认为$L_1\succ L_1'$, 则可以用vNM效用函数表示为
 $$u(a_1)>0.10u(a_1)+0.89u(a_2)+0.01u(a_3)$$
 在两侧同时加上$0.89u(a_3)-0.89u(a_2)$得到
 $$0.11u(a_2)+0.89u(a_3)>0.10u(a_1)+0.90u(a_3)$$
-也即他必定认为$L_2\succ L_2'$. 
+也即他必定认为$L_2\succ L_2'$.
 
 然而, 根据实际的调查结果, 绝大多数人认为$L_1\succ L_1'$且$L_2'\succ L_2$, 这就和期望效用理论矛盾. 究其原因, 主要是在于独立性公理不成立, 期望效用理论不适用.
 
@@ -1390,17 +1391,17 @@ $$\frac{u(a)-u(b)}{u(b)-u(c)}=\frac{1-\alpha}{\alpha}$$
   假设$u:\mathscr{L}\to\R$是代表$\mathscr{L}$上的偏好关系$\succsim$的vNM效用函数, 那么$\tilde{u}$是$\mathscr{L}$上关于$\succsim$的另一个vNM效用函数, 当且仅当存在$\beta>0$和$\gamma\in\R$, 使得对于任意$L\in\mathscr{L}$都有$\tilde{u}(L)=\beta u(L)+\gamma$.
 \end{theorem}
 \begin{proof}
-  在简单彩票空间$\mathscr{L}$中选取$\overbar{L}$和$\ubar{L}$, 使得对于任意$L\in\mathscr{L}$都有$\overbar{L}\succ L\succ \ubar{L}$. 
-  
+  在简单彩票空间$\mathscr{L}$中选取$\overbar{L}$和$\ubar{L}$, 使得对于任意$L\in\mathscr{L}$都有$\overbar{L}\succ L\succ \ubar{L}$.
+
   设$(p_1\circ a_1,\cdots,p_n\circ a_n)$是由$L\in\mathscr{L}$产生的简单彩票, $L$可以视为退化彩票$(a_1,\cdots,a_n)$的凸组合, 也即$L=\sum_i p_ia_i$, 再设$u$是$\mathscr{L}$上关于$\succsim$的vNM效用函数, 于是
   \begin{align*}
   \tilde{u}(L)&=\beta u(L)+\gamma=\beta\left[\sum_{i=1}^{n}p_iu(a_i)\right]+\gamma \\
   &=\sum_{i=1}^{n}p_i[\beta u(a_i)+\gamma]=\sum_{i=1}^{n}p_i\tilde{u}(a_i)
   \end{align*}
   根据上一定理中的Step 5可知效用函数$\tilde{u}$具有期望效用性质, 因此是vNM效用函数.
-  
+
   反过来, 需要证明如果$\tilde{u}$和$u$具有相同的期望效用形式, 那么存在$\beta>0$和$\gamma\in\R$, 使得对于一切$L\in\mathscr{L}$都有$\tilde{u}(L)=\beta u(L)+\gamma$.
-  
+
   任取$L\in\mathscr{L}$, 将$\lambda_L\in[0,1]$定义为
   $$u(L)=\lambda_Lu(\overbar{L})+(1-\lambda_L)u(\ubar{L})$$
   故而
@@ -1448,14 +1449,14 @@ $$L=(p\circ w_1,(1-p)\circ w_2)$$
 $$u(L)=pu(w_1)+(1-p)u(w_2)$$
 选择以概率1获得财富$E(L)$的vNM效用为
 $$u(E(L))=u(pw_1+(1-p)w_2)$$
-如果消费者是风险厌恶的, 那么vNM效用函数是凹的, 并且$u(E(L))>u(L)$. 
+如果消费者是风险厌恶的, 那么vNM效用函数是凹的, 并且$u(E(L))>u(L)$.
 
 这可由图\ref{fig2.5}来表示, 其中点$R$的坐标为$(w_1,u(w_1))$, 点$S$的坐标为$(w_2,u(w_2))$, 这两点的凸组合$T=pR+(1-p)S$, 则$T$的横坐标为$E(L)$, 纵坐标为$u(L)$, 由vNM效用函数的凹性立即可得$u(E(L))>u(L)$.
 
 \begin{figure}[htbp!]
   \centering
   \includegraphics[width=10cm]{fig2-5.pdf}
-  \caption{风险厌恶及严格凹的vNM效用函数}\label{fig2.5}
+  \caption{风险厌恶及严格凹的vNM效用函数.}\label{fig2.5}
 \end{figure}
 
 \begin{definition}[确定性等价与风险溢价]
@@ -1487,7 +1488,7 @@ $$p=\frac{1}{2}+\frac{h}{4}\left[-\frac{u''(w)}{u'(w)}\right]$$
 $$R_a(w)=-\frac{u''(w)}{u'(w)}$$
 又称为绝对风险厌恶系数.
 \end{definition}
-可以证明, 当消费者厌恶风险、风险中性或喜爱风险时, $R_a(w)$的符号分别为正、零或负, 而且效用函数的任何正仿射变换都不会改变这个测度. 
+可以证明, 当消费者厌恶风险、风险中性或喜爱风险时, $R_a(w)$的符号分别为正、零或负, 而且效用函数的任何正仿射变换都不会改变这个测度.
 
 现在考虑彩票带来的损益与决策者的初始财富$w$成正比, 也即彩票为$L=(p\circ (w+\theta w),(1-p)\circ (w-\theta w))$, 于是
 $$u(w)=pu(w+\theta w)+(1-p)u(w-\theta w)$$
@@ -1495,7 +1496,7 @@ $$u(w)=pu(w+\theta w)+(1-p)u(w-\theta w)$$
 $$p=\frac{1}{2}+\frac{\theta}{4}\left[-\frac{wu''(w)}{u'(w)}\right]$$
 我们称
 $$R_R(w)=-\frac{wu''(w)}{u'(w)}$$
-为\textbf{相对风险厌恶系数}. 
+为\textbf{相对风险厌恶系数}.
 
 \begin{example}
 假设某车主厌恶风险, 她的初始财富为$w_0$, vNM效用函数为$u$且二阶可微, 现在她需要决定是否购买车险. 假设她遭遇车祸的概率为$\alpha\in(0,1)$, 车祸损失为$l$, 则在公平的保险价格下, 她应该购买保险金额为多少的保险?
@@ -1520,11 +1521,11 @@ $$(w-\beta)+(1+r_i)\beta=w+\beta r_i$$
 \begin{equation}\label{eq2.34}
   \max_\beta \sum_{i=1}^{n}p_iu(w+\beta r_i)\quad \text{s.t.}\quad 0\leq \beta\leq w
 \end{equation}
-其中$u$为二阶可微的vNM效用函数. 
+其中$u$为二阶可微的vNM效用函数.
 
 首先明确投资者何时不投资任何风险资产, 此时$\beta^\ast=0$, 将式(\ref{eq2.34})的期望效用对$\beta$微分, 然后求微分在$\beta^\ast=0$的值可得
 $$\sum_{i=1}^{n}p_ir_iu'(w+\beta^\ast r_i)=u'(w)\sum_{i=1}^{n}p_ir_i\leq 0$$
-由于$u'(w)$严格为正, 因此当且仅当风险资产的期望回报非正时, 风险厌恶的投资者不会购买风险资产. 
+由于$u'(w)$严格为正, 因此当且仅当风险资产的期望回报非正时, 风险厌恶的投资者不会购买风险资产.
 
 现在假设风险资产的期望回报为正, 这意味着$\beta^\ast\neq 0$, 假设$\beta^\ast<w$, 故而内部最优解的一阶条件和二阶条件为
 \begin{equation}\label{eq2.35}
@@ -1558,7 +1559,7 @@ $$\sum_{i=1}^{n}p_ir_iu''(w+\beta^\ast r_i)>-R_a(w)\sum_{i=1}^{n}p_ir_iu'(w+\bet
 
 \end{example}
 \subsection{随机占优}
-期望效用理论给了我们判断随机回报在投资者眼中孰优孰劣的依据, 但期望效用依赖于投资者的偏好, 我们在这里想问的问题是, 有没有一种不依赖于投资者的偏好而比较两个随机回报的方法? 
+期望效用理论给了我们判断随机回报在投资者眼中孰优孰劣的依据, 但期望效用依赖于投资者的偏好, 我们在这里想问的问题是, 有没有一种不依赖于投资者的偏好而比较两个随机回报的方法?
 
 更具体地, 有没有办法说一个随机回报比另一个回报更好, 从而使得所有投资者 (即使是风险厌恶者)都偏好于前者? 有没有办法说一个随机回报比另一个回报风险更低, 从而使得所有风险厌恶的投资者都偏好于前者? 本节介绍的\textbf{随机占优 }(stochastic dominance)理论就可以回答这些问题.
 
@@ -1577,7 +1578,7 @@ $$F(w)=\begin{cases}
 对于两个随机分布$F$和$G$, 如果对于任意非减函数$u:\R\to\R$都有
 $$\int U(w)\,\text{d}F(w)\geq \int U(w)\,\text{d}G(w)$$
 那么$F$对$G$是一阶随机占优的 (First Stochastic Dominance, FSD).
-\end{definition} 
+\end{definition}
 FSD表明随机分布$F$产生的报酬明确地比分布$G$的报酬更高, 也即对于每个财富水平$w$, 在$F$下得到财富$w$的概率大于等于在$G$下得到的概率.
 
 \begin{theorem}
@@ -1592,7 +1593,7 @@ FSD表明随机分布$F$产生的报酬明确地比分布$G$的报酬更高, 也
   于是
   $$\int U(w)\,\text{d}H(w)=-H(\overbar{w})<0$$
   这就证明了必要性部分.
-  
+
   现在来看充分性的部分, 首先不加证明地指出只要我们能够证明相应等价关系对于可微效用函数$u(w)$成立就足够了. 根据分部积分法可得
   $$\int U(w)\,\text{d}H(w)=\left.U(w)H(w)\right|_0^\infty-\int U'(w)H(w)\,\text{d}w$$
   由于$\displaystyle \lim_{w\to\infty}H(w)=0$且$H(0)=0$, 故而上式第一项为0. 另一方面, 假设$H(w)\leq0$且$U(w)$是递增的, 故而$\int U'(w)H(w)\,\text{d}w\leq0$, 由此可得上式第二项大于等于0, 因此
@@ -1656,7 +1657,7 @@ $$w=x+z=\begin{cases}
 
 \chapter{厂商理论}
 \section{生产}
-厂商是将生产要素转变为产品的过程. 厂商在生产过程中必须面对的基本现实是技术可行性, 技术状况决定和限制了如何联合要素生产产品. 
+厂商是将生产要素转变为产品的过程. 厂商在生产过程中必须面对的基本现实是技术可行性, 技术状况决定和限制了如何联合要素生产产品.
 
 一般地, 厂商有一个\textbf{生产可能集} (production possibility set), 记作$Y\subset\R^m$, 并且$Y$中的每个向量$\mathbold{y}=(y_1,\cdots,y_m)'$称为一个\textbf{生产计划} (production plan), 每一个分量表示生产过程中的投入品或产出品, 我们用正数表示产出, 负数表示投入, 零表示该元素在生产过程中没有被用到. 尽管目前描述厂商技术的最一般方法是生产可能集, 我们通常考虑的是企业使用多种投入生产一种产品的情形, 此时使用\textbf{生产函数} (production function)描述企业的技术更为方便.
 
@@ -1666,7 +1667,7 @@ $$w=x+z=\begin{cases}
 生产函数$f:\R_n^+\to\R$在$\R_n^+$上是连续、严格递增和严格拟凹的, 并且$f(\mathbf{0})=0$.
 \end{definition}
 
-$f$的连续性是说投入向量的微小变化导致的产量变化也是微小的, 我们要求$f$为严格递增的, 目的是保证如果每种要素的投入量都严格增加, 则产量也严格增加. $f$为严格拟凹的, 则主要出于简化分析的需要. 与消费者的偏好为严格凸的假设类似. 当然, 如果不使用这条假设也可以, 它对我们的结论没有多大的影响. 最后, $f(\mathbf{0})=0$表明正的产量要求某些要素的投入量是正的. 
+$f$的连续性是说投入向量的微小变化导致的产量变化也是微小的, 我们要求$f$为严格递增的, 目的是保证如果每种要素的投入量都严格增加, 则产量也严格增加. $f$为严格拟凹的, 则主要出于简化分析的需要. 与消费者的偏好为严格凸的假设类似. 当然, 如果不使用这条假设也可以, 它对我们的结论没有多大的影响. 最后, $f(\mathbf{0})=0$表明正的产量要求某些要素的投入量是正的.
 
 如果还假设生产函数是可微的, 则它的偏导数$\partial f(\x)/\partial x_i$称为要素$i$的\textbf{边际产量} (marginal production), 它表示其它要素投入品不变时, 额外多使用一单位要素$i$所增加的产量. 由于生产函数$f$总是严格递增的, 因此$\partial f(\x)/\partial x_i>0$对几乎所有投入向量都成立, 表明投入品越多, 产量越高.
 
@@ -1681,13 +1682,13 @@ $$\text{MRTS}_{i,j}=\frac{\partial f(\x)/\partial x_i}{\partial f(\x)/\partial x
 \begin{figure}[htbp!]
   \centering
   \includegraphics[width=9cm]{fig3-1.pdf}
-  \caption{边际技术替代率}\label{fig3.1}
+  \caption{边际技术替代率.}\label{fig3.1}
 \end{figure}
 
 一般来说, 任何两种生产要素之间的$\text{MRTS}$取决于使用的所有生产要素. 然而, 最常见的做法是假设投入可以分为少数几种类型, 在某种给定类型的内部投入之间的替代程度, 和投入类型之间的替代程度是不同的, 称这样的生产函数是\textbf{可分的} (separable). 在下面的定义中, 我们将要素$i$的边际产量$\partial f(\x)/\partial x_i$简记为$f_i(\x)$.
 
 \begin{definition}[可分性]
-设$N=\{1,\cdots,n\}$是所有生产要素构成的集合, 这些要素可以分割为$S>1$个互不相交且将$N$穷尽的子集$N_1,\cdots,N_S$. 
+设$N=\{1,\cdots,n\}$是所有生产要素构成的集合, 这些要素可以分割为$S>1$个互不相交且将$N$穷尽的子集$N_1,\cdots,N_S$.
 \begin{enumerate}[label=\arabic*.]
 \item 如果同一子集中的任何两种要素的$\text{MRTS}$独立于其他组的要素, 也即
 $$\frac{\partial [f_i(\x)/f_j(\x)]}{\partial x_k}=0,\quad \forall i,j\in N_s, k\notin N_s$$
@@ -1713,7 +1714,7 @@ MRTS只是在产量既定时生产要素之间替代性的一种局部衡量, �
 \begin{figure}[htbp!]
   \centering
   \includegraphics[width=12cm]{fig3-2.pdf}
-  \caption{等产量线与替代弹性}\label{fig3.2}
+  \caption{等产量线与替代弹性.}\label{fig3.2}
 \end{figure}
 
 \begin{example}[$\,$CES生产函数]
@@ -1761,12 +1762,12 @@ $$y=\min\{x_1,\cdots,x_n\}$$
     f(\x^1+\x^2)\geq y^1+y^2=f(\x^1)+f(\x^2)
   \end{equation}
   由于$f$的连续性, 式(\ref{eq3.4})不仅对一切$\x^1,\x^2>>\mathbf{0}$成立, 还对所有$\x^1,\x^2\ge\mathbf{0}$成立.
-  
+
   现在考虑任意要素向量$\x^1,\x^2\ge\mathbf{0}$以及实数$t\in[0,1]$, 由一次齐次可得
   \begin{align*}
   f(t\x^1)&=tf(\x^1) \\
   f((1-t)\x^2)&=(1-t)f(\x^2)
-  \end{align*} 
+  \end{align*}
   再由式(\ref{eq3.4})可得
   $$f(t\x^1+(1-t)\x^2)\geq tf(\x^1)+(1-t)f(\x^2)$$
   这就证明了$\alpha=1$时的结论. 现在考虑$f$是$\alpha\in (0,1]$次齐次的, 那么$f^{\frac{1}{\alpha}}$是一次齐次的, 并且符合定义\ref{def:def3.1}对生产函数的要求, 根据前面的结论可知$f^{\frac{1}{\alpha}}$是凹的, 这样一来$f=(f^{\frac{1}{\alpha}})^\alpha$也是凹的, 因为$\alpha\leq1$.
@@ -1779,7 +1780,7 @@ $$y=\min\{x_1,\cdots,x_n\}$$
 \begin{figure}[htbp!]
   \centering
   \includegraphics[width=9cm]{fig3-3.pdf}
-  \caption{可变比例报酬与规模报酬}\label{fig3.3}
+  \caption{可变比例报酬与规模报酬.}\label{fig3.3}
 \end{figure}
 
 可变比例报酬的基本衡量指标包括每种生产要素的\textbf{边际产量}$\text{MP}_i(\x)=f_i(\x)$和\textbf{平均产量}$\text{AP}_i(\x)=f(\x)/x_i$. 此外, \textbf{要素产出弹性}$\mu_i(\x)=f_i(\x)/f(\x)=\text{MP}_i(\x)/\text{AP}_i(\x)$指的是它变化1\%时, 导致产量变动的百分数. 以上三种指标都是局部指标, 而生产技术的规模性质既可以是局部的, 也可以是全局的.
