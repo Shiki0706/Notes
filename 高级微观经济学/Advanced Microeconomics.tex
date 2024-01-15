@@ -1486,17 +1486,17 @@ $$p=\frac{1}{2}+\frac{h}{4}\left[-\frac{u''(w)}{u'(w)}\right]$$
 \begin{definition}[Arrow-Pratt风险测度]
 设效用函数$u:\R_+\to \R$二阶可微, 则Arrow-Pratt风险测度为
 $$R_a(w)=-\frac{u''(w)}{u'(w)}$$
-又称为绝对风险厌恶系数.
+又称为绝对风险厌恶系数 (coefficient of absolute risk aversion).
 \end{definition}
 可以证明, 当消费者厌恶风险、风险中性或喜爱风险时, $R_a(w)$的符号分别为正、零或负, 而且效用函数的任何正仿射变换都不会改变这个测度.
 
-现在考虑彩票带来的损益与决策者的初始财富$w$成正比, 也即彩票为$L=(p\circ (w+\theta w),(1-p)\circ (w-\theta w))$, 于是
+除了绝对量的彩票损益外, 我们还考虑彩票带来的损益与决策者的初始财富$w$成正比的情形, 也即彩票为$L=(p\circ (w+\theta w),(1-p)\circ (w-\theta w))$, 于是
 $$u(w)=pu(w+\theta w)+(1-p)u(w-\theta w)$$
 运用Taylor展开的技术可得
 $$p=\frac{1}{2}+\frac{\theta}{4}\left[-\frac{wu''(w)}{u'(w)}\right]$$
 我们称
 $$R_R(w)=-\frac{wu''(w)}{u'(w)}$$
-为\textbf{相对风险厌恶系数}.
+为\textbf{相对风险厌恶系数} (coefficient of relative risk aversion).
 
 \begin{example}
 假设某车主厌恶风险, 她的初始财富为$w_0$, vNM效用函数为$u$且二阶可微, 现在她需要决定是否购买车险. 假设她遭遇车祸的概率为$\alpha\in(0,1)$, 车祸损失为$l$, 则在公平的保险价格下, 她应该购买保险金额为多少的保险?
@@ -1547,7 +1547,7 @@ $$\sum_{i=1}^{n}p_ir_iu'(w+\beta^\ast r_i)=u'(w)\sum_{i=1}^{n}p_ir_i\leq 0$$
 
 注意到恒等式
 $$u''(w+\beta^\ast r_i)r_i=R_a(w+\beta^\ast r_i)u'(w+\beta^\ast r_i)r_i$$
-在绝对风险厌恶递减下, 当$r_i>0$时有$R_a(w)>R_a(w+\beta^\ast r_i)$, 当$r_i<0$时有$R_a(w)<R_a(w+\beta^\ast r_i)$, 因此总有
+在绝对风险厌恶递减下, 当$r_i>0$时有$R_a(w)>R_a(w+\beta^\ast r_i)$, 并且当$r_i<0$时有$R_a(w)<R_a(w+\beta^\ast r_i)$, 因此总有
 \begin{equation}\label{eq2.38}
   R_a(w)r_i>R_a(w+\beta^\ast r_i)r_i
 \end{equation}
